@@ -173,10 +173,11 @@
   opacity: 1 !important;
 }
 .app #menu__page {
-  padding: 7.5rem 0;
+  padding: 4.5rem 0;
 }
 .app #menu__page .menu__page-container {
   margin-top: 2.5rem;
+  margin-bottom: 5.5rem;
 }
 .app #menu__page .menu__page-container .menu__order-wrapper .menu__search {
   max-width: 620px;
@@ -223,7 +224,7 @@
 }
 .app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item .menu__category-item-img {
   width: 100%;
-  height: 150px;
+  height: 120px;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -234,7 +235,7 @@
   letter-spacing: 0.12em;
   text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
   text-align: center;
-  margin: 1.9rem 0;
+  margin: 1rem 0;
 }
 .app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item:hover .menu__category-item-img {
   opacity: 0.8;
@@ -259,7 +260,7 @@
 }
 .app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product {
   background-color: var(--white-color);
-  padding: 3.2rem;
+  padding: 3.2rem 3.2rem 1.6rem 3.2rem;
   text-align: center;
   border-radius: 10px;
   position: relative;
@@ -278,7 +279,7 @@
 }
 .app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product .menu__product-img {
   width: 100%;
-  height: 150px;
+  height: 120px;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -288,6 +289,9 @@
   line-height: 2.7rem;
   margin: 0.8rem 0 0 0;
   width: 170px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product .menu__product-btn {
   cursor: pointer;
@@ -386,8 +390,7 @@
   background-color: var(--white-color);
   border-radius: 10px;
   margin-top: 0.8rem;
-  min-height: 400px;
-  max-height: 500px;
+  height: 400px;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -429,6 +432,8 @@
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   width: 70px;
   text-align: center;
+  padding-left: 1.2rem;
+  margin-top: 1.2rem;
 }
 .app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__del-btn {
   cursor: pointer;
@@ -455,6 +460,7 @@
   font-weight: 500;
   line-height: 8rem;
   letter-spacing: 2rem;
+  margin: 0 0 3.2rem 0;
 }
 .app #consult__page .grid__full-width .consult__wrapper {
   flex-direction: column;
@@ -503,16 +509,11 @@
 .app #order__page {
   padding: 7.5rem 0;
 }
-.app #order__page .order__page-container {
-  margin-top: 2.5rem;
-}
 .app #order__page .order__page-container .order__cart-header {
   font-size: 5rem;
   font-weight: 600;
-  line-height: 6.1rem;
   text-align: center;
   position: relative;
-  margin: 4.5rem 0 0 0;
 }
 .app #order__page .order__page-container .order__cart-header::before {
   content: "";
@@ -534,6 +535,7 @@
 }
 .app #order__page .order__page-container .order__cart-wrapper {
   margin-top: 3.2rem;
+  margin-bottom: 1.2rem;
 }
 .app #order__page .order__page-container .order__cart-wrapper .order__cart-item-wrapper {
   min-height: 300px;
@@ -559,8 +561,11 @@
   display: flex;
 }
 .app #order__page .order__page-container .order__cart-wrapper .order__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__img {
-  width: 100px;
+  min-width: 100px;
   height: 100px;
+  width: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
   margin-right: 1.4rem;
   border-radius: 10px;
 }
@@ -706,9 +711,6 @@
   height: 2rem;
   margin-right: 1rem;
 }
-.app #order__page .order__page-container .order__pay-wrapper {
-  margin: 4.5rem 0 0 0;
-}
 .app #order__page .order__page-container .order__pay-wrapper .order__pay-info {
   background: var(--white-color);
   padding: 2rem;
@@ -768,12 +770,11 @@
   line-height: 2.9rem;
 }
 .app #order__page .order__page-container .order__pay-wrapper .order__pay-bill .order__bill-info-list .order__info-list-item {
-  margin-left: 2rem;
   font-size: 2.2rem;
   font-weight: 400;
   line-height: 2.5rem;
   color: var(--text-color);
-  margin-top: 1rem;
+  margin: 2rem;
   display: flex;
   justify-content: space-between;
 }
@@ -783,15 +784,11 @@
 .app #order__page .order__page-container .order__pay-wrapper .order__pay-bill .order__bill-info-list .order__info-list-item .order__item-price {
   margin: 0;
 }
-.app #order__page .order__page-container .order__pay-wrapper .order__pay-bill .order__bill-info-list hr {
-  border: 1px dashed var(--text-color);
-  max-width: 400px;
-  margin-top: 1.6rem;
-  margin-bottom: 1.6rem;
-}
-.app #order__page .order__page-container .order__pay-wrapper .order__pay-bill .order__bill-info-list .order__info-list-item:nth-child(6) {
+.app #order__page .order__page-container .order__pay-wrapper .order__pay-bill .order__bill-info-list .order__info-list-item:nth-child(5) {
   border-bottom: 1px solid var(--text-color);
-  padding-bottom: 1.6rem;
+  border-top: 1px dashed var(--text-color);
+  margin-top: 1.6rem;
+  padding: 1.6rem 0;
 }
 .app #order__page .order__page-container .order__pay-wrapper .order__pay-bill .order__bill-total {
   padding: 0 2rem;
@@ -817,6 +814,9 @@
   font-weight: 600;
   line-height: 2.9rem;
   text-align: center;
+}
+.app #promotion__page {
+  padding: 7.5rem 0;
 }
 .app #promotion__page .promotion__wrapper .promotion__banner {
   height: 50vh;
@@ -1025,6 +1025,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-grow: 1;
 }
 .app .footer .footer__container .footer__logo-wrapper .footer__brand {
   font-size: 4.8rem;
@@ -1034,6 +1035,7 @@
 }
 .app .footer .footer__container .footer__list-wrapper {
   display: flex;
+  flex-grow: 1;
 }
 .app .footer .footer__container .footer__list-wrapper .footer__list {
   margin: 0 4rem;
@@ -1068,9 +1070,16 @@
   font-size: 6rem;
   margin-right: 1.4rem;
 }
-.app .footer .footer__container .footer__verify .footer__verify-img {
-  width: 100%;
-  height: 200px;
+.app .footer .footer__container .footer__list-wrapper .footer__list .footer__map-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.app .footer .footer__container .footer__list-wrapper .footer__list .footer__map-wrapper .footer__map-text {
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 2.9rem;
+  color: #1EA362;
 }
 .app .footer .footer__copyright {
   font-size: 2rem;
