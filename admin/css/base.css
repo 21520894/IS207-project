@@ -4,10 +4,14 @@
   --black-color: #000;
   --grey-color: #F0F0F0;
   --text-color: #757575;
-  --border-color: #dbdbdb;
+  --border-color: #BFBFBF;
   --header-height: 68px;
   --padding-grid: 20px;
   --margin-grid: -10px;
+  --yellow-color: #F6CF45;
+  --red-color: #FF2033;
+  --green-color: #5ADF79;
+  --blue-color: #5B8DEE;
 }
 
 * {

@@ -34,7 +34,7 @@
                             include ("./modules/menu.php");
                         ?>
                     </div>
-                    <div class="grid__col-10">
+                    <div class="grid__col-10 content__main">
                         <?php 
                             if (isset($_GET['action'])) {
                                 $content = $_GET['action'];
@@ -43,7 +43,9 @@
                             }
                             
                             if ($content == 'dishManager') {
-                                include ("./modules/dishManager.php");
+                                include ("./modules/dishManager/dishManager.php");
+                            } else if ($content == 'addDish') {
+                                include ("./modules/dishManager/addDish.php");
                             } else if ($content == 'userManager') {
                                 include ("./modules/userManager.php");
                             } else if ($content == 'ecommerce') {
@@ -63,4 +65,6 @@
 
 </body>
 <script type="text/javascript" src="./js/menuActive.js"></script>
+<script type="text/javascript" src="./js/categoryActive.js"></script>
+<script type="text/javascript" src="./js/modal.js"></script>
 </html>
