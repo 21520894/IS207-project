@@ -5,6 +5,15 @@ const modalOverlay = modal.querySelector(".modal__overlay");
 // Create an array archive name of each modal, same name with button
 const modalName = ["signin", "signup", "forgot", "reset", "changeAddress"];
 
+// Get all input in modal
+const inputTexts = modal.querySelectorAll("[class*='__input-text']");
+
+function resetInput() {
+    for (const input of inputTexts) {
+        input.value = '';
+    }
+}
+
 function openModal(id) {
     const form = document.querySelector(`#${id}Modal`);
     form.style.display = "block";
@@ -13,6 +22,12 @@ function openModal(id) {
 function closeModal(id) {
     const form = document.querySelector(`#${id}Modal`);
     form.style.display = "none";
+    resetInput();
+}
+
+function closeModalBtn(id) {
+    closeModal(id);
+    modal.style.display = "none";
 }
 
 for (const item of modalName) {

@@ -301,7 +301,7 @@
   font-weight: 600;
   line-height: 2.7rem;
   margin: 0;
-  width: 130px;
+  width: 125px;
 }
 .app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list::-webkit-scrollbar {
   display: none !important;
@@ -1135,7 +1135,7 @@
 .modal .auth-form .auth-form__container .auth-form__form .auth-form__group {
   margin-top: 2.4rem;
 }
-.modal .auth-form .auth-form__container .auth-form__form .auth-form__group .auth-form__input {
+.modal .auth-form .auth-form__container .auth-form__form .auth-form__group .auth-form__input-text {
   height: 40px;
   width: 100%;
   font-size: 1.4rem;
@@ -1144,7 +1144,7 @@
   padding-left: 1.2rem;
   border-radius: 6px;
 }
-.modal .auth-form .auth-form__container .auth-form__form .auth-form__group .auth-form__input:focus {
+.modal .auth-form .auth-form__container .auth-form__form .auth-form__group .auth-form__input-text:focus {
   border-color: #888;
 }
 .modal .auth-form .auth-form__container .auth-form__form .auth-form__aside {

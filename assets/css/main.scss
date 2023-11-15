@@ -306,7 +306,7 @@
                                 font-weight: 600;
                                 line-height: 2.7rem;
                                 margin: 0;
-                                width: 130px;
+                                width: 125px;
                             }
                         }
                         
@@ -1187,7 +1187,7 @@
             .auth-form__form {
                 .auth-form__group {
                     margin-top: 2.4rem;
-                    .auth-form__input {
+                    .auth-form__input-text {
                         height: 40px;
                         width: 100%;
                         font-size: 1.4rem;
@@ -1196,7 +1196,7 @@
                         padding-left: 1.2rem;
                         border-radius: 6px;
                     }
-                    .auth-form__input:focus {
+                    .auth-form__input-text:focus {
                         border-color: #888;
                     }
                 }

@@ -3,13 +3,30 @@ const modal = document.querySelector(".modal");
 const modalOverlay = modal.querySelector(".modal__overlay");
 
 // Create an array archive name of each modal, same name with button
-const modalName = ["deleteModal"];
+const modalName = ["addDish", "deleteDish"];
 
-function openModal() {
-    modal.style.display = "flex";
+// Get all input in modal
+const inputTexts = modal.querySelectorAll("[class*='__input-text']");
+
+function resetInput() {
+    for (const input of inputTexts) {
+        input.value = '';
+    }
 }
 
-function closeModal() {
+function openModal(id) {
+    const form = document.querySelector(`#${id}Modal`);
+    form.style.display = "block";
+}
+
+function closeModal(id) {
+    const form = document.querySelector(`#${id}Modal`);
+    form.style.display = "none";
+    resetInput();
+}
+
+function closeModalBtn(id) {
+    closeModal(id);
     modal.style.display = "none";
 }
 
@@ -26,7 +43,7 @@ for (const item of modalName) {
             // Close other modal
             for (const item of modalName) {
                 if (item !== this.getAttribute("name")) {
-                    closeModal();
+                    closeModal(item);
                 }
             }
         });
@@ -35,6 +52,6 @@ for (const item of modalName) {
     // Close when click outside modal
     modalOverlay.addEventListener("click", function () {
         modal.style.display = "none";
-        closeModal();
+        closeModal(item);
     });
 }

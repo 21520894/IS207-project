@@ -5,7 +5,7 @@
                 <input type="text" class="dish__search-input" placeholder="Search ...">
                 <i class="dish__search-icon fa-solid fa-magnifying-glass"></i>
             </div>
-            <a href="index.php?action=addDish" class="dish__add-btn btn">+ ADD</a>
+            <button name="addDish" class="dish__add-btn btn">+ ADD</button>
         </div>
         <div class="dish__category-wrapper">
             <div class="dish__category">
@@ -18,7 +18,7 @@
                 <button class="dish__category-btn btn">Drink</button>
                 <button class="dish__category-btn btn">Other</button>
             </div>
-            <button name="deleteModal" class="dish__category-delete-btn btn">
+            <button name="deleteDish" class="dish__category-delete-btn btn">
                 <i class="dish__btn-icon fa-solid fa-trash"></i>
             </button>
         </div>
@@ -194,14 +194,52 @@
     <div class="modal">
         <div class="modal__overlay"></div>
         <div class="modal__body">
-            <div id="deleteModal" class="delete__wrapper">
+            <div id="addDishModal" class="add__page">
+                <h1 class="add__page-header">Add new dish</h1>
+                <form class="add__page-wrapper" action="" method="">
+                    <div class="add__input-group">
+                        <label for="" class="add__input-label">Name <span class="add__input-require">*</span></label>
+                        <input type="text" class="add__input-text" required>
+                    </div>
+                    <div class="add__input-group">
+                        <label for="" class="add__input-label">Price (VND) <span class="add__input-require">*</span></label>
+                        <input type="number" class="add__input-text" required>
+                    </div>
+                    <div class="add__input-group">
+                        <label for="" class="add__input-label">Group <span class="add__input-require">*</span></label>
+                        <select name="" id="" class="add__input-text" required>
+                            <option value="">-- Category --</option>
+                            <option value="">Beefsteak</option>
+                            <option value="">Pizza</option>
+                            <option value="">Pasta</option>
+                            <option value="">Salad</option>
+                            <option value="">Desert</option>
+                            <option value="">Drink</option>
+                            <option value="">Other</option>
+                        </select>
+                    </div>
+                    <div class="add__input-group">
+                        <label for="" class="add__input-label">Describe <span class="add__input-require">*</span></label>
+                        <textarea class="add__input-text" name="" id="" cols="30" rows="5" required></textarea>
+                    </div>
+                    <div class="add__input-group">
+                        <label for="" class="add__input-label">Image <span class="add__input-require">*</span></label>
+                        <input type="file" class="add__input-text" accept="image/*" required>
+                    </div>
+                    <div class="add__btn-wrapper">
+                        <input class="add__btn" type="submit" value="Add new dish">
+                        <a href="index.php?action=dishManager" class="add__btn cancel">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            <div id="deleteDishModal" class="delete__wrapper">
                 <i class="delete__icon fa-solid fa-exclamation"></i>
                 <p class="delete__message">
                     Are you sure you want to delete current data? These data cannot be recovered
                 </p>
                 <div class="delete__btn-wrapper">
                     <button class="delete__btn btn">Delete</button>
-                    <button class="cancel__btn btn" onclick="closeModal()">Cancel</button>
+                    <button class="cancel__btn btn" onclick="closeModalBtn('deleteDish')">Cancel</button>
                 </div>
             </div>
         </div>

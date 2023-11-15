@@ -110,6 +110,7 @@ a {
     bottom: 0;
     left: 0;
     animation: fadeIn linear 0.1s;
+    z-index: 99;
     .modal__overlay {
         position: absolute;
         width: 100%;

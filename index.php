@@ -50,10 +50,10 @@
                     </div>
                     <div class="auth-form__form">
                         <div class="auth-form__group">
-                            <input type="email" class="auth-form__input" placeholder="Email" required required>
+                            <input type="email" class="auth-form__input-text" placeholder="Email" required required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="password" class="auth-form__input" placeholder="Password" required required>
+                            <input type="password" class="auth-form__input-text" placeholder="Password" required required>
                         </div>
                         <div class="auth-form__aside">
                             <div class="auth-form__help">
@@ -80,19 +80,19 @@
                     </div>
                     <div class="auth-form__form">
                         <div class="auth-form__group">
-                            <input type="name" class="auth-form__input" placeholder="Full name" required>
+                            <input type="name" class="auth-form__input-text" placeholder="Full name" required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="phone" class="auth-form__input" placeholder="Phone number" required>
+                            <input type="phone" class="auth-form__input-text" placeholder="Phone number" required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="email" class="auth-form__input" placeholder="Email" required>
+                            <input type="email" class="auth-form__input-text" placeholder="Email" required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="password" class="auth-form__input" placeholder="Password" required>
+                            <input type="password" class="auth-form__input-text" placeholder="Password" required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="password" class="auth-form__input" placeholder="Confirm password" required>
+                            <input type="password" class="auth-form__input-text" placeholder="Confirm password" required>
                         </div>
                         <div class="auth-form__controls">
                             <button class="btn btn--primary auth-form__button">Sign up</button>
@@ -130,10 +130,10 @@
                     </div>
                     <div class="auth-form__form">
                         <div class="auth-form__group">
-                            <input type="password" class="auth-form__input" placeholder="Enter new password" required>
+                            <input type="password" class="auth-form__input-text" placeholder="Enter new password" required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="password" class="auth-form__input" placeholder="Confirm password" required>
+                            <input type="password" class="auth-form__input-text" placeholder="Confirm password" required>
                         </div>
                         <div class="auth-form__controls">
                             <button class="btn btn--primary auth-form__button">Submit</button>
@@ -152,19 +152,19 @@
                     </div>
                     <div class="auth-form__form">
                         <div class="auth-form__group">
-                            <input type="name" class="auth-form__input" placeholder="Full Name" required required>
+                            <input type="name" class="auth-form__input-text" placeholder="Full Name" required required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="tel" class="auth-form__input" placeholder="Phone Number" required required>
+                            <input type="tel" class="auth-form__input-text" placeholder="Phone Number" required required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="text" class="auth-form__input" placeholder="Street Address" required required>
+                            <input type="text" class="auth-form__input-text" placeholder="Street Address" required required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="text" class="auth-form__input" placeholder="Apt/ Suite/ Unit (Optional)" required>
+                            <input type="text" class="auth-form__input-text" placeholder="Apt/ Suite/ Unit (Optional)" required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="text" class="auth-form__input" placeholder="City" required required>
+                            <input type="text" class="auth-form__input-text" placeholder="City" required required>
                         </div>
                         <div class="auth-form__controls">
                             <button class="btn btn--primary auth-form__button">Confirm</button>

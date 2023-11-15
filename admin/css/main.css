@@ -309,6 +309,11 @@
   text-overflow: ellipsis;
   text-align: justify;
 }
+.app .content .add__page {
+  background-color: var(--white-color);
+  padding: 2rem;
+  border-radius: 6px;
+}
 .app .content .add__page .add__page-header {
   font-size: 2.7rem;
   font-weight: 500;
@@ -323,19 +328,24 @@
   font-weight: 700;
   line-height: 1.8rem;
   display: block;
+  margin-bottom: 0.8rem;
 }
 .app .content .add__page .add__page-wrapper .add__input-group .add__input-label .add__input-require {
   color: var(--red-color);
 }
-.app .content .add__page .add__page-wrapper .add__input-group .add__input {
+.app .content .add__page .add__page-wrapper .add__input-group .add__input-text {
   font-size: 1.6rem;
   border-radius: 4px;
   line-height: 2rem;
   padding: 0.8rem 1.2rem;
   outline: none;
-  border: none;
+  border: 1px solid var(--border-color);
+  width: 100%;
 }
-.app .content .add__page .add__page-wrapper .add__btn {
+.app .content .add__page .add__page-wrapper .add__btn-wrapper {
+  text-align: center;
+}
+.app .content .add__page .add__page-wrapper .add__btn-wrapper .add__btn {
   background-color: var(--blue-color);
   color: var(--white-color);
   padding: 1.2rem 2.4rem;
@@ -350,7 +360,7 @@
   cursor: pointer;
   margin-right: 2rem;
 }
-.app .content .add__page .add__page-wrapper .cancel {
+.app .content .add__page .add__page-wrapper .add__btn-wrapper .cancel {
   background-color: var(--red-color);
 }
 .app .modal {
