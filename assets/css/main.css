@@ -813,7 +813,7 @@
   text-align: center;
 }
 .app #promotion__page {
-  padding: 7.5rem 0;
+  padding-top: 7.5rem;
 }
 .app #promotion__page .promotion__wrapper .promotion__banner {
   height: 50vh;
