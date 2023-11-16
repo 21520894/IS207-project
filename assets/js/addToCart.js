@@ -1,17 +1,17 @@
 // Get all button of product
-const addCartBtns = document.querySelectorAll(".menu__product-btn");
+const addCartBtns = document.querySelectorAll("[class*='__product-btn']");
 
 for (const btn of addCartBtns) {
 
     btn.addEventListener('click', function() {
 
         // Get product element
-        const product = getParentElement(this, 'menu__product');
+        const product = getParentElement(this, 'product-wrapper');
 
         // Get product content
-        const img = product.querySelector('.menu__product-img').src;
-        const name = product.querySelector('.menu__product-name').innerText;
-        const price = product.querySelector('.menu__product-price').innerText;
+        const img = product.querySelector('[class*="__product-img"]').src;
+        const name = product.querySelector('[class*="__product-name"]').innerText;
+        const price = product.querySelector('[class*="__product-price"]').innerText;
         const id = product.id;
 
         // Get the list name of item, if duplicate in cart, increase the quantity

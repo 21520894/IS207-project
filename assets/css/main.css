@@ -258,7 +258,7 @@
   flex-wrap: nowrap;
   scroll-behavior: smooth;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper {
   background-color: var(--white-color);
   padding: 3.2rem 3.2rem 1.6rem 3.2rem;
   text-align: center;
@@ -268,7 +268,7 @@
   flex-direction: column;
   align-items: center;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product .menu__product-label {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-label {
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 2rem;
@@ -277,13 +277,14 @@
   top: 1.2rem;
   left: 2rem;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product .menu__product-img {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-img {
   width: 100%;
   height: 120px;
   -o-object-fit: cover;
      object-fit: cover;
+  cursor: pointer;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product .menu__product-name {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-name {
   font-size: 2.2rem;
   font-weight: 600;
   line-height: 2.7rem;
@@ -293,15 +294,18 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product .menu__product-btn {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-btn {
   cursor: pointer;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product .menu__product-price {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-price {
   font-size: 2.2rem;
   font-weight: 600;
   line-height: 2.7rem;
   margin: 0;
   width: 125px;
+}
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-desc {
+  display: none;
 }
 .app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list::-webkit-scrollbar {
   display: none !important;
@@ -722,26 +726,19 @@
   line-height: 2.9rem;
   margin: 0;
 }
-.app #order__page .order__page-container .order__pay-wrapper .order__pay-info .order__info-address {
+.app #order__page .order__page-container .order__pay-wrapper .order__pay-info .order__address-info {
   font-size: 2rem;
   font-weight: 400;
   line-height: 2.4rem;
   margin: 1rem 0 0 0;
   color: var(--text-color);
 }
-.app #order__page .order__page-container .order__pay-wrapper .order__pay-info .order__info-phone {
+.app #order__page .order__page-container .order__pay-wrapper .order__pay-info .order__phone-info {
   font-size: 2rem;
   font-weight: 400;
   line-height: 2.4rem;
   color: var(--text-color);
   margin: 1rem 0 1.6rem 0;
-}
-.app #order__page .order__page-container .order__pay-wrapper .order__pay-info .order__info-time {
-  font-size: 2rem;
-  font-weight: 400;
-  line-height: 2.4rem;
-  color: var(--text-color);
-  margin: 1rem 0 0 0;
 }
 .app #order__page .order__page-container .order__pay-wrapper .order__pay-bill {
   background: var(--white-color);
@@ -1183,4 +1180,66 @@
   text-align: center;
   letter-spacing: 0.2rem;
   cursor: pointer;
+}
+.modal .detail__product-wrapper {
+  background-color: var(--white-color);
+  border-radius: 10px;
+  padding: 3rem;
+  margin: 0 auto;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.modal .detail__product-wrapper .detail__product-img {
+  width: 400px;
+  height: 400px;
+  margin-right: 7rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  float: left;
+}
+.modal .detail__product-wrapper .detail__product {
+  float: right;
+}
+.modal .detail__product-wrapper .detail__product .detail__product-name {
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 4.9rem;
+  margin: 0;
+  margin-bottom: 0.8rem;
+}
+.modal .detail__product-wrapper .detail__product .detail__product-desc {
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 2.2rem;
+  color: var(--text-color);
+  max-width: 536px;
+  max-height: 330px;
+  text-align: justify;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 15;
+  white-space: pre-wrap;
+}
+.modal .detail__product-wrapper .detail__product .detail__product-btn {
+  background-color: var(--primary-color);
+  padding: 1.2rem 2.8rem;
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--white-color);
+  font-size: 24px;
+  line-height: 29px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.modal .detail__product-wrapper .detail__product .detail__product-btn .detail__product-price {
+  font-weight: 600;
+}
+.modal .detail__product-wrapper .detail__product .detail__product-btn .detail__product-add {
+  font-weight: 400;
+}
+.modal .detail__product-wrapper .detail__product .detail__product-btn .detail__product-add .detail__product-add-icon {
+  margin-left: 0.8rem;
 }/*# sourceMappingURL=main.css.map */

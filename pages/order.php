@@ -67,10 +67,8 @@
         <div class="order__pay-wrapper grid__col-4">
             <div class="order__pay-info">
                 <h1 class="order__info-header">Delivering to:</h1>
-                <p class="order__info-address">1342 Morris Street</p>
-                <p class="order__info-phone">0912345678</p>
-                <h1 class="order__info-header">Estimated delivery time:</h1>
-                <h1 class="order__info-time">10:53 AM 06/10(Today)</h1>
+                <p class="order__address-info">1342 Morris Street</p>
+                <p class="order__phone-info">0912345678</p>
             </div>
             <div class="order__pay-bill">
                 <h1 class="order__bill-header">Order Summary</h1>

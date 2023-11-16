@@ -265,7 +265,7 @@
                         overflow-x: scroll;
                         flex-wrap: nowrap;
                         scroll-behavior: smooth;
-                        .menu__product {
+                        .menu__product-wrapper {
                             background-color: var(--white-color);
                             padding: 3.2rem 3.2rem 1.6rem 3.2rem;
                             text-align: center;
@@ -287,6 +287,7 @@
                                 width: 100%;
                                 height: 120px;
                                 object-fit: cover;
+                                cursor: pointer;
                             }
                             .menu__product-name {
                                 font-size: 2.2rem;
@@ -308,8 +309,10 @@
                                 margin: 0;
                                 width: 125px;
                             }
+                            .menu__product-desc {
+                                display: none;
+                            }
                         }
-                        
                     }
                     .menu__product-list::-webkit-scrollbar {
                         display: none !important;
@@ -751,26 +754,19 @@
                         line-height: 2.9rem;
                         margin: 0;
                     }
-                    .order__info-address {
+                    .order__address-info {
                         font-size: 2.0rem;
                         font-weight: 400;
                         line-height: 2.4rem;
                         margin: 1rem 0 0 0;
                         color: var(--text-color);
                     }
-                    .order__info-phone {
+                    .order__phone-info {
                         font-size: 2.0rem;
                         font-weight: 400;
                         line-height: 2.4rem;
                         color: var(--text-color);
                         margin: 1rem 0 1.6rem 0;
-                    }
-                    .order__info-time {
-                        font-size: 2.0rem;
-                        font-weight: 400;
-                        line-height: 2.4rem;
-                        color: var(--text-color);
-                        margin: 1rem 0 0 0;
                     }
                 }
                 .order__pay-bill {
@@ -1239,5 +1235,65 @@
                 }
             }
         }    
+    }
+    .detail__product-wrapper {
+        background-color: var(--white-color);
+        border-radius: 10px;
+        padding: 3rem;
+        margin: 0 auto;
+        width: fit-content;
+        .detail__product-img {
+            width: 400px;
+            height: 400px;
+            margin-right: 7rem;
+            object-fit: cover;
+            float: left;
+        }
+        .detail__product {
+            float: right;
+            .detail__product-name {
+                font-size: 4.0rem;
+                font-weight: 600;
+                line-height: 4.9rem;
+                margin: 0;
+                margin-bottom: 0.8rem;
+            }
+            .detail__product-desc {
+                font-size: 1.8rem;
+                font-weight: 400;
+                line-height: 2.2rem;
+                color: var(--text-color);
+                max-width: 536px;
+                max-height: 330px;
+                text-align: justify;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 15;
+                white-space: pre-wrap;
+            }
+            .detail__product-btn {
+                background-color: var(--primary-color);
+                padding: 1.2rem 2.8rem;
+                margin-top: 4rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                color: var(--white-color);
+                font-size: 24px;
+                line-height: 29px;
+                border-radius: 10px;
+                cursor: pointer;
+                .detail__product-price {
+                    font-weight: 600;
+                }
+                .detail__product-add {
+                    font-weight: 400;
+                    .detail__product-add-icon {
+                        margin-left: 0.8rem;
+                    }
+                }
+            }
+        }
     }
 }

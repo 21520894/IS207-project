@@ -49,127 +49,33 @@
                 <span class="menu__product-scroll-btn btn--hover btn-left"><i class="fa-solid fa-chevron-left"></i></span>
                 <ul class="menu__product-list menu__product-list--active grid__row" name="menu1">
                     <li class="grid__col-2-8">
-                        <div class="menu__product" id="item11">
+                        <div class="menu__product-wrapper" id="item11">
                             <span class="menu__product-label">Recommended</span>
-                            <img src="./assets/img/item11.jpg" alt="" class="menu__product-img">
+                            <img src="./assets/img/item11.jpg" alt="" class="menu__product-img" name="productDetail">
                             <h1 class="menu__product-name">Beef wellington</h1>
                             <span class="menu__product-btn btn--hover"><img src="./assets/img/item-btn.png" alt=""></span>
                             <h2 class="menu__product-price">149000 VND</h2>
-                        </div>
-                    </li>
-                    <li class="grid__col-2-8">
-                        <div class="menu__product" id="item12">
-                            <span class="menu__product-label">New</span>
-                            <img src="./assets/img/item12.jpg" alt="" class="menu__product-img">
-                            <h1 class="menu__product-name">Flank steak</h1>
-                            <span class="menu__product-btn btn--hover"><img src="./assets/img/item-btn.png" alt=""></span>
-                            <h2 class="menu__product-price">159000 VND</h2>
-                        </div>
-                    </li>
-                    <li class="grid__col-2-8">
-                        <div class="menu__product" id="item13">
-                            <img src="./assets/img/item13.jpg" alt="" class="menu__product-img">
-                            <h1 class="menu__product-name">Skirt steak</h1>
-                            <span class="menu__product-btn btn--hover"><img src="./assets/img/item-btn.png" alt=""></span>
-                            <h2 class="menu__product-price">179000 VND</h2>
-                        </div>
-                    </li>
-                    <li class="grid__col-2-8">
-                        <div class="menu__product" id="item14">
-                            <img src="./assets/img/item14.jpg" alt="" class="menu__product-img">
-                            <h1 class="menu__product-name">Fajitas</h1>
-                            <span class="menu__product-btn btn--hover"><img src="./assets/img/item-btn.png" alt=""></span>
-                            <h2 class="menu__product-price">129000 VND</h2>
-                        </div>
-                    </li>
-                    <li class="grid__col-2-8">
-                        <div class="menu__product" id="item15">
-                            <img src="./assets/img/item14.jpg" alt="" class="menu__product-img">
-                            <h1 class="menu__product-name">Fajitas2</h1>
-                            <span class="menu__product-btn btn--hover"><img src="./assets/img/item-btn.png" alt=""></span>
-                            <h2 class="menu__product-price">129000 VND</h2>
-                        </div>
-                    </li>
-                    <li class="grid__col-2-8">
-                        <div class="menu__product" id="item16">
-                            <img src="./assets/img/item14.jpg" alt="" class="menu__product-img">
-                            <h1 class="menu__product-name">Fajitas3</h1>
-                            <span class="menu__product-btn btn--hover"><img src="./assets/img/item-btn.png" alt=""></span>
-                            <h2 class="menu__product-price">129000 VND</h2>
+                            <p class="menu__product-desc">Our Beef Wellington is made with the finest ingredients, including prime beef tenderloin, wild mushrooms, and imported puff pastry. 
+                                <br>The steak is seasoned to perfection and seared over high heat to lock in the juices, then wrapped in the duxelles and puff pastry. The Wellington is then baked until the pastry is golden brown and the steak is cooked to your desired doneness.
+                                <br>Beef Wellington is typically served with a side of mashed potatoes and asparagus, but it can also be paired with a variety of other vegetables, such as green beans, roasted carrots, or Brussels sprouts. For a truly special meal, add a side of truffle oil or foie gras butter.
+                            </p>
                         </div>
                     </li>
                 </ul>
                 <ul class="menu__product-list grid__row" name="menu2">
                     <li class="grid__col-2-8">
-                        <div class="menu__product" id="item21">
+                        <div class="menu__product-wrapper" id="item21">
                             <span class="menu__product-label">Recommended</span>
-                            <img src="./assets/img/item11.jpg" alt="" class="menu__product-img">
+                            <img src="./assets/img/item21.jpg" alt="" class="menu__product-img" name="productDetail">
                             <h1 class="menu__product-name">Item21</h1>
                             <span class="menu__product-btn btn--hover"><img src="./assets/img/item-btn.png" alt=""></span>
                             <h2 class="menu__product-price">10000 VND</h2>
+                            <p class="menu__product-desc">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo id dolorum minima aperiam expedita, quae officia. Ipsam nisi assumenda eaque illum amet aperiam dolore at, dolores molestiae numquam officia exercitationem?
+                                <br>Aliquam accusamus aliquid quod suscipit, doloremque nostrum, velit, asperiores ipsam at esse quibusdam minima a nesciunt deserunt praesentium magnam molestiae omnis cumque officiis provident ducimus. Molestiae nulla quaerat accusantium odio.
+                                <br>Nobis esse libero tenetur eligendi sunt tempore exercitationem id culpa expedita obcaecati quibusdam minus dicta numquam labore ad nemo nihil reprehenderit ducimus itaque, rem quidem eos quisquam porro? Doloribus, asperiores.
+                            </p>
                         </div>
                     </li>
-                    <li class="grid__col-2-8">
-                        <div class="menu__product" id="item22">
-                            <span class="menu__product-label">New</span>
-                            <img src="./assets/img/item12.jpg" alt="" class="menu__product-img">
-                            <h1 class="menu__product-name">Item22</h1>
-                            <span class="menu__product-btn btn--hover"><img src="./assets/img/item-btn.png" alt=""></span>
-                            <h2 class="menu__product-price">20000 VND</h2>
-                        </div>
-                    </li>
-                    <li class="grid__col-2-8">
-                        <div class="menu__product" id="item23">
-                            <img src="./assets/img/item13.jpg" alt="" class="menu__product-img">
-                            <h1 class="menu__product-name">Item23</h1>
-                            <span class="menu__product-btn btn--hover"><img src="./assets/img/item-btn.png" alt=""></span>
-                            <h2 class="menu__product-price">50000 VND</h2>
-                        </div>
-                    </li>
-                    <li class="grid__col-2-8">
-                        <div class="menu__product" id="item24">
-                            <img src="./assets/img/item14.jpg" alt="" class="menu__product-img">
-                            <h1 class="menu__product-name">Item24</h1>
-                            <span class="menu__product-btn btn--hover"><img src="./assets/img/item-btn.png" alt=""></span>
-                            <h2 class="menu__product-price">100000 VND</h2>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="menu__product-list grid__row" name="menu3">
-                    <li class="grid__col-2-8">
-                        <div class="menu__product" id="item31">
-                            <span class="menu__product-label">Recommended</span>
-                            <img src="./assets/img/item11.jpg" alt="" class="menu__product-img">
-                            <h1 class="menu__product-name">Item31</h1>
-                            <span class="menu__product-btn btn--hover"><img src="./assets/img/item-btn.png" alt=""></span>
-                            <h2 class="menu__product-price">10000 VND</h2>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="menu__product-list grid__row" name="menu4">
-                    <li class="grid__col-2-8">
-                        <div class="menu__product" id="item41">
-                            <span class="menu__product-label">Recommended</span>
-                            <img src="./assets/img/item11.jpg" alt="" class="menu__product-img">
-                            <h1 class="menu__product-name">Item41</h1>
-                            <span class="menu__product-btn btn--hover"><img src="./assets/img/item-btn.png" alt=""></span>
-                            <h2 class="menu__product-price">10000 VND</h2>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="menu__product-list grid__row" name="menu5">
-                    <li class="grid__col-2-8">
-                        <div class="menu__product" id="item51">
-                            <span class="menu__product-label">Recommended</span>
-                            <img src="./assets/img/item11.jpg" alt="" class="menu__product-img">
-                            <h1 class="menu__product-name">Item51</h1>
-                            <span class="menu__product-btn btn--hover"><img src="./assets/img/item-btn.png" alt=""></span>
-                            <h2 class="menu__product-price">10000 VND</h2>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="menu__product-list grid__row" name="menu6">
-                    
                 </ul>
                 <span class="menu__product-scroll-btn btn--hover btn-right"><i class="fa-solid fa-chevron-right"></i></span>
             </div>

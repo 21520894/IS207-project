@@ -39,7 +39,7 @@
         <div class="modal__overlay"></div>
         <div class="modal__body">
             <!-- Sign in form -->
-            <form class="auth-form" id="signinModal" action="" method="">
+            <form class="auth-form" name="signinModal" action="" method="">
                 <div class="auth-form__container">
                     <div class="auth-form__header">
                         <h3 class="auth-form__heading">Sign in</h3>
@@ -50,10 +50,10 @@
                     </div>
                     <div class="auth-form__form">
                         <div class="auth-form__group">
-                            <input type="email" class="auth-form__input-text" placeholder="Email" required required>
+                            <input type="email" class="auth-form__input-text" placeholder="Email" required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="password" class="auth-form__input-text" placeholder="Password" required required>
+                            <input type="password" class="auth-form__input-text" placeholder="Password" required>
                         </div>
                         <div class="auth-form__aside">
                             <div class="auth-form__help">
@@ -69,7 +69,7 @@
             <!-- End of Sign in form -->
 
             <!-- Sign up form -->
-            <form class="auth-form" id="signupModal" action="" method="">
+            <form class="auth-form" name="signupModal" action="" method="">
                 <div class="auth-form__container">
                     <div class="auth-form__header">
                         <h3 class="auth-form__heading">Sign up</h3>
@@ -103,14 +103,14 @@
             <!-- End of Sign up form -->
 
             <!-- Forgot form -->
-            <form class="auth-form" id="forgotModal" action="" method="">
+            <form class="auth-form" name="forgotModal" action="" method="">
                 <div class="auth-form__container">
                     <div class="auth-form__header">
                         <h3 class="auth-form__heading">Forgot password?</h3>
                     </div>
                     <div class="auth-form__form">
                         <div class="auth-form__group">
-                            <input type="email" class="auth-form__input mt-32" placeholder="Email" required>
+                            <input type="email" class="auth-form__input-text mt-32" placeholder="Email" required>
                         </div>
                         <div class="auth-form__controls mb-32">
                             <button class="btn btn--primary auth-form__button">Submit</button>
@@ -122,7 +122,7 @@
             <!-- End of Forgot form -->
 
             <!-- Reset password form -->
-            <form class="auth-form" id="resetModal" action="" method="">
+            <form class="auth-form" name="resetModal" action="" method="">
                 <div class="auth-form__container">
                     <div class="auth-form__header">
                         <h3 class="auth-form__heading">Reset password</h3>
@@ -145,26 +145,26 @@
             <!-- End of Reset password form -->
 
             <!-- Change address form -->
-            <form class="auth-form" id="changeAddressModal" action="" method="">
+            <form class="auth-form" name="changeAddressModal" action="" method="">
                 <div class="auth-form__container">
                     <div class="auth-form__header">
                         <h3 class="auth-form__heading">Shipping address</h3>
                     </div>
                     <div class="auth-form__form">
                         <div class="auth-form__group">
-                            <input type="name" class="auth-form__input-text" placeholder="Full Name" required required>
+                            <input type="name" class="auth-form__input-text" placeholder="Full Name" required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="tel" class="auth-form__input-text" placeholder="Phone Number" required required>
+                            <input type="tel" class="auth-form__input-text" placeholder="Phone Number" required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="text" class="auth-form__input-text" placeholder="Street Address" required required>
+                            <input type="text" class="auth-form__input-text" placeholder="Street Address" required>
                         </div>
                         <div class="auth-form__group">
                             <input type="text" class="auth-form__input-text" placeholder="Apt/ Suite/ Unit (Optional)" required>
                         </div>
                         <div class="auth-form__group">
-                            <input type="text" class="auth-form__input-text" placeholder="City" required required>
+                            <input type="text" class="auth-form__input-text" placeholder="City" required>
                         </div>
                         <div class="auth-form__controls">
                             <button class="btn btn--primary auth-form__button">Confirm</button>
@@ -173,6 +173,27 @@
                 </div>
             </form>
             <!-- End of Change address form -->
+
+            <!-- Product detail modal -->
+            <div class="detail__product-wrapper" name="productDetailModal">
+                <img src="./assets/img/item11.jpg" alt="" class="detail__product-img">
+                <div class="detail__product">
+                    <h1 class="detail__product-name">Beef wellington</h1>
+                    <p class="detail__product-desc">Our Beef Wellington is made with the finest ingredients, including prime beef tenderloin, wild mushrooms, and imported puff pastry. 
+                        <br>The steak is seasoned to perfection and seared over high heat to lock in the juices, then wrapped in the duxelles and puff pastry. The Wellington is then baked until the pastry is golden brown and the steak is cooked to your desired doneness.
+                        <br>Beef Wellington is typically served with a side of mashed potatoes and asparagus, but it can also be paired with a variety of other vegetables, such as green beans, roasted carrots, or Brussels sprouts. For a truly special meal, add a side of truffle oil or foie gras butter.
+                    </p>
+                    <div class="detail__product-btn">
+                        <p class="detail__product-price">149,000 đ/ 100gr</p>
+                        <p class="detail__product-add">
+                            Add to cart
+                            <i class="detail__product-add-icon fa-solid fa-plus"></i>
+                        </p>
+                    </div>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <!-- End of Product detail -->
 
         </div>
     </div>

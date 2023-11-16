@@ -22,7 +22,7 @@ for (const category of categoryList) {
 
                 // Add scroll button
                 const wrapper = getParentElement(productList, 'menu__product-list-wrapper');
-                const productItem = productList.querySelectorAll('.menu__product');
+                const productItem = productList.querySelectorAll('.menu__product-wrapper');
                 if (productItem.length > 4) {
                     wrapper.classList.add('menu__product-scroll-btn--active');
                 } else {
