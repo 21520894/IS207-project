@@ -13,7 +13,7 @@ use Session;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 
-class ProductController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -1,4 +1,5 @@
 @extends('layouts/clients')
+
 @section('content')
 <!-- Menu page -->
 <section id="menu__page">
@@ -10,42 +11,20 @@
                 <i class="menu__search-icon fa-solid fa-bars"></i>
             </div>
             <ul class="menu__category-list grid__row">
-                <li class="grid__col-1-8">
-                    <div class="menu__category-item menu__category-item--active" name="menu1">
-                        <img class="menu__category-item-img" src="./assets/img/menu1.jpg" alt="">
-                        <h1 class="menu__category-item-name">Beefsteak</h1>
-                    </div>
-                </li>
-                <li class="grid__col-1-8">
-                    <div class="menu__category-item" name="menu2">
-                        <img class="menu__category-item-img" src="./assets/img/menu2.jpg" alt="">
-                        <h1 class="menu__category-item-name">Pizza</h1>
-                    </div>
-                </li>
-                <li class="grid__col-1-8">
-                    <div class="menu__category-item" name="menu3">
-                        <img class="menu__category-item-img" src="./assets/img/menu3.jpg" alt="">
-                        <h1 class="menu__category-item-name">Pasta</h1>
-                    </div>
-                </li>
-                <li class="grid__col-1-8">
-                    <div class="menu__category-item" name="menu4">
-                        <img class="menu__category-item-img" src="./assets/img/menu4.jpg" alt="">
-                        <h1 class="menu__category-item-name">Salad</h1>
-                    </div>
-                </li>
-                <li class="grid__col-1-8">
-                    <div class="menu__category-item" name="menu5">
-                        <img class="menu__category-item-img" src="./assets/img/menu5.jpg" alt="">
-                        <h1 class="menu__category-item-name">Desert</h1>
-                    </div>
-                </li>
-                <li class="grid__col-1-8">
-                    <div class="menu__category-item" name="menu6">
-                        <img class="menu__category-item-img" src="./assets/img/menu6.jpg" alt="">
-                        <h1 class="menu__category-item-name">Drink</h1>
-                    </div>
-                </li>
+                @php
+                    $categories = DB::connection('mysql')->select('select * from category');
+                @endphp
+                @if($categories!=null)
+                    @for($i=0;$i<count($categories);$i++)
+                        <li class="grid__col-1-8">
+                            <div class="menu__category-item menu__category-item--active" name="menu{{$i+1}}">
+                                <img class="menu__category-item-img" src="./assets/img/menu{{$i+1}}.jpg" alt="">
+                                <h1 class="menu__category-item-name">{{$categories[$i]->Title}}</h1>
+                            </div>
+                        </li>
+                    @endfor
+                @endif
+
             </ul>
             <div class="menu__product-list-wrapper menu__product-scroll-btn--active">
                 <span class="menu__product-scroll-btn btn--hover btn-left"><i class="fa-solid fa-chevron-left"></i></span>

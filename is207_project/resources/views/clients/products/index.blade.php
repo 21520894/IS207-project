@@ -32,7 +32,7 @@
         <tr>
             <td>{{ $product->ProductID }}</td>
             <td>{{ $product->Name }}</td>
-            <td>{{ $product->category-> Title }}</td>
+            <td>{{ $product->category->Title }}</td>
             <td>{{ $product->Price }}</td>
             <td>{{ $product->ProductStatus }}</td>
             <td>{{ $product->Description }}</td>
