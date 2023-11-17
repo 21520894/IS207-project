@@ -5,6 +5,8 @@ use App\Http\Controllers\category_product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +34,13 @@ use App\Http\Controllers\AdminController;
 // Route::post('/add_product',[category_product::class,'add_product']);    // add more food
 // Route::get('/list_product', [category_product::class,'list_product']); //view the food list
 
-Route::get('/', [ProductController::class, 'index']);
+Route::get('/products', [ProductController::class, 'index']);
 Route::resource('products', ProductController::class);
 Route::resource('admin', AdminController::class);
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 
+Route::get('/',[HomeController::class,'index'])->name('home_page');
+Route::get('/menu_page',[HomeController::class,'menu_page'])->name('menu_page');
+Route::get('/order_page',[HomeController::class,'order_page'])->name('order_page');
 
 

@@ -49,7 +49,7 @@ class ProductController extends Controller
             'Name' => 'required',
             'Price' => 'required',
             'CategoryID'=> 'required',
-            'Description'=> 'required',	
+            'Description'=> 'required',
         ]);
 
         Product::create($request->all());
@@ -93,7 +93,7 @@ class ProductController extends Controller
             'Name' => 'required',
             'Price' => 'required',
             'CategoryID'=> 'required',
-            'Description'=> 'required',	
+            'Description'=> 'required',
         ]);
 
 
