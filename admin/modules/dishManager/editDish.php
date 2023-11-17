@@ -40,7 +40,7 @@
                 <input type="file" class="edit__input-text" accept="image/*" required>
             </div>
             <div class="edit__btn-wrapper">
-                <input class="edit__btn" type="submit" value="Complete">
+                <input class="edit__btn" type="submit" value="Save">
                 <a href="index.php?action=dishManager&query=null" class="edit__btn cancel">Cancel</a>
             </div>
         </div>
