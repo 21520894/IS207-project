@@ -31,9 +31,9 @@
                 <th class="dish__manager-header">IMG</th>
                 <th class="dish__manager-header">GROUP</th>
                 <th class="dish__manager-header">PRICE</th>
-                <th class="dish__manager-header">STATUS</th>
                 <th class="dish__manager-header">DESCRIBE</th>
-                <th class="dish__manager-header"></th>
+                <th class="dish__manager-header">DELETE</th>
+                <th class="dish__manager-header">EDIT</th>
             </tr>
             <tr class="dish__manager-row">
                 <td class="dish__manager-data">001</td>
@@ -44,32 +44,25 @@
                 <td class="dish__manager-data">Beefsteak</td>
                 <td class="dish__manager-data">149,000 VND</td>
                 <td class="dish__manager-data">
-                    <p class="data__status">
-                        STOCKING
-                    </p>
-                </td>
-                <td class="dish__manager-data">
                     <p class="data__desc">
                         Our Beef Wellington is made with the finest ingredients, including prime beef tenderloin, wild mushrooms, and imported puff pastry. The steak is seasoned to ...
                     </p>
                 </td>
                 <td class="dish__manager-data">
                     <input class="data__checkbox" type="checkbox" name="" id="">
+                </td>
+                <td class="dish__manager-data">
+                    <a href="?action=dishManager&query=edit" name="editDish" class="data__edit-btn btn">EDIT</a>
                 </td>
             </tr>
             <tr class="dish__manager-row">
-                <td class="dish__manager-data">001</td>
-                <td class="dish__manager-data">Beef Wellington</td>
+                <td class="dish__manager-data">002</td>
+                <td class="dish__manager-data">Pizza</td>
                 <td class="dish__manager-data">
-                    <img class="data__img" src="../assets/img/item11.jpg" alt="">
+                    <img class="data__img" src="../assets/img/item21.jpg" alt="">
                 </td>
-                <td class="dish__manager-data">Beefsteak</td>
+                <td class="dish__manager-data">Pizza</td>
                 <td class="dish__manager-data">149,000 VND</td>
-                <td class="dish__manager-data">
-                    <p class="data__status">
-                        STOCKING
-                    </p>
-                </td>
                 <td class="dish__manager-data">
                     <p class="data__desc">
                         Our Beef Wellington is made with the finest ingredients, including prime beef tenderloin, wild mushrooms, and imported puff pastry. The steak is seasoned to ...
@@ -78,115 +71,8 @@
                 <td class="dish__manager-data">
                     <input class="data__checkbox" type="checkbox" name="" id="">
                 </td>
-            </tr>
-            <tr class="dish__manager-row">
-                <td class="dish__manager-data">001</td>
-                <td class="dish__manager-data">Beef Wellington</td>
                 <td class="dish__manager-data">
-                    <img class="data__img" src="../assets/img/item11.jpg" alt="">
-                </td>
-                <td class="dish__manager-data">Beefsteak</td>
-                <td class="dish__manager-data">149,000 VND</td>
-                <td class="dish__manager-data">
-                    <p class="data__status">
-                        STOCKING
-                    </p>
-                </td>
-                <td class="dish__manager-data">
-                    <p class="data__desc">
-                        Our Beef Wellington is made with the finest ingredients, including prime beef tenderloin, wild mushrooms, and imported puff pastry. The steak is seasoned to ...
-                    </p>
-                </td>
-                <td class="dish__manager-data">
-                    <input class="data__checkbox" type="checkbox" name="" id="">
-                </td>
-            </tr>
-            <tr class="dish__manager-row">
-                <td class="dish__manager-data">001</td>
-                <td class="dish__manager-data">Beef Wellington</td>
-                <td class="dish__manager-data">
-                    <img class="data__img" src="../assets/img/item11.jpg" alt="">
-                </td>
-                <td class="dish__manager-data">Beefsteak</td>
-                <td class="dish__manager-data">149,000 VND</td>
-                <td class="dish__manager-data">
-                    <p class="data__status">
-                        STOCKING
-                    </p>
-                </td>
-                <td class="dish__manager-data">
-                    <p class="data__desc">
-                        Our Beef Wellington is made with the finest ingredients, including prime beef tenderloin, wild mushrooms, and imported puff pastry. The steak is seasoned to ...
-                    </p>
-                </td>
-                <td class="dish__manager-data">
-                    <input class="data__checkbox" type="checkbox" name="" id="">
-                </td>
-            </tr>
-            <tr class="dish__manager-row">
-                <td class="dish__manager-data">001</td>
-                <td class="dish__manager-data">Beef Wellington</td>
-                <td class="dish__manager-data">
-                    <img class="data__img" src="../assets/img/item11.jpg" alt="">
-                </td>
-                <td class="dish__manager-data">Beefsteak</td>
-                <td class="dish__manager-data">149,000 VND</td>
-                <td class="dish__manager-data">
-                    <p class="data__status">
-                        STOCKING
-                    </p>
-                </td>
-                <td class="dish__manager-data">
-                    <p class="data__desc">
-                        Our Beef Wellington is made with the finest ingredients, including prime beef tenderloin, wild mushrooms, and imported puff pastry. The steak is seasoned to ...
-                    </p>
-                </td>
-                <td class="dish__manager-data">
-                    <input class="data__checkbox" type="checkbox" name="" id="">
-                </td>
-            </tr>
-            <tr class="dish__manager-row">
-                <td class="dish__manager-data">001</td>
-                <td class="dish__manager-data">Beef Wellington</td>
-                <td class="dish__manager-data">
-                    <img class="data__img" src="../assets/img/item11.jpg" alt="">
-                </td>
-                <td class="dish__manager-data">Beefsteak</td>
-                <td class="dish__manager-data">149,000 VND</td>
-                <td class="dish__manager-data">
-                    <p class="data__status">
-                        STOCKING
-                    </p>
-                </td>
-                <td class="dish__manager-data">
-                    <p class="data__desc">
-                        Our Beef Wellington is made with the finest ingredients, including prime beef tenderloin, wild mushrooms, and imported puff pastry. The steak is seasoned to ...
-                    </p>
-                </td>
-                <td class="dish__manager-data">
-                    <input class="data__checkbox" type="checkbox" name="" id="">
-                </td>
-            </tr>
-            <tr class="dish__manager-row">
-                <td class="dish__manager-data">001</td>
-                <td class="dish__manager-data">Beef Wellington</td>
-                <td class="dish__manager-data">
-                    <img class="data__img" src="../assets/img/item11.jpg" alt="">
-                </td>
-                <td class="dish__manager-data">Beefsteak</td>
-                <td class="dish__manager-data">149,000 VND</td>
-                <td class="dish__manager-data">
-                    <p class="data__status">
-                        STOCKING
-                    </p>
-                </td>
-                <td class="dish__manager-data">
-                    <p class="data__desc">
-                        Our Beef Wellington is made with the finest ingredients, including prime beef tenderloin, wild mushrooms, and imported puff pastry. The steak is seasoned to ...
-                    </p>
-                </td>
-                <td class="dish__manager-data">
-                    <input class="data__checkbox" type="checkbox" name="" id="">
+                    <a href="?action=dishManager&query=edit" name="editDish" class="data__edit-btn btn">EDIT</a>
                 </td>
             </tr>
         </table>
@@ -228,7 +114,7 @@
                     </div>
                     <div class="add__btn-wrapper">
                         <input class="add__btn" type="submit" value="Add new dish">
-                        <a href="index.php?action=dishManager" class="add__btn cancel">Cancel</a>
+                        <a href="index.php?action=dishManager&query=null" class="add__btn cancel">Cancel</a>
                     </div>
                 </form>
             </div>

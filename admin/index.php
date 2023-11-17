@@ -36,25 +36,7 @@
                     </div>
                     <div class="grid__col-10 content__main">
                         <?php 
-                            if (isset($_GET['action'])) {
-                                $content = $_GET['action'];
-                            } else {
-                                $content = '';
-                            }
-                            
-                            if ($content == 'dishManager') {
-                                include ("./modules/dishManager/dishManager.php");
-                            } else if ($content == 'addDish') {
-                                include ("./modules/dishManager/addDish.php");
-                            } else if ($content == 'userManager') {
-                                include ("./modules/userManager.php");
-                            } else if ($content == 'ecommerce') {
-                                include ("./modules/ecommerce.php");
-                            } else if ($content == 'report') {
-                                include ("./modules/report.php");
-                            } else {
-                                include ("./modules/dashboard.php");
-                            }
+                            include ("./modules/main.php");
                         ?>
                     </div>
                 </div>

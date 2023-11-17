@@ -295,12 +295,6 @@
   border-radius: 5px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
 }
-.app .content .dish__wrapper .dish__body .dish__manager .dish__manager-row .dish__manager-data .data__status {
-  background-color: var(--green-color);
-  padding: 0.4rem 0;
-  border-radius: 3px;
-  margin: 0 1.2rem;
-}
 .app .content .dish__wrapper .dish__body .dish__manager .dish__manager-row .dish__manager-data .data__desc {
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -308,6 +302,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: justify;
+}
+.app .content .dish__wrapper .dish__body .dish__manager .dish__manager-row .dish__manager-data .data__edit-btn {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 0.8rem 0.4rem;
+  border-radius: 4px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
 }
 .app .content .add__page {
   background-color: var(--white-color);
@@ -361,6 +364,70 @@
   margin-right: 2rem;
 }
 .app .content .add__page .add__page-wrapper .add__btn-wrapper .cancel {
+  background-color: var(--red-color);
+}
+.app .content .edit__page {
+  padding: 2rem;
+  border-radius: 6px;
+}
+.app .content .edit__page .edit__page-wrapper {
+  display: flex;
+}
+.app .content .edit__page .edit__page-wrapper .edit__page-img {
+  width: 300px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+  margin-right: 3.2rem;
+}
+.app .content .edit__page .edit__page-wrapper .edit__input-group-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.app .content .edit__page .edit__page-wrapper .edit__input-group {
+  margin-top: 2rem;
+  margin-right: 2rem;
+}
+.app .content .edit__page .edit__page-wrapper .edit__input-group .edit__input-label {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.8rem;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+.app .content .edit__page .edit__page-wrapper .edit__input-group .edit__input-label .edit__input-require {
+  color: var(--red-color);
+}
+.app .content .edit__page .edit__page-wrapper .edit__input-group .edit__input-text {
+  font-size: 1.6rem;
+  border-radius: 4px;
+  line-height: 2rem;
+  padding: 0.8rem 1.2rem;
+  outline: none;
+  border: 1px solid var(--border-color);
+  width: 100%;
+}
+.app .content .edit__page .edit__page-wrapper .edit__btn-wrapper {
+  text-align: center;
+}
+.app .content .edit__page .edit__page-wrapper .edit__btn-wrapper .edit__btn {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  padding: 1.2rem 2.4rem;
+  outline: none;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  margin-top: 1.6rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.6rem;
+  cursor: pointer;
+  margin-right: 2rem;
+}
+.app .content .edit__page .edit__page-wrapper .edit__btn-wrapper .cancel {
   background-color: var(--red-color);
 }
 .app .modal {
