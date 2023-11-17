@@ -23,7 +23,7 @@ class ProductController extends Controller
     {
         $products = Product::take(5)->get();
 
-        return view('front_end/index',compact('products'))
+        return view('clients/products/index',compact('products'))
             ->with(request()->input('page'));
     }
 
@@ -35,7 +35,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('front_end/add_product',compact('categories'));
+        return view('clients/products/add_product',compact('categories'));
     }
 
     /**
@@ -64,7 +64,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('front_end/show_product',compact('product'));
+        return view('clients/products/show_product',compact('product'));
         // return view('front_end/index',compact('product'));
     }
 
@@ -77,7 +77,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('front_end/edit_product',compact('product','categories'));
+        return view('clients/products/edit_product',compact('product','categories'));
     }
 
     /**

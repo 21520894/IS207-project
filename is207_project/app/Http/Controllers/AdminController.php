@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 
 session_start();
-class AdminController extends Controller    
+class AdminController extends Controller
 {
     public function index(){
-        return view('front_end/admin_login');
+        return view('clients/admin/admin_login');
     }
     public function show(Admin $admin){
-        return view('front_end/admin_page',compact('admin'));
+        return view('clients/admin/admin_page',compact('admin'));
     }
 
     public function login(Request $request)
