@@ -365,12 +365,6 @@
                         width: 100%;
                     }
                 }
-                .add__input-group--inactive {
-                    display: none;
-                }
-                .add__input-group--active {
-                    display: block;
-                }
                 .add__btn-wrapper {
                     text-align: center;
                     .add__btn {
@@ -457,6 +451,13 @@
                     }
                 }
             }
+        }
+
+        .input-group--inactive {
+            display: none;
+        }
+        .input-group--active {
+            display: block;
         }
     }
 

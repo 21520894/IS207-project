@@ -46,22 +46,8 @@
     </div>
 
 </body>
-<script type="text/javascript" src="./js/getParentElement.js"></script>
 <script type="text/javascript" src="./js/menuActive.js"></script>
 <script type="text/javascript" src="./js/categoryActive.js"></script>
 <script type="text/javascript" src="./js/modal.js"></script>
-<script>
-    const categoryGroup = document.querySelector('select[class*="add__input-text"]');
-
-    categoryGroup.addEventListener('change', function() {
-        const categoryInput = document.querySelector('[class*="add__input-group--"]')
-        if (categoryGroup.value == 'other') {
-            categoryInput.classList.remove('add__input-group--inactive');
-            categoryInput.classList.add('add__input-group--active');
-        } else {
-            categoryInput.classList.remove('add__input-group--active');
-            categoryInput.classList.add('add__input-group--inactive');
-        }
-    }) 
-</script>
+<script type="text/javascript" src="./js/editCategory.js"></script>
 </html>

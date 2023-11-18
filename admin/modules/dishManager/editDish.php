@@ -27,9 +27,13 @@
                         <option value="">Salad</option>
                         <option value="">Desert</option>
                         <option value="">Drink</option>
-                        <option value="">Other</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
+            </div>
+            <div class="edit__input-group input-group--inactive">
+                <label for="" class="edit__input-label">Category name <span class="edit__input-require">*</span></label>
+                <input type="text" class="edit__input-text" required>
             </div>
             <div class="edit__input-group">
                 <label for="" class="edit__input-label">Describe <span class="edit__input-require">*</span></label>
