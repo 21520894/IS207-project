@@ -45,9 +45,14 @@
 
     </div>
 
+    <?php
+        include ("./modules/modal.php");
+    ?>
 </body>
+<script type="text/javascript" src="./js/getParentElement.js"></script>
 <script type="text/javascript" src="./js/menuActive.js"></script>
 <script type="text/javascript" src="./js/categoryActive.js"></script>
 <script type="text/javascript" src="./js/modal.js"></script>
 <script type="text/javascript" src="./js/editCategory.js"></script>
+<script type="text/javascript" src="./js/itemStatus.js"></script>
 </html>

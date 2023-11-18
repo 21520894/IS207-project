@@ -19,10 +19,23 @@
         </a>
     </li>
     <li class="menu__item">
-        <a class="menu__item-link" href="?action=ecommerce&query=null">
+        <a class="menu__item-link" href="?action=null&query=null" onclick="return false">
             <i class="menu__item-icon fa-solid fa-star"></i>
             E-Commerce
+            <i class="menu__item-icon fa-solid fa-chevron-down"></i>
         </a>
+        <ul class="menu__sub-item">
+            <li class="menu__item">
+                <a class="menu__item-link" href="?action=orderManager&query=null">
+                    Order Manager
+                </a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__item-link" href="?action=voucherManager&query=null">
+                    Voucher Manager
+                </a>
+            </li>
+        </ul>
     </li>
     <li class="menu__item">
         <a class="menu__item-link" href="?action=report&query=null">

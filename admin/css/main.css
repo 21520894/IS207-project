@@ -7,17 +7,32 @@
 .app .grid__full-width .grid__row {
   height: 100%;
 }
-.app .normal-color {
+.app .yellow-color {
   color: var(--yellow-color);
 }
-.app .danger-color {
+.app .red-color {
   color: var(--red-color);
 }
-.app .fine-color {
+.app .green-color {
   color: var(--green-color);
 }
-.app .modifier-color {
+.app .blue-color {
   color: var(--blue-color);
+}
+.app .yellow-bg-color {
+  background-color: var(--yellow-color);
+}
+.app .red-bg-color {
+  background-color: var(--red-color);
+}
+.app .green-bg-color {
+  background-color: var(--green-color);
+}
+.app .blue-bg-color {
+  background-color: var(--blue-color);
+}
+.app .light-blue-bg-color {
+  background-color: var(--light-blue-color);
 }
 .app .header {
   background-color: var(--black-color);
@@ -76,6 +91,9 @@
   background-color: var(--white-color);
   margin: 0 -20px;
 }
+.app .content .menu .menu__wrapper .menu__item {
+  position: relative;
+}
 .app .content .menu .menu__wrapper .menu__item .menu__item-link {
   display: block;
   font-size: 2rem;
@@ -91,6 +109,15 @@
 }
 .app .content .menu .menu__wrapper .menu__item .menu__item-link--active {
   background-color: var(--grey-color);
+}
+.app .content .menu .menu__wrapper .menu__sub-item {
+  height: 0px;
+  display: none;
+}
+.app .content .menu .menu__wrapper .menu__sub-item--active {
+  display: block;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .app .content .dashboard__wrapper .dashboard__header {
   align-items: center;
@@ -192,18 +219,18 @@
   line-height: 3rem;
   letter-spacing: -0.03em;
 }
-.app .content .dish__wrapper .dish__header .dish__search-wrapper {
+.app .content .manager-site__wrapper .manager-site__header .manager-site__search-wrapper {
   display: flex;
   align-items: center;
 }
-.app .content .dish__wrapper .dish__header .dish__search-wrapper .dish__search-box {
+.app .content .manager-site__wrapper .manager-site__header .manager-site__search-wrapper .manager-site__search-box {
   background-color: var(--white-color);
   padding-right: 1.2rem;
   border: 1px solid var(--border-color);
   margin-right: 1.6rem;
   border-radius: 4px;
 }
-.app .content .dish__wrapper .dish__header .dish__search-wrapper .dish__search-box .dish__search-input {
+.app .content .manager-site__wrapper .manager-site__header .manager-site__search-wrapper .manager-site__search-box .manager-site__search-input {
   font-size: 1.6rem;
   border-radius: 4px;
   line-height: 2rem;
@@ -211,10 +238,10 @@
   outline: none;
   border: none;
 }
-.app .content .dish__wrapper .dish__header .dish__search-wrapper .dish__search-box .dish__search-icon {
+.app .content .manager-site__wrapper .manager-site__header .manager-site__search-wrapper .manager-site__search-box .manager-site__search-icon {
   font-size: 1.8rem;
 }
-.app .content .dish__wrapper .dish__header .dish__search-wrapper .dish__add-btn {
+.app .content .manager-site__wrapper .manager-site__header .manager-site__search-wrapper .manager-site__add-btn {
   background-color: var(--blue-color);
   color: var(--white-color);
   font-size: 1.6rem;
@@ -223,13 +250,23 @@
   border-radius: 4px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
 }
-.app .content .dish__wrapper .dish__header .dish__category-wrapper {
+.app .content .manager-site__wrapper .manager-site__header .manager-site__search-wrapper .manager-site__date-btn {
+  background-color: var(--white-color);
+  border: 1px solid var(--border-color);
+  margin-right: 1.6rem;
+  border-radius: 4px;
+  font-size: 1.6rem;
+  border-radius: 4px;
+  line-height: 2rem;
+  padding: 0.8rem 1.2rem;
+}
+.app .content .manager-site__wrapper .manager-site__header .manager-site__category-wrapper {
   margin-top: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.app .content .dish__wrapper .dish__header .dish__category-wrapper .dish__category .dish__category-btn {
+.app .content .manager-site__wrapper .manager-site__header .manager-site__category-wrapper .manager-site__category .manager-site__category-btn {
   font-size: 1.6rem;
   line-height: 2rem;
   letter-spacing: 0.12em;
@@ -243,36 +280,36 @@
   background-color: var(--white-color);
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2509803922);
 }
-.app .content .dish__wrapper .dish__header .dish__category-wrapper .dish__category .dish__category-btn--active {
+.app .content .manager-site__wrapper .manager-site__header .manager-site__category-wrapper .manager-site__category .manager-site__category-btn--active {
   font-weight: 700;
   background-color: var(--grey-color);
   color: var(--black-color);
 }
-.app .content .dish__wrapper .dish__header .dish__category-wrapper .dish__category-delete-btn {
+.app .content .manager-site__wrapper .manager-site__header .manager-site__category-wrapper .manager-site__category-delete-btn {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
   border-radius: 3px;
   padding: 0.4rem 0.8rem;
   background-color: var(--red-color);
 }
-.app .content .dish__wrapper .dish__header .dish__category-wrapper .dish__category-delete-btn .dish__btn-icon {
+.app .content .manager-site__wrapper .manager-site__header .manager-site__category-wrapper .manager-site__category-delete-btn .manager-site__btn-icon {
   font-size: 1.6rem;
   line-height: 2rem;
   text-align: center;
 }
-.app .content .dish__wrapper .dish__body {
+.app .content .manager-site__wrapper .manager-site__body {
   margin-top: 3rem;
   max-height: 600px;
   overflow-x: hidden;
   overflow-y: scroll;
 }
-.app .content .dish__wrapper .dish__body .dish__manager {
+.app .content .manager-site__wrapper .manager-site__body .manager-site__manager {
   border-collapse: collapse;
   width: 100%;
 }
-.app .content .dish__wrapper .dish__body .dish__manager .dish__manager-row {
+.app .content .manager-site__wrapper .manager-site__body .manager-site__manager .manager-site__manager-row {
   border-bottom: 2px solid #E0E0E0;
 }
-.app .content .dish__wrapper .dish__body .dish__manager .dish__manager-row .dish__manager-header {
+.app .content .manager-site__wrapper .manager-site__body .manager-site__manager .manager-site__manager-row .manager-site__manager-header {
   background-color: #E0E0E0;
   text-align: center;
   font-size: 1.6rem;
@@ -281,22 +318,22 @@
   padding: 0.8rem 0;
   width: 200px;
 }
-.app .content .dish__wrapper .dish__body .dish__manager .dish__manager-row .dish__manager-data {
+.app .content .manager-site__wrapper .manager-site__body .manager-site__manager .manager-site__manager-row .manager-site__manager-data {
   font-size: 1.3rem;
   font-weight: 400;
   line-height: 1.6rem;
   letter-spacing: 0.12rem;
   text-align: center;
   background-color: var(--white-color);
-  padding: 0.8rem 0;
+  padding: 1.8rem 0;
 }
-.app .content .dish__wrapper .dish__body .dish__manager .dish__manager-row .dish__manager-data .data__img {
+.app .content .manager-site__wrapper .manager-site__body .manager-site__manager .manager-site__manager-row .manager-site__manager-data .data__img {
   width: 100px;
   height: 100px;
   border-radius: 5px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
 }
-.app .content .dish__wrapper .dish__body .dish__manager .dish__manager-row .dish__manager-data .data__desc {
+.app .content .manager-site__wrapper .manager-site__body .manager-site__manager .manager-site__manager-row .manager-site__manager-data .data__desc {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
@@ -304,7 +341,7 @@
   text-overflow: ellipsis;
   text-align: justify;
 }
-.app .content .dish__wrapper .dish__body .dish__manager .dish__manager-row .dish__manager-data .data__edit-btn {
+.app .content .manager-site__wrapper .manager-site__body .manager-site__manager .manager-site__manager-row .manager-site__manager-data .data__edit-btn {
   background-color: var(--blue-color);
   color: var(--white-color);
   font-size: 1.6rem;
@@ -313,59 +350,13 @@
   border-radius: 4px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
 }
-.app .content .add__page {
-  background-color: var(--white-color);
-  padding: 2rem;
-  border-radius: 6px;
-}
-.app .content .add__page .add__page-header {
-  font-size: 2.7rem;
-  font-weight: 500;
-  line-height: 3.3rem;
-  text-align: center;
-}
-.app .content .add__page .add__page-wrapper .add__input-group {
-  margin-top: 2rem;
-}
-.app .content .add__page .add__page-wrapper .add__input-group .add__input-label {
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.8rem;
-  display: block;
-  margin-bottom: 0.8rem;
-}
-.app .content .add__page .add__page-wrapper .add__input-group .add__input-label .add__input-require {
-  color: var(--red-color);
-}
-.app .content .add__page .add__page-wrapper .add__input-group .add__input-text {
-  font-size: 1.6rem;
-  border-radius: 4px;
-  line-height: 2rem;
-  padding: 0.8rem 1.2rem;
-  outline: none;
-  border: 1px solid var(--border-color);
-  width: 100%;
-}
-.app .content .add__page .add__page-wrapper .add__btn-wrapper {
-  text-align: center;
-}
-.app .content .add__page .add__page-wrapper .add__btn-wrapper .add__btn {
-  background-color: var(--blue-color);
-  color: var(--white-color);
-  padding: 1.2rem 2.4rem;
-  outline: none;
-  border-radius: 6px;
-  border: none;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
-  margin-top: 1.6rem;
-  font-size: 1.3rem;
-  font-weight: 600;
-  line-height: 1.6rem;
+.app .content .manager-site__wrapper .manager-site__body .manager-site__manager .manager-site__manager-row .manager-site__manager-data .item-status {
+  border-radius: 3px;
+  padding: 0.4rem 1.2rem;
   cursor: pointer;
-  margin-right: 2rem;
-}
-.app .content .add__page .add__page-wrapper .add__btn-wrapper .cancel {
-  background-color: var(--red-color);
+  border: none;
+  color: var(--white-color);
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2509803922);
 }
 .app .content .edit__page {
   padding: 2rem;
@@ -390,6 +381,7 @@
 .app .content .edit__page .edit__page-wrapper .edit__input-group {
   margin-top: 2rem;
   margin-right: 2rem;
+  flex-grow: 1;
 }
 .app .content .edit__page .edit__page-wrapper .edit__input-group .edit__input-label {
   font-size: 1.5rem;
@@ -431,27 +423,28 @@
 .app .content .edit__page .edit__page-wrapper .edit__btn-wrapper .cancel {
   background-color: var(--red-color);
 }
-.app .content .input-group--inactive {
+.app .content .edit__page .input-group--inactive {
   display: none;
 }
-.app .content .input-group--active {
+.app .content .edit__page .input-group--active {
   display: block;
 }
-.app .modal {
+
+.modal {
   display: none;
 }
-.app .modal .modal__body .delete__wrapper {
+.modal .modal__body .delete__modal {
   width: 500px;
   background-color: var(--white-color);
   border-radius: 6px;
   text-align: center;
   padding: 3rem 0;
 }
-.app .modal .modal__body .delete__wrapper .delete__icon {
+.modal .modal__body .delete__modal .delete__icon {
   font-size: 5.2rem;
   color: var(--red-color);
 }
-.app .modal .modal__body .delete__wrapper .delete__message {
+.modal .modal__body .delete__modal .delete__message {
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.8rem;
@@ -461,10 +454,10 @@
   color: var(--text-color);
   max-width: 365px;
 }
-.app .modal .modal__body .delete__wrapper .delete__btn-wrapper {
+.modal .modal__body .delete__modal .delete__btn-wrapper {
   margin-top: 2rem;
 }
-.app .modal .modal__body .delete__wrapper .delete__btn-wrapper .btn {
+.modal .modal__body .delete__modal .delete__btn-wrapper .btn {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2509803922);
   font-size: 1.3rem;
   font-weight: 600;
@@ -472,13 +465,152 @@
   padding: 1rem 4rem;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
 }
-.app .modal .modal__body .delete__wrapper .delete__btn-wrapper .delete__btn {
+.modal .modal__body .delete__modal .delete__btn-wrapper .delete__btn {
   background-color: var(--red-color);
   color: var(--white-color);
   margin-right: 1.6rem;
 }
-.app .modal .modal__body .delete__wrapper .delete__btn-wrapper .cancel__btn {
+.modal .modal__body .delete__modal .delete__btn-wrapper .cancel__btn {
   border: 2px solid var(--red-color);
   color: var(--red-color);
   background-color: var(--white-color);
+}
+.modal .modal__body .add__modal {
+  background-color: var(--white-color);
+  padding: 2rem;
+  border-radius: 6px;
+}
+.modal .modal__body .add__modal .add__modal-header {
+  font-size: 2.7rem;
+  font-weight: 500;
+  line-height: 3.3rem;
+  text-align: center;
+}
+.modal .modal__body .add__modal .add__modal-wrapper .add__input-group {
+  margin-top: 2rem;
+}
+.modal .modal__body .add__modal .add__modal-wrapper .add__input-group .add__input-label {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.8rem;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+.modal .modal__body .add__modal .add__modal-wrapper .add__input-group .add__input-label .add__input-require {
+  color: var(--red-color);
+}
+.modal .modal__body .add__modal .add__modal-wrapper .add__input-group .add__input-text {
+  font-size: 1.6rem;
+  border-radius: 4px;
+  line-height: 2rem;
+  padding: 0.8rem 1.2rem;
+  outline: none;
+  border: 1px solid var(--border-color);
+  width: 100%;
+}
+.modal .modal__body .add__modal .add__modal-wrapper .add__btn-wrapper {
+  text-align: center;
+}
+.modal .modal__body .add__modal .add__modal-wrapper .add__btn-wrapper .add__btn {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+  padding: 1.2rem 2.4rem;
+  outline: none;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  margin-top: 1.6rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.6rem;
+  cursor: pointer;
+  margin-right: 2rem;
+}
+.modal .modal__body .add__modal .add__modal-wrapper .add__btn-wrapper .cancel {
+  background-color: var(--red-color);
+}
+.modal .modal__body .add__modal .input-group--inactive {
+  display: none;
+}
+.modal .modal__body .add__modal .input-group--active {
+  display: block;
+}
+.modal .modal__body .detail__modal {
+  background-color: var(--white-color);
+  padding: 2rem 4rem;
+  border-radius: 6px;
+}
+.modal .modal__body .detail__modal th, .modal .modal__body .detail__modal td {
+  width: 100%;
+}
+.modal .modal__body .detail__modal .detail__header {
+  font-size: 2.7rem;
+  font-weight: 500;
+  line-height: 3.3rem;
+  text-align: center;
+}
+.modal .modal__body .detail__modal .detail__info-row {
+  font-size: 1.6rem;
+  line-height: 2rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.8rem 0;
+}
+.modal .modal__body .detail__modal .detail__info-row .detail__info-header {
+  font-weight: 700;
+  padding-right: 1.6rem;
+}
+.modal .modal__body .detail__modal .detail__info-row .detail__info-data {
+  font-weight: 400;
+}
+.modal .modal__body .detail__modal .detail__user-order {
+  padding: 0.8rem 0;
+  border-width: 1px;
+  border-style: dashed;
+  border-color: var(--border-color) transparent var(--border-color) transparent;
+}
+.modal .modal__body .detail__modal .detail__user-order .detail__info-row .detail__info-header {
+  font-weight: 400;
+}
+.modal .modal__body .detail__modal .detail__user-order .detail__info-row .detail__info-header .detail__info-sign {
+  margin-left: 1.2rem;
+}
+.modal .modal__body .detail__modal .detail__user-bill .detail__info-row .detail__info-header {
+  font-weight: 400;
+}
+.modal .modal__body .detail__modal .detail__user-bill .total {
+  border-top: 1px solid var(--black-color);
+  padding-top: 0.8rem;
+}
+.modal .modal__body .detail__modal .detail__user-bill .total .detail__info-header {
+  font-weight: 700;
+}
+.modal .modal__body .detail__modal .detail__btn-wrapper {
+  text-align: center;
+}
+.modal .modal__body .detail__modal .detail__btn-wrapper .detail__btn {
+  color: var(--white-color);
+  padding: 1.2rem 2.4rem;
+  outline: none;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2509803922);
+  margin-top: 1.6rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.6rem;
+  cursor: pointer;
+  margin-right: 2rem;
+  text-align: center;
+}
+.modal .modal__body .detail__modal .detail__btn-wrapper .accept {
+  display: none;
+  background-color: var(--green-color);
+}
+.modal .modal__body .detail__modal .detail__btn-wrapper .cancel {
+  display: none;
+  background-color: var(--red-color);
+}
+.modal .modal__body .detail__modal .detail__btn-wrapper .print {
+  background-color: var(--blue-color);
 }/*# sourceMappingURL=main.css.map */
