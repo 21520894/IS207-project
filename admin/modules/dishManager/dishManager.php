@@ -101,8 +101,12 @@
                             <option value="">Salad</option>
                             <option value="">Desert</option>
                             <option value="">Drink</option>
-                            <option value="">Other</option>
+                            <option value="other">Other</option>
                         </select>
+                    </div>
+                    <div class="add__input-group add__input-group--inactive">
+                        <label for="" class="add__input-label">Category name <span class="add__input-require">*</span></label>
+                        <input type="text" class="add__input-text" required>
                     </div>
                     <div class="add__input-group">
                         <label for="" class="add__input-label">Describe <span class="add__input-require">*</span></label>

@@ -345,6 +345,12 @@
   border: 1px solid var(--border-color);
   width: 100%;
 }
+.app .content .add__page .add__page-wrapper .add__input-group--inactive {
+  display: none;
+}
+.app .content .add__page .add__page-wrapper .add__input-group--active {
+  display: block;
+}
 .app .content .add__page .add__page-wrapper .add__btn-wrapper {
   text-align: center;
 }
