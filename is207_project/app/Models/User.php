@@ -13,7 +13,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $username = 'Username';
     protected $table = 'users';
     protected $primaryKey = 'id';
 
@@ -35,7 +34,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'Password',
+        'password',
         'remember_token',
     ];
 
@@ -49,15 +48,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // Các trường khác trong Model
 
-    public function getAuthPassword()
-    {
-        return $this->Password;
-    }
-    public function getAuthIdentifierName()
-{
-    return 'Username';
-}
+
 
 }

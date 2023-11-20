@@ -55,7 +55,7 @@
                         <input type="email" class="auth-form__input-text"  placeholder="email" name="email" required>
                     </div>
                     <div class="auth-form__group">
-                        <input type="password" class="auth-form__input-text" placeholder="password" name = "password" required>
+                        <input type="password" class="auth-form__input-text" placeholder="password" name = "password" required = "required">
                     </div>
                     <div class="auth-form__aside">
                         <div class="auth-form__help">
@@ -71,7 +71,8 @@
         <!-- End of Sign in form -->
 
         <!-- Sign up form -->
-        <form class="auth-form" name="signupModal" action="" method="">
+        <form class="auth-form" name="signupModal" action="{{ route('register') }}" method="POST">
+            @csrf
             <div class="auth-form__container">
                 <div class="auth-form__header">
                     <h3 class="auth-form__heading">Sign up</h3>
@@ -82,22 +83,24 @@
                 </div>
                 <div class="auth-form__form">
                     <div class="auth-form__group">
-                        <input type="name" class="auth-form__input-text" placeholder="Full name" required>
+                        <input type="name" class="auth-form__input-text" placeholder="Full name" name= "name" required = "required">
                     </div>
                     <div class="auth-form__group">
                         <input type="phone" class="auth-form__input-text" placeholder="Phone number" required>
                     </div>
                     <div class="auth-form__group">
-                        <input type="email" class="auth-form__input-text" placeholder="Email" required>
+                        <input type="email" class="auth-form__input-text" placeholder="Email" name = "email" required>
                     </div>
                     <div class="auth-form__group">
-                        <input type="password" class="auth-form__input-text" placeholder="Password" required>
+                        <input type="password" class="auth-form__input-text" placeholder="Password" name = "password" required>
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
                     <div class="auth-form__group">
-                        <input type="password" class="auth-form__input-text" placeholder="Confirm password" required>
+                        <input type="password" class="auth-form__input-text" placeholder="Confirm password" name = "password_confirmation" required>
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />    
                     </div>
                     <div class="auth-form__controls">
-                        <button class="btn btn--primary auth-form__button">Sign up</button>
+                        <button type = "submit" class="btn btn--primary auth-form__button">Sign up</button>
                     </div>
                 </div>
             </div>

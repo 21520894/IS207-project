@@ -41,6 +41,33 @@
                 </li>
             </ul>
 
+            
+            @auth
+                <!-- Người dùng đã đăng nhập -->
+                <ul class="header__navbar-control">
+                <li class="header__navbar-item" name="signin">
+                <a href="" onclick="return false;" class="header__item-btn">Welcome, {{ Auth::user()->name }}!</a> <!-- Hiển thị tên người dùng -->
+
+                </li>
+                <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
+
+                <li class="header__navbar-item header__cart">
+                    <a href="#order__page" class="header__item-btn">
+                        <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
+                    </a>
+                </li>
+            </ul>
+
+            @else
+    <!-- Người dùng chưa đăng nhập -->
             <ul class="header__navbar-control">
                 <li class="header__navbar-item" name="signin">
                     <a href="" onclick="return false;" class="header__item-btn">Sign in</a>
@@ -54,6 +81,8 @@
                     </a>
                 </li>
             </ul>
+            @endauth
+
 
             <!-- User -->
             <!-- <div class="header__navbar-user">
