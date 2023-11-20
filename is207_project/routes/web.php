@@ -4,6 +4,7 @@ use App\Http\Controllers\admin_controller;
 use App\Http\Controllers\category_product;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoriesController;
@@ -38,11 +39,31 @@ use App\Http\Controllers\CategoriesController;
 
 Route::get('/products', [ProductsController::class, 'index']);
 Route::resource('products', ProductsController::class);
-Route::resource('admin', AdminController::class);
-Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
+// Route::resource('admin', AdminController::class);
+// Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 
 Route::get('/',[HomeController::class,'index'])->name('home_page');
 Route::get('/menu_page',[HomeController::class,'menu_page'])->name('menu_page');
 Route::get('/order_page',[HomeController::class,'order_page'])->name('order_page');
 
 Route::get('/categories',[CategoriesController::class,'index']);
+
+// trang yêu cầu verify
+Route::get('/products', function () {
+    return view('/products');
+})->middleware(['auth', 'verified'])->name('products');
+
+// Các trang yêu cầu verrifi để đăng nhập
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
+
+require __DIR__.'/adminauth.php';

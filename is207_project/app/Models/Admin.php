@@ -3,33 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-
-class Admin extends Authenticatable implements AuthenticatableContract
+class Admin extends Authenticatable
 {
-
     use HasApiTokens, HasFactory, Notifiable;
-    
-    protected $table = 'admin';
-    protected $primaryKey = 'AdminID';
-    public $timestamps = false;
-    protected $username = 'Username';
-
-
+    protected $table = "admin";
+    protected $guard = "admin";
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'Username',
-        'AdminType',
-        'Password',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -38,7 +29,8 @@ class Admin extends Authenticatable implements AuthenticatableContract
      * @var array<int, string>
      */
     protected $hidden = [
-        'Password',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -47,16 +39,7 @@ class Admin extends Authenticatable implements AuthenticatableContract
      * @var array<string, string>
      */
     protected $casts = [
+        'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    // Các trường khác trong Model
-    public function getAuthPassword()
-    {
-        return $this->Password;
-    }
-    public function getAuthIdentifierName()
-{
-    return 'Username';
-}
 }
