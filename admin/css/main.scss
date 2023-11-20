@@ -108,6 +108,7 @@
                     }
                     .menu__item-link--active {
                         background-color: var(--grey-color);
+                        font-weight: 700;
                     }
                 }
                 .menu__sub-item {
@@ -503,6 +504,11 @@
                 text-align: center;
             }
             .add__modal-wrapper {
+                .add__input-group-wrapper {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
                 .add__input-group {
                     margin-top: 2rem;
                     .add__input-label {

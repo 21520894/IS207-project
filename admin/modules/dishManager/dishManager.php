@@ -5,7 +5,7 @@
                 <input type="text" class="manager-site__search-input" placeholder="Search ...">
                 <i class="manager-site__search-icon fa-solid fa-magnifying-glass"></i>
             </div>
-            <button name="add" class="manager-site__add-btn btn">+ ADD</button>
+            <button name="addDish" class="manager-site__add-btn btn">+ ADD</button>
         </div>
         <div class="manager-site__category-wrapper">
             <div class="manager-site__category">

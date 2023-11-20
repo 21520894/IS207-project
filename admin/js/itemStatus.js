@@ -1,6 +1,6 @@
 const statusItem = [
     {
-        status: ['paid', 'finished'],
+        status: ['paid', 'finished', 'used'],
         background: 'green-bg-color'
     },
     {
@@ -8,7 +8,7 @@ const statusItem = [
         background: 'yellow-bg-color'
     },
     {
-        status: ['cancel', 'used'],
+        status: ['cancel'],
         background: 'red-bg-color'
     },
     {

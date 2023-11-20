@@ -15,7 +15,7 @@
             <div class="edit__input-group-wrapper">
                 <div class="edit__input-group">
                     <label for="" class="edit__input-label">Price (VND) <span class="edit__input-require">*</span></label>
-                    <input type="number" class="edit__input-text" required>
+                    <input type="number" min="0" class="edit__input-text" required>
                 </div>
                 <div class="edit__input-group">
                     <label for="" class="edit__input-label">Group <span class="edit__input-require">*</span></label>

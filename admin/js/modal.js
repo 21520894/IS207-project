@@ -3,7 +3,7 @@ const modal = document.querySelector(".modal");
 const modalOverlay = modal.querySelector(".modal__overlay");
 
 // Create an array archive name of each modal, same name with button
-const modalName = ["add", "delete", "viewDetail"];
+const modalName = ["addDish", "delete", "viewDetail", "addVoucher"];
 
 // Get all input in modal
 const inputTexts = modal.querySelectorAll("[class*='__input-text']");

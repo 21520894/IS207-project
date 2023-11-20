@@ -1,7 +1,7 @@
 <div class="modal">
     <div class="modal__overlay"></div>
     <div class="modal__body">
-        <div name="addModal" class="add__modal">
+        <div name="addDishModal" class="add__modal">
             <h1 class="add__modal-header">Add new dish</h1>
             <form class="add__modal-wrapper" action="" method="">
                 <div class="add__input-group">
@@ -10,7 +10,7 @@
                 </div>
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Price (VND) <span class="add__input-require">*</span></label>
-                    <input type="number" class="add__input-text" required>
+                    <input type="number" min="0" class="add__input-text" required>
                 </div>
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Group <span class="add__input-require">*</span></label>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="add__btn-wrapper">
                     <input class="add__btn" type="submit" value="Add new dish">
-                    <button class="add__btn cancel" onclick="closeModalBtn('add')">Cancel</button>
+                    <button class="add__btn cancel" onclick="closeModalBtn('addDish')">Cancel</button>
                 </div>
             </form>
         </div>
@@ -126,6 +126,53 @@
                 <input class="detail__btn cancel" type="submit" value="Cancel">
                 <button class="detail__btn print" onclick="window.print();return false">Print</button>
             </div>
+        </div>
+        <div name="addVoucherModal" class="add__modal">
+            <h1 class="add__modal-header">Add new voucher</h1>
+            <form class="add__modal-wrapper" action="" method="">
+                <div class="add__input-group-wrapper">
+                    <div class="add__input-group">
+                        <label for="" class="add__input-label">Group <span class="add__input-require">*</span></label>
+                        <select name="" id="" class="add__input-text" required>
+                            <option value="">-- Voucher type --</option>
+                            <option value="">Discount</option>
+                            <option value="">Freeship</option>
+                        </select>
+                    </div>
+                    <div class="add__input-group">
+                        <label for="" class="add__input-label">Value (VND) <span class="add__input-require">*</span></label>
+                        <input type="number" class="add__input-text" min="0" required>
+                    </div>
+                </div>
+                <div class="add__input-group-wrapper">
+                    <div class="add__input-group">
+                        <label for="" class="add__input-label">Effective date <span class="add__input-require">*</span></label>
+                        <input type="date" class="add__input-text" required>
+                    </div>
+                    <div class="add__input-group">
+                        <label for="" class="add__input-label">Expiration date <span class="add__input-require">*</span></label>
+                        <input type="date" class="add__input-text" required>
+                    </div>
+                </div>
+                <div class="add__input-group-wrapper">               
+                    <div class="add__input-group">
+                        <label for="" class="add__input-label">Bill over (VND)</label>
+                        <input type="number" min="0" class="add__input-text">
+                    </div>
+                    <div class="add__input-group">
+                        <label for="" class="add__input-label">Discount maximum (VND)</label>
+                        <input type="number" min="0" class="add__input-text">
+                    </div>
+                </div>
+                <div class="add__input-group">
+                    <label for="" class="add__input-label">Quantity</label>
+                    <input type="number" class="add__input-text" min="1" required>
+                </div>
+                <div class="add__btn-wrapper">
+                    <input class="add__btn" type="submit" value="Create">
+                    <button class="add__btn cancel" onclick="closeModalBtn('addVoucher')">Cancel</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

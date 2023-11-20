@@ -109,6 +109,7 @@
 }
 .app .content .menu .menu__wrapper .menu__item .menu__item-link--active {
   background-color: var(--grey-color);
+  font-weight: 700;
 }
 .app .content .menu .menu__wrapper .menu__sub-item {
   height: 0px;
@@ -485,6 +486,11 @@
   font-weight: 500;
   line-height: 3.3rem;
   text-align: center;
+}
+.modal .modal__body .add__modal .add__modal-wrapper .add__input-group-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .modal .modal__body .add__modal .add__modal-wrapper .add__input-group {
   margin-top: 2rem;

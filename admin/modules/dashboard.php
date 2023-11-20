@@ -43,11 +43,11 @@
         <div class="dashboard__total-wrapper grid__col-2">
             <div class="dashboard__total">
                 <h1 class="dashboard__total-header">TOTAL REVENUE</h1>
-                <p class="dashboard__total-number normal-color">23,739,028</p>
+                <p class="dashboard__total-number yellow-color">23,739,028</p>
             </div>
             <div class="dashboard__total">
                 <h1 class="dashboard__total-header">REVENUE GROWTH</h1>
-                <p class="dashboard__total-number danger-color">-3%</p>
+                <p class="dashboard__total-number red-color">-3%</p>
             </div>
         </div>
     </div>
