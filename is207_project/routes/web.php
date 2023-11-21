@@ -37,11 +37,11 @@ use App\Http\Controllers\CategoriesController;
 // Route::post('/add_product',[category_product::class,'add_product']);    // add more food
 // Route::get('/list_product', [category_product::class,'list_product']); //view the food list
 
-Route::get('/products', [ProductsController::class, 'index']);
-Route::resource('products', ProductsController::class);
+
 // Route::resource('admin', AdminController::class);
 // Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login');
-
+Route::get('/products', [ProductsController::class, 'index']) -> middleware(['auth:admin', 'verified'])->name('products');
+Route::resource('products', ProductsController::class);
 Route::get('/',[HomeController::class,'index'])->name('home_page');
 Route::get('/menu_page',[HomeController::class,'menu_page'])->name('menu_page');
 Route::get('/order_page',[HomeController::class,'order_page'])->name('order_page');
@@ -49,9 +49,9 @@ Route::get('/order_page',[HomeController::class,'order_page'])->name('order_page
 Route::get('/categories',[CategoriesController::class,'index']);
 
 // trang yêu cầu verify
-Route::get('/products', function () {
-    return view('/products');
-})->middleware(['auth', 'verified'])->name('products');
+// Route::get('/products', function () {
+//     return view('/clients/products/index');
+// }) -> middleware(['auth:admin', 'verified'])->name('products');
 
 // Các trang yêu cầu verrifi để đăng nhập
 Route::middleware('auth')->group(function () {
@@ -61,6 +61,16 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Route::middleware('auth:admin')->group(function () {
+//     Route::get('/admin/dashboard', function () {
+//         return view('admin.dashboard');
+//     })->name('admin.dashboard');
+//     Route::get('/products', function () {
+//         return view('/products');
+//     }) ->name('products');
+
+// });
 
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
