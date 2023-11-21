@@ -12,10 +12,6 @@ use App\Http\Controllers\AdminAuth\RegisteredAdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest:admin')->group(function () {
-    Route::get('admin/register', [RegisteredAdminController::class, 'create'])
-    ->name('admin.register');
-
-Route::post('admin/register', [RegisteredAdminController::class, 'store']);
 
     Route::get('admin/login', [AuthenticatedSessionController::class, 'create'])
                 ->name('admin.login');

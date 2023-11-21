@@ -9,7 +9,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-
         return view('clients/user/home');
     }
     public function menu_page()
