@@ -48,6 +48,9 @@ Route::get('/order_page',[HomeController::class,'order_page'])->name('order_page
 
 Route::get('/categories',[CategoriesController::class,'index']);
 
+Route::get('/admin/register', [AdminController::class, 'create']);
+Route::resource('admin', AdminController::class);
+
 // trang yêu cầu verify
 // Route::get('/products', function () {
 //     return view('/clients/products/index');
@@ -72,8 +75,8 @@ require __DIR__.'/auth.php';
 
 // });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
+Route::get('/admin', function () {
+    return view('admin/dashboard');
 })->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
 
 require __DIR__.'/adminauth.php';
