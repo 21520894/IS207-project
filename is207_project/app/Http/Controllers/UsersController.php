@@ -3,16 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class UserController extends Controller
+use DB;
+use App\Models\Users;
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    private $users;
+    public function __construct()
+    {
+        $this->users = new Users;
+    }
+
     public function index()
     {
         //User page
-        return view('front_end/add_product',compact('categories'));
+        $customersList = $this->users->getAllCustomers();
+        $adminsList = $this->users->getAllAdmins();
+        return view('admin.user.show', compact('customersList','adminsList'));
     }
 
     /**

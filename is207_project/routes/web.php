@@ -8,7 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoriesController;
-
+use App\Http\Controllers\UsersController;
 
 
 /*
@@ -49,7 +49,7 @@ Route::get('/order_page',[HomeController::class,'order_page'])->name('order_page
 Route::get('/categories',[CategoriesController::class,'index']);
 
 Route::get('/admin/register', [AdminController::class, 'create']);
-Route::resource('admin', AdminController::class);
+//Route::resource('admin', AdminController::class);
 
 // trang yêu cầu verify
 // Route::get('/products', function () {
@@ -75,8 +75,37 @@ require __DIR__.'/auth.php';
 
 // });
 
-Route::get('/admin', function () {
-    return view('admin/dashboard');
-})->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
+//Route::get('/admin', function () {
+//    return view('admin.dashboard');
+//})->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
+
+Route::middleware(['auth:admin', 'verified'])->prefix('admin')->group(function (){
+    Route::get('', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+    Route::prefix('dish')->group(function (){
+        Route::get('', function (){
+            return view('admin.dish.show');
+        })->name('admin.dish.show');
+        Route::get('edit', function (){
+            return view('admin.dish.edit');
+        });
+    });
+
+    Route::prefix('user')->group(function (){
+        Route::get('', [UsersController::class,'index'])->name('admin.user.show');
+        Route::get('edit', function (){
+            return view('admin.user.edit');
+        });
+    });
+    Route::get('order', function (){
+        return view('admin.ecommerce.order');
+    })->name('admin.order.show');
+    Route::get('voucher', function (){
+        return view('admin.ecommerce.voucher');
+    })->name('admin.voucher.show');
+});
+
+Route::get('dish',[AdminController::class, 'show_dish']);
 
 require __DIR__.'/adminauth.php';

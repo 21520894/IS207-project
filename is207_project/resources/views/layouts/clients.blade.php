@@ -40,10 +40,10 @@
     <div class="modal__overlay"></div>
     <div class="modal__body">
         <!-- Sign in form -->
-        <form class="auth-form" name="signinModal" action="{{ route('login') }}" method="POST">
+        <form class="auth-form" name="signinModal" action="{{route('login')}}" method="POST">
             @csrf
             <div class="auth-form__container">
-                <div class="auth-form__header"> 
+                <div class="auth-form__header">
                     <h3 class="auth-form__heading">Sign in</h3>
                     <div class="auth-form__switch-wrap">
                         <span class="auth-form__switch-label">New to Foodland?</span>
@@ -97,7 +97,7 @@
                     </div>
                     <div class="auth-form__group">
                         <input type="password" class="auth-form__input-text" placeholder="Confirm password" name = "password_confirmation" required>
-                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />    
+                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
                     <div class="auth-form__controls">
                         <button type = "submit" class="btn btn--primary auth-form__button">Sign up</button>

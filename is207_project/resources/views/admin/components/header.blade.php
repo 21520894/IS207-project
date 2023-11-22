@@ -3,7 +3,7 @@
     <div class="grid__full-width">
         <nav class="header__navbar">
             <div class="header__logo">
-                <a href="/" class="header__logo-link">
+                <a href="/" class="header__logo-link" target="_blank">
                     <svg class="header__logo-image" xmlns="http://www.w3.org/2000/svg" width="55" height="55"
                          viewBox="0 0 55 55" fill="none">
                         <path
@@ -14,86 +14,24 @@
                 </a>
             </div>
 
-            <!-- Mobile menu -->
-            <div class="mobile-menu-btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-            <!-- End of Mobile menu -->
-
-            <ul class="header__navbar-nav">
-                <li class="header__navbar-item">
-                    <a href="{{route('home_page')}}" class="header__item-link header__item-link--active">Home</a>
-                </li>
-                <li class="header__navbar-item">
-                    <a href="{{route('menu_page')}}" class="header__item-link">Menu</a>
-                </li>
-                <li class="header__navbar-item">
-                    <a href="{{route('order_page')}}" class="header__item-link">Order</a>
-                </li>
-                <li class="header__navbar-item">
-                    <a href="#promotion__page" class="header__item-link">Promotion</a>
-                </li>
-                <li class="header__navbar-item">
-                    <a href="#about__page" class="header__item-link">About us</a>
-                </li>
-                <li class="header__navbar-item">
-                    <a href="#consult__page" class="header__item-link">Consult</a>
-                </li>
-            </ul>
-
-
-            @auth
-                <!-- Người dùng đã đăng nhập -->
-                <ul class="header__navbar-control">
-                <li class="header__navbar-item" name="signin">
-                <a href="" onclick="return false;" class="header__item-btn">Welcome, {{ Auth::user()->name }}!</a> <!-- Hiển thị tên người dùng -->
-
-                </li>
-                <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-
-                <li class="header__navbar-item header__cart">
-                    <a href="{{route('order_page')}}" class="header__item-btn">
-                        <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
-                    </a>
-                </li>
-            </ul>
-
-            @else
-    <!-- Người dùng chưa đăng nhập -->
-            <ul class="header__navbar-control">
-                <li class="header__navbar-item" name="signin">
-                    <a href="" onclick="return false;" class="header__item-btn">Sign in</a>
-                </li>
-                <li class="header__navbar-item" name="signup">
-                    <a href="" onclick="return false;" class="header__item-btn">Sign up</a>
-                </li>
-                <li class="header__navbar-item header__cart">
-                    <a href="#order__page" class="header__item-btn">
-                        <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
-                    </a>
-                </li>
-            </ul>
-            @endauth
-
-
             <!-- User -->
-            <!-- <div class="header__navbar-user">
+            <div class="header__navbar-user">
                 <i class="header__user-img fa-solid fa-user"></i>
                 <div class="header__user-controls">
-                    <p class="header__user">Hello, <span class="header__user-name">Name</span></p>
-                    <span class="header__user-signout"><u>Sign out</u></span>
+                    <p class="header__user">Hello, <span class="header__user-name">{{ Auth::user()->name }}</span></p>
+                    <form method="POST" action="{{ route('admin.logout') }}">
+                        @csrf
+                        <x-dropdown-link :href="route('admin.logout')"
+                                         onclick="event.preventDefault();
+                                                this.closest('form').submit(); ">
+                            {{ __('Log Out') }}
+                        </x-dropdown-link>
+                    </form>
                 </div>
                 <a href="#order__page" class="header__item-btn">
-                    <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
+                    <i class="header__cart-icon fa-solid fa-bell"></i>
                 </a>
-            </div> -->
+            </div>
             <!-- End of User -->
         </nav>
     </div>
