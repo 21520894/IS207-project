@@ -36,4 +36,5 @@
 <script type="text/javascript" src="{{asset('admin_style/js/modal.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin_style/js/editCategory.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin_style/js/itemStatus.js')}}"></script>
+@yield('js')
 </html>

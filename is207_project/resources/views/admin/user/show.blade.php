@@ -47,12 +47,12 @@
                                             <td class="manager-site__manager-data">{{$customersList[$i]->name}}</td>
                                             <td class="manager-site__manager-data">{{$customersList[$i]->email}}</td>
                                             <td class="manager-site__manager-data">{{$customersList[$i]->created_at}}</td>
-                                            <td class="manager-site__manager-data">Customer</td>
+                                            <td class="manager-site__manager-data" id="account_type">Customer</td>
                                             <td class="manager-site__manager-data">
                                                 <input class="data__checkbox" type="checkbox" name="" id="">
                                             </td>
                                             <td class="manager-site__manager-data">
-                                                <a href="?action=userManager&query=edit" name="editUser" class="data__edit-btn btn">EDIT</a>
+                                                <a href="{{route('admin.user.edit', ['id' => $customersList[$i]->id])}}" name="editUser" class="data__edit-btn btn">EDIT</a>
                                             </td>
                                         </tr>
                                     @endfor
@@ -70,7 +70,7 @@
                                                 <input class="data__checkbox" type="checkbox" name="" id="">
                                             </td>
                                             <td class="manager-site__manager-data">
-                                                <a href="?action=userManager&query=edit" name="editUser" class="data__edit-btn btn">EDIT</a>
+                                                <a href="{{route('admin.user.edit')}}" name="editUser" class="data__edit-btn btn">EDIT</a>
                                             </td>
                                         </tr>
                                     @endfor
@@ -78,13 +78,29 @@
                             </table>
                         </div>
                     </div>
-                    @if (isset($_GET['action']) && $_GET['action'] == 'userManager')
-                        @if (isset($_GET['query']) && $_GET['query'] == 'edit')
-                            @include('admin.user.edit')
-                        @endif
-                    @endif
+                    @include('admin.components.main')
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+<script>
+    document.getElementById('adminTab').addEventListener('click', function() {
+        fetchData('admin');
+    });
+
+    document.getElementById('customerTab').addEventListener('click', function() {
+        fetchData('customer');
+    });
+
+    function fetchData(tabType) {
+        // Gửi yêu cầu Ajax đến server
+        fetch(`/get${tabType}Data`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('userData').innerHTML = data;
+            });
+    }
+</script>
 @endsection

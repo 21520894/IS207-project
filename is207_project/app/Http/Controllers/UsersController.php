@@ -2,25 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Users;
+use App\Http\Controllers\DateTime;
 class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    private $users;
+    private $customers;
+    private $admins;
     public function __construct()
     {
-        $this->users = new Users;
+        $this->customers = new User();
+        $this->admins = new Admin();
     }
 
     public function index()
     {
         //User page
-        $customersList = $this->users->getAllCustomers();
-        $adminsList = $this->users->getAllAdmins();
+        $customersList = $this->customers->all();
+        $adminsList = $this->admins->all();
         return view('admin.user.show', compact('customersList','adminsList'));
     }
 
@@ -51,9 +56,14 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request)
     {
-        //
+//        $user = $request->user()->getAttributes();
+//        $user['created_at'] = explode(' ',$user['created_at']);
+        $id = $request->query('id');
+        $user = User::find($id)->getAttributes();
+        $type = 'Customer';
+        return view('admin.user.edit', compact('user','type'));
     }
 
     /**

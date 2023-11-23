@@ -8,6 +8,7 @@
                 </div>
                 <div class="grid__col-10 content__main">
                     @include('admin.components.modal')
+                    @include('admin.components.main')
                     <!-- Dashboard -->
                     <div class="dashboard__wrapper">
                         <div class="grid__row dashboard__header">

@@ -43,7 +43,7 @@ for (const item of modalName) {
             }
 
             if (item.getAttribute('name') == "changeAddress") {
-                
+
                 const changeAddressModal = modal.querySelector('[name*="changeAddressModal"]');
                 const inputs = changeAddressModal.querySelectorAll('.auth-form__input-text');
                 const phoneNumber = changeAddressModal.querySelector('input[placeholder*="Phone Number"]');

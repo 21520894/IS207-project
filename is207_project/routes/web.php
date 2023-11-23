@@ -94,9 +94,7 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->group(function (
 
     Route::prefix('user')->group(function (){
         Route::get('', [UsersController::class,'index'])->name('admin.user.show');
-        Route::get('edit', function (){
-            return view('admin.user.edit');
-        });
+        Route::get('edit',[UsersController::class,'edit'])->name('admin.user.edit');
     });
     Route::get('order', function (){
         return view('admin.ecommerce.order');
@@ -105,7 +103,5 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->group(function (
         return view('admin.ecommerce.voucher');
     })->name('admin.voucher.show');
 });
-
-Route::get('dish',[AdminController::class, 'show_dish']);
 
 require __DIR__.'/adminauth.php';
