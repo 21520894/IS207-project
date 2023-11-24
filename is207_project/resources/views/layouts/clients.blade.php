@@ -86,7 +86,7 @@
                         <input type="name" class="auth-form__input-text" placeholder="Full name" name= "name" required = "required">
                     </div>
                     <div class="auth-form__group">
-                        <input type="phone" class="auth-form__input-text" placeholder="Phone number" name = "phone" required>
+                        <input type="phone" class="auth-form__input-text" placeholder="Phone number" required>
                     </div>
                     <div class="auth-form__group">
                         <input type="email" class="auth-form__input-text" placeholder="Email" name = "email" required>

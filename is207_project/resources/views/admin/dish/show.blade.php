@@ -21,7 +21,7 @@
                                 <div class="manager-site__category">
                                     <form action="" method="get">
                                         <input type="submit" class="manager-site__category-btn btn
-                                        {{request()->category_type=='All'?'manager-site__category-btn--active':''}}"
+                                        {{(request()->category_type == null || request()->category_type == 'All')?'manager-site__category-btn--active':''}}"
                                                name="category_type" value="All">
                                         @if(!empty(getAllCategories()))
                                             @foreach(getAllCategories() as $item)
