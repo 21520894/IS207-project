@@ -27,6 +27,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        // 'role',
+        'phone'
     ];
 
     /**
@@ -49,7 +51,10 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
+    protected $attributes = [
+        'role' => 'user',
+        'phone' => '123456798',
+    ];
 
 
 }
