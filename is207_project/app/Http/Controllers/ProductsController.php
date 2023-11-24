@@ -19,12 +19,16 @@ class ProductsController extends Controller
      * Display a listing of the resource.
      *
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::take(5)->get();
-
-        return view('clients/products/index',compact('products'))
-            ->with(request()->input('page'));
+        $product = new Product();
+        $filter = '';
+        if(!empty($request->category_type))
+        {
+            $filter = $request->category_type;
+        }
+        $dishes = $product->getAllProducts($filter);
+        return view('admin.dish.show',compact('dishes'));
     }
 
     /**

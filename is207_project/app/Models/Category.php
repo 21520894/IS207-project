@@ -21,15 +21,3 @@ class Category extends Model
     ];
 
 }
-// protected static function boot()
-//     {
-//         parent::boot();
-
-//         static::creating(function ($product) {
-//             $latestProduct = static::latest()->first();
-//             $latestId = $latestProduct ? $latestProduct-> ProductID: null;
-//             $newIdNumber = $latestId ? (int)substr($latestId, 3) + 1 : 1;
-
-//             $product->id = 'CA' . str_pad($newIdNumber, 2, '0', STR_PAD_LEFT);
-//         });
-    // }

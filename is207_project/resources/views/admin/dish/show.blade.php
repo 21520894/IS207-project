@@ -1,4 +1,3 @@
-
 @extends('layouts.admin')
 @section('content')
     <div class="content">
@@ -20,14 +19,18 @@
                             </div>
                             <div class="manager-site__category-wrapper">
                                 <div class="manager-site__category">
-                                    <button class="manager-site__category-btn btn manager-site__category-btn--active">All</button>
-                                    <button class="manager-site__category-btn btn">Beefsteak</button>
-                                    <button class="manager-site__category-btn btn">Pizza</button>
-                                    <button class="manager-site__category-btn btn">Pasta</button>
-                                    <button class="manager-site__category-btn btn">Salad</button>
-                                    <button class="manager-site__category-btn btn">Desert</button>
-                                    <button class="manager-site__category-btn btn">Drink</button>
-                                    <button class="manager-site__category-btn btn">Other</button>
+                                    <form action="" method="get">
+                                        <input type="submit" class="manager-site__category-btn btn
+                                        {{request()->category_type=='All'?'manager-site__category-btn--active':''}}"
+                                               name="category_type" value="All">
+                                        @if(!empty(getAllCategories()))
+                                            @foreach(getAllCategories() as $item)
+                                                <input type="submit" class="manager-site__category-btn btn
+                                                       {{request()->category_type==$item->Title?'manager-site__category-btn--active':''}}"
+                                                       name="category_type" value="{{$item->Title}}">
+                                            @endforeach
+                                        @endif
+                                    </form>
                                 </div>
                                 <button name="delete" class="manager-site__category-delete-btn btn">
                                     <i class="manager-site__btn-icon fa-solid fa-trash"></i>
@@ -46,46 +49,33 @@
                                     <th class="manager-site__manager-header">DELETE</th>
                                     <th class="manager-site__manager-header">EDIT</th>
                                 </tr>
-                                <tr class="manager-site__manager-row">
-                                    <td class="manager-site__manager-data">001</td>
-                                    <td class="manager-site__manager-data">Beef Wellington</td>
-                                    <td class="manager-site__manager-data">
-                                        <img class="data__img" src="../assets/img/item11.jpg" alt="">
-                                    </td>
-                                    <td class="manager-site__manager-data">Beefsteak</td>
-                                    <td class="manager-site__manager-data">149,000 VND</td>
-                                    <td class="manager-site__manager-data">
-                                        <p class="data__desc">
-                                            Our Beef Wellington is made with the finest ingredients, including prime beef tenderloin, wild mushrooms, and imported puff pastry. The steak is seasoned to ...
-                                        </p>
-                                    </td>
-                                    <td class="manager-site__manager-data">
-                                        <input class="data__checkbox" type="checkbox" name="" id="">
-                                    </td>
-                                    <td class="manager-site__manager-data">
-                                        <a href="?action=dishManager&query=edit" name="editDish" class="data__edit-btn btn">EDIT</a>
-                                    </td>
-                                </tr>
-                                <tr class="manager-site__manager-row">
-                                    <td class="manager-site__manager-data">002</td>
-                                    <td class="manager-site__manager-data">Pizza</td>
-                                    <td class="manager-site__manager-data">
-                                        <img class="data__img" src="../assets/img/item21.jpg" alt="">
-                                    </td>
-                                    <td class="manager-site__manager-data">Pizza</td>
-                                    <td class="manager-site__manager-data">149,000 VND</td>
-                                    <td class="manager-site__manager-data">
-                                        <p class="data__desc">
-                                            Our Beef Wellington is made with the finest ingredients, including prime beef tenderloin, wild mushrooms, and imported puff pastry. The steak is seasoned to ...
-                                        </p>
-                                    </td>
-                                    <td class="manager-site__manager-data">
-                                        <input class="data__checkbox" type="checkbox" name="" id="">
-                                    </td>
-                                    <td class="manager-site__manager-data">
-                                        <a href="?action=dishManager&query=edit" name="editDish" class="data__edit-btn btn">EDIT</a>
-                                    </td>
-                                </tr>
+                                @if(!empty($dishes))
+                                    @php($i=1)
+                                    @foreach($dishes as $item)
+                                        <tr class="manager-site__manager-row">
+                                            <td class="manager-site__manager-data">{{$i}}</td>
+                                            <td class="manager-site__manager-data">{{$item->Name}}</td>
+                                            <td class="manager-site__manager-data">
+                                                <img class="data__img" src="../assets/img/item11.jpg" alt="">
+                                            </td>
+                                            <td class="manager-site__manager-data">{{$item->category_name}}</td>
+                                            <td class="manager-site__manager-data">{{$item->Price}} VND</td>
+                                            <td class="manager-site__manager-data">
+                                                <p class="data__desc">
+                                                    {{$item->Description}}
+                                                </p>
+                                            </td>
+                                            <td class="manager-site__manager-data">
+                                                <input class="data__checkbox" type="checkbox" name="" id="">
+                                            </td>
+                                            <td class="manager-site__manager-data">
+                                                <a href="?action=dishManager&query=edit" name="editDish" class="data__edit-btn btn">EDIT</a>
+                                            </td>
+                                        </tr>
+                                        @php($i+=1)
+                                    @endforeach
+                                @endif
+
                             </table>
                         </div>
                     </div>

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use http\Env\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Product extends Model
 {
@@ -14,7 +16,7 @@ class Product extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'ProductID',	
+        'ProductID',
         'Name'	,
         'Description',
         'Discount',
@@ -28,9 +30,17 @@ class Product extends Model
 
 
     ];
-    public function category()
+    public function getAllProducts($filters)
     {
-        return $this->belongsTo(Category::class, 'CategoryID');
+        $products = DB::table($this->table)
+            ->select('product.*','category.Title as category_name')
+            ->join('category','category.CategoryID','=','product.CategoryID');
+        if($filters!='' and $filters!='All')
+        {
+            $products = $products->where('category.Title','=',$filters);
+        }
+        $products = $products->get();
+        return $products;
     }
 
 

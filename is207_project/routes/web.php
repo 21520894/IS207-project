@@ -84,9 +84,7 @@ Route::middleware(['auth:admin', 'verified'])->prefix('admin')->group(function (
         return view('admin.dashboard');
     })->name('admin.dashboard');
     Route::prefix('dish')->group(function (){
-        Route::get('', function (){
-            return view('admin.dish.show');
-        })->name('admin.dish.show');
+        Route::get('', [ProductsController::class,'index'])->name('admin.dish.show');
         Route::get('edit', function (){
             return view('admin.dish.edit');
         });
