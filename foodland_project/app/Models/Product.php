@@ -31,12 +31,14 @@ class Product extends Model
     {
         $products = DB::table($this->table)
             ->select('product.*','category.Title as category_name')
-            ->join('category','category.CategoryID','=','product.CategoryID');
+            ->join('category','category.CategoryID','=','product.CategoryID')
+            ->paginate(5);
         if($filters!='' and $filters!='All')
         {
             $products = $products->where('category.Title','=',$filters);
         }
-        $products = $products->get();
+        //dd($products);
+        //$products = $products;
         return $products;
     }
 }

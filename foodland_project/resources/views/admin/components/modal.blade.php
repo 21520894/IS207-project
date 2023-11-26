@@ -3,39 +3,44 @@
     <div class="modal__body">
         <div name="addDishModal" class="add__modal">
             <h1 class="add__modal-header">Add new dish</h1>
-            <form class="add__modal-wrapper" action="" method="">
+            <form class="add__modal-wrapper" action="" method="POST" id="add-dish-form">
+                @csrf
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Name <span class="add__input-require">*</span></label>
-                    <input type="text" class="add__input-text" required>
+                    <input type="text" class="add__input-text" name="product-name">
+                    <span style="color: red; font-size: 12px;" class="product_name_error error"></span>
                 </div>
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Price (VND) <span class="add__input-require">*</span></label>
-                    <input type="number" min="0" class="add__input-text" required>
+                    <input type="number" min="0" class="add__input-text" name="product-price">
+                    <span style="color: red; font-size: 12px;" class="product_price_error error"></span>
                 </div>
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Group <span class="add__input-require">*</span></label>
-                    <select name="" id="" class="add__input-text" required>
+                    <select id="category-name" id="" class="add__input-text">
                         <option value="">-- Category --</option>
-                        <option value="">Beefsteak</option>
-                        <option value="">Pizza</option>
-                        <option value="">Pasta</option>
-                        <option value="">Salad</option>
-                        <option value="">Desert</option>
-                        <option value="">Drink</option>
+                        @if(!empty(getAllCategories()))
+                            @foreach(getAllCategories() as $item)
+                                <option value="{{$item->Title}}">{{$item->Title}}</option>
+                            @endforeach
+                        @endif
                         <option value="other">Other</option>
                     </select>
+                    <span style="color: red; font-size: 12px;" class="product_category_error error"></span>
                 </div>
                 <div class="add__input-group input-group--inactive">
                     <label for="" class="add__input-label">Category name <span class="add__input-require">*</span></label>
-                    <input type="text" class="add__input-text" required>
+                    <input type="text" class="add__input-text" >
+
                 </div>
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Describe <span class="add__input-require">*</span></label>
-                    <textarea class="add__input-text" name="" id="" cols="30" rows="5" required></textarea>
+                    <textarea class="add__input-text" name="product-description" id="" cols="30" rows="5" ></textarea>
+                    <span style="color: red; font-size: 12px;" class="product_description_error error"></span>
                 </div>
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Image <span class="add__input-require">*</span></label>
-                    <input type="file" class="add__input-text" accept="image/*" required>
+                    <input type="file" class="add__input-text" accept="image/*" >
                 </div>
                 <div class="add__btn-wrapper">
                     <input class="add__btn" type="submit" value="Add new dish">

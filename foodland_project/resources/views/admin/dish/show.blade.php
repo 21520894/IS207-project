@@ -75,12 +75,61 @@
                                         @php($i+=1)
                                     @endforeach
                                 @endif
-
                             </table>
+                            <div class="pagination">
+                                @if(count($dishes)>0)
+                                    {{$dishes->links('vendor.pagination.default') }}
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @include('admin.components.modal')
+@endsection
+@section('js')
+    <script>
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
+        $(document).ready(function (){
+            $('#add-dish-form').on('submit',function (e){
+               e.preventDefault();
+               let productName = $('input[name="product-name"]').val().trim();
+               let productPrice = $('input[name="product-price"]').val().trim();
+               let productDescription = $('textarea[name="product-description"]').val().trim();
+               let productCategory = $('#category-name').val();
+               $('.error').text('');
+               $.ajax({
+                    url: "{{route('admin.dish.add')}}",
+                   type: 'POST',
+                   data: {
+                        product_name: productName,
+                       product_price: productPrice,
+                       product_description: productDescription,
+                       product_category: productCategory,
+                       _token: $(this).find('input[name="_token"]').val()
+                   },
+                   dataType: 'json',
+                   success: function (response) {
+                        if(response.status=='success'){
+                            $('.add__modal').hide();
+                            modal.style.display = "none";
+                            $('.manager-site__manager').load(location.href+' .manager-site__manager');
+                        }
+                   },
+                   error: function (error) {
+                        let responseJSON = error.responseJSON.errors;
+                        for (let key in responseJSON) {
+                            $('.'+key+'_error').text(responseJSON[key][0]);
+                        }
+                   }
+               });
+            });
+        });
+    </script>
 @endsection

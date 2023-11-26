@@ -11,6 +11,8 @@ use DB;
 use App\Http\Requests;
 use Session;
 use Illuminate\Support\Facades\Redirect;
+use function Laravel\Prompts\alert;
+
 session_start();
 
 class ProductsController extends Controller
@@ -50,15 +52,32 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Name' => 'required',
-            'Price' => 'required',
-            'CategoryID'=> 'required',
-            'Description'=> 'required',
+            'product_name' => 'required',
+            'product_price' => 'required',
+            'product_description'=> 'required',
+            'product_category' => 'required'
+        ],
+        [
+            'product_name.required' => 'Name is required',
+            'product_price' => 'Price is required',
+            'product_description' => 'Description is required',
+            'product_category' => 'Category group is required'
         ]);
 
-        Product::create($request->all());
-        return redirect()->route('products.index')
-                        ->with('success','Product created successfully.');
+        $new_product = new Product();
+        $new_product->Name = $request->product_name;
+        $new_product->Price = $request->product_price;
+        $new_product->Description = $request->product_description;
+
+        $categories = Category::select('CategoryID','Title')->get();
+        foreach ($categories as $category)
+        {
+            if($category->Title == $request->product_category) {
+                $new_product->CategoryID = $category->CategoryID;
+            }
+        }
+        $new_product->save();
+        return response()->json(['status'=>'success']);
     }
 
     /**

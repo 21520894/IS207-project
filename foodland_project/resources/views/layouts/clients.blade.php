@@ -205,7 +205,6 @@
 <!-- End of Modal -->
 
 </body>
-
 <script type="text/javascript" src="./assets/js/showSlides.js"></script>
 <script type="text/javascript" src="./assets/js/getParentElement.js"></script>
 <script type="text/javascript" src="./assets/js/collapseContent.js"></script>
@@ -219,5 +218,4 @@
 <script type="text/javascript" src="./assets/js/productQuantity.js"></script>
 <script type="text/javascript" src="./assets/js/addToCart.js"></script>
 <script type="text/javascript" src="./assets/js/mobileMenu.js"></script>
-
 </html>

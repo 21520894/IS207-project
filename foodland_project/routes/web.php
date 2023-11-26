@@ -22,6 +22,7 @@ Route::middleware(['isAdmin'])->prefix('admin')->group(function (){
     } )->name('admin.dashboard');
     Route::prefix('dish')->group(function (){
         Route::get('', [ProductsController::class,'index'])->name('admin.dish.show');
+        Route::post('',[ProductsController::class,'store'])->name('admin.dish.add');
         Route::get('edit', function (){
             return view('admin.dish.edit');
         });
