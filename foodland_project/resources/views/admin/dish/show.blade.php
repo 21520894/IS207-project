@@ -77,7 +77,7 @@
                                 @endif
                             </table>
                             <div class="pagination">
-                                @if(count($dishes)>0)
+                                @if(!empty($dishes))
                                     {{$dishes->links('vendor.pagination.default') }}
                                 @endif
                             </div>
@@ -119,7 +119,7 @@
                         if(response.status=='success'){
                             $('.add__modal').hide();
                             modal.style.display = "none";
-                            $('.manager-site__manager').load(location.href+' .manager-site__manager');
+                            $('.manager-site__body').load(location.href+' .manager-site__body');
                         }
                    },
                    error: function (error) {

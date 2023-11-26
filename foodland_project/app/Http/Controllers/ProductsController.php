@@ -30,6 +30,7 @@ class ProductsController extends Controller
             $filter = $request->category_type;
         }
         $dishes = $product->getAllProducts($filter);
+        //dd($dishes);
         return view('admin.dish.show',compact('dishes'));
     }
 

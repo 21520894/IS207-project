@@ -29,16 +29,21 @@ class Product extends Model
     ];
     public function getAllProducts($filters)
     {
-        $products = DB::table($this->table)
-            ->select('product.*','category.Title as category_name')
-            ->join('category','category.CategoryID','=','product.CategoryID')
-            ->paginate(5);
         if($filters!='' and $filters!='All')
         {
-            $products = $products->where('category.Title','=',$filters);
+            $products = DB::table($this->table)
+                ->select('product.*','category.Title as category_name')
+                ->join('category','category.CategoryID','=','product.CategoryID')
+                ->where('category.Title','=',$filters)
+                ->paginate(1);
+
         }
-        //dd($products);
-        //$products = $products;
+        else {
+            $products = DB::table($this->table)
+                ->select('product.*','category.Title as category_name')
+                ->join('category','category.CategoryID','=','product.CategoryID')
+                ->paginate(1);
+        }
         return $products;
     }
 }

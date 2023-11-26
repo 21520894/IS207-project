@@ -18,14 +18,19 @@
                 @if (is_string($element))
                     <li class="disabled" aria-disabled="true"><span>{{ $element }}</span></li>
                 @endif
-
+                @php
+                    $current_url = request()->category_type;
+                    if(!empty($current_url)){
+                        $current_url = '&category_type='.$current_url;
+                    }
+                @endphp
                 {{-- Array Of Links --}}
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
                             <li class="active" aria-current="page"><span>{{ $page }}</span></li>
                         @else
-                            <li><a href="{{ $url }}">{{ $page }}</a></li>
+                            <li><a href="{{$url}}{{$current_url}}">{{ $page }}</a></li>
                         @endif
                     @endforeach
                 @endif
