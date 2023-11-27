@@ -52,32 +52,50 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'product_name' => 'required',
             'product_price' => 'required',
-            'product_description'=> 'required',
+            'product_description' => 'required',
             'product_category' => 'required'
         ],
-        [
-            'product_name.required' => 'Name is required',
-            'product_price' => 'Price is required',
-            'product_description' => 'Description is required',
-            'product_category' => 'Category group is required'
-        ]);
+            [
+                'product_name.required' => 'Name is required',
+                'product_price' => 'Price is required',
+                'product_description' => 'Description is required',
+                'product_category' => 'Category group is required'
+            ]);
 
         $new_product = new Product();
         $new_product->Name = $request->product_name;
         $new_product->Price = $request->product_price;
         $new_product->Description = $request->product_description;
-
-        $categories = Category::select('CategoryID','Title')->get();
-        foreach ($categories as $category)
-        {
-            if($category->Title == $request->product_category) {
+        $new_product->Status = 'Stocking';
+        //Check the category is exist or not
+        $isNewCategory = true;
+        $categories = Category::select('CategoryID', 'Title')->get();
+        foreach ($categories as $category) {
+            if ($category->Title == $request->product_category) {
+                $isNewCategory = false;
                 $new_product->CategoryID = $category->CategoryID;
             }
         }
-        $new_product->save();
+        if ($isNewCategory == false)
+        {
+            //Add a product to a exist category
+            $new_product->save();
+        }
+        else {
+            //Add a  new category
+            $new_category = new Category();
+            $new_category->Title = $request->product_category;
+            $new_category->save();
+
+            //Add new product to new category
+            $new_product->CategoryID = $new_category->CategoryID;
+            $new_product->save();
+        }
+
         return response()->json(['status'=>'success']);
     }
 
@@ -89,7 +107,6 @@ class ProductsController extends Controller
     public function show(Product $product)
     {
         return view('clients/products/show_product',compact('product'));
-        // return view('front_end/index',compact('product'));
     }
 
     /**
@@ -98,10 +115,12 @@ class ProductsController extends Controller
      * @param  \App\Models\Product  $product
 
      */
-    public function edit(Product $product)
+    public function edit(Request $request)
     {
-        $categories = Category::all();
-        return view('clients/products/edit_product',compact('product','categories'));
+//        $id = $request->query('id');
+//        $product = new Product();
+//        $product = $product->getProductById($id)->first();
+//        return view('admin.dish.edit', compact('product'));
     }
 
     /**

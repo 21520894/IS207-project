@@ -30,12 +30,12 @@
 
 @include('admin.components.modal')
 </body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+@yield('js')
 <script type="text/javascript" src="{{asset('admin_style/js/getParentElement.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin_style/js/menuActive.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin_style/js/categoryActive.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin_style/js/modal.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin_style/js/editCategory.js')}}"></script>
 <script type="text/javascript" src="{{asset('admin_style/js/itemStatus.js')}}"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-@yield('js')
 </html>

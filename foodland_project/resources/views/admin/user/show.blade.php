@@ -58,7 +58,15 @@
                                                 <input class="data__checkbox" type="checkbox" name="" id="">
                                             </td>
                                             <td class="manager-site__manager-data">
-                                                <a href="{{route('admin.user.edit', ['id' => $users[$i]->id])}}" name="editUser" class="data__edit-btn btn">EDIT</a>
+                                                <button name="editUser"
+                                                        class="data__edit-btn btn update_user_form"
+                                                        data-id="{{$i+1}}"
+                                                        data-name="{{$users[$i]->name}}"
+                                                        data-phone="{{$users[$i]->phone}}"
+                                                        data-email="{{$users[$i]->email}}"
+                                                        data-created="{{$users[$i]->created_at}}"
+                                                        data-role="{{$users[$i]->role==1}}"
+                                                >EDIT</button>
                                             </td>
                                         </tr>
                                     @endfor
@@ -73,22 +81,26 @@
     </div>
 @endsection
 @section('js')
-<script>
-    document.getElementById('adminTab').addEventListener('click', function() {
-        fetchData('admin');
-    });
+    <script>
+        $(document).ready(function () {
+            $('.update_user_form').on('click', function (e) {
+                let id = $(this).data('id');
+                let name = $(this).data('name');
+                let phone = $(this).data('phone');
+                let email = $(this).data('email');
+                let role = $(this).data('role')
+                let created_time = $(this).data('created');
 
-    document.getElementById('customerTab').addEventListener('click', function() {
-        fetchData('customer');
-    });
+                role = (role===1)?'Admin':'Customer';
+                created_time= created_time.split(" ")[0];
 
-    function fetchData(tabType) {
-        // Gửi yêu cầu Ajax đến server
-        fetch(`/get${tabType}Data`)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('userData').innerHTML = data;
+                $('#up_user_id').val(id);
+                $('#up_user_name').val(name);
+                $('#up_user_phone').val(phone);
+                $('#up_user_email').val(email);
+                $('#up_user_role').text(role);
+                $('#up_user_created').val(created_time);
             });
-    }
-</script>
+        });
+    </script>
 @endsection

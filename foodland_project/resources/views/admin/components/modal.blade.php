@@ -1,7 +1,9 @@
 <div class="modal">
     <div class="modal__overlay"></div>
     <div class="modal__body">
-        <div name="addDishModal" class="add__modal">
+        @include('admin.dish.edit')
+        @include('admin.user.edit')
+        <div class="add__modal" name="addDishModal">
             <h1 class="add__modal-header">Add new dish</h1>
             <form class="add__modal-wrapper" action="" method="POST" id="add-dish-form">
                 @csrf
@@ -24,13 +26,13 @@
                                 <option value="{{$item->Title}}">{{$item->Title}}</option>
                             @endforeach
                         @endif
-                        <option value="other">Other</option>
+                        <option value="new category">Add new group</option>
                     </select>
                     <span style="color: red; font-size: 12px;" class="product_category_error error"></span>
                 </div>
                 <div class="add__input-group input-group--inactive">
                     <label for="" class="add__input-label">Category name <span class="add__input-require">*</span></label>
-                    <input type="text" class="add__input-text" >
+                    <input type="text" class="add__input-text " name="new-category-name" >
 
                 </div>
                 <div class="add__input-group">
