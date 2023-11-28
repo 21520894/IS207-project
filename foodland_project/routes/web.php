@@ -25,6 +25,7 @@ Route::middleware(['isAdmin'])->prefix('admin')->group(function (){
         Route::post('',[ProductsController::class,'store'])->name('admin.dish.add');
 
         Route::get('edit', [ProductsController::class,'edit'])->name('admin.dish.edit');
+        Route::post('edit', [ProductsController::class,'update'])->name('admin.dish.update');
     });
 
     Route::prefix('user')->group(function (){

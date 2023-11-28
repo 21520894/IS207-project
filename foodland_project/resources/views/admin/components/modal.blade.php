@@ -19,7 +19,7 @@
                 </div>
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Group <span class="add__input-require">*</span></label>
-                    <select id="category-name" id="" class="add__input-text">
+                    <select name="category-name" id="" class="add__input-text">
                         <option value="">-- Category --</option>
                         @if(!empty(getAllCategories()))
                             @foreach(getAllCategories() as $item)
@@ -30,10 +30,9 @@
                     </select>
                     <span style="color: red; font-size: 12px;" class="product_category_error error"></span>
                 </div>
-                <div class="add__input-group input-group--inactive">
+                <div class="add__input-group add-group input-group--inactive">
                     <label for="" class="add__input-label">Category name <span class="add__input-require">*</span></label>
                     <input type="text" class="add__input-text " name="new-category-name" >
-
                 </div>
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Describe <span class="add__input-require">*</span></label>

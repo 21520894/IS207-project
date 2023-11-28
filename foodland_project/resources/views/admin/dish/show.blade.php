@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div class="manager-site__body">
-                            <table class="manager-site__manager">
+                            <table class="manager-site__manager table">
                                 <tr class="manager-site__manager-row">
                                     <th class="manager-site__manager-header">ID</th>
                                     <th class="manager-site__manager-header">NAME</th>
@@ -54,7 +54,7 @@
                                     @php($i=1)
                                     @foreach($dishes as $item)
                                         <tr class="manager-site__manager-row">
-                                            <td class="manager-site__manager-data">{{$i}}</td>
+                                            <td class="manager-site__manager-data">{{$item->ID}}</td>
                                             <td class="manager-site__manager-data">{{$item->Name}}</td>
                                             <td class="manager-site__manager-data">
                                                 <img class="data__img" src="../assets/img/item11.jpg" alt="">
@@ -77,7 +77,7 @@
                                             <td class="manager-site__manager-data">
                                                 <button name="editDish"
                                                         class="data__edit-btn btn update_dish_form"
-                                                        data-id="{{$i}}"
+                                                        data-id="{{$item->ID}}"
                                                         data-name="{{$item->Name}}"
                                                         data-price="{{$item->Price}}"
                                                         data-description="{{$item->Description}}"
@@ -105,12 +105,13 @@
 @section('js')
     <script>
         $(document).ready(function () {
+            //Add dish data
             $('#add-dish-form').on('submit', function (e) {
                 e.preventDefault();
                 let productName = $('input[name="product-name"]').val().trim();
                 let productPrice = $('input[name="product-price"]').val().trim();
                 let productDescription = $('textarea[name="product-description"]').val().trim();
-                let productCategory = $('#category-name').val();
+                let productCategory = $('select[name="category-name"]').val().trim();
                 if (productCategory === 'new category') {
                     productCategory = $('input[name="new-category-name"]').val().trim();
                 }
@@ -131,7 +132,7 @@
                             modal.style.display = "none";
                             $('.add__modal').hide();
                             $('.manager-site__category').load(location.href + ' .manager-site__category');
-                            $('.manager-site__body').load(location.href + ' .manager-site__body');
+                            $('.table').load(location.href + ' .table');
                         }
                     },
                     error: function (error) {
@@ -143,6 +144,8 @@
                     }
                 });
             });
+
+            //Show data to edit dish modal
             $('.update_dish_form').on('click', function (e) {
                 let id = $(this).data('id');
                 let name = $(this).data('name');
@@ -156,6 +159,47 @@
                 $('#up_description').val(description);
                 $('#up_category').text(category);
                 //$('select[name="group"]').value=category
+            });
+            //Update dish data
+            $('#edit-dish-form').on('submit', function (e) {
+                e.preventDefault();
+                let upProductID = $('input[name="up-product-id"]').val();
+                let upProductName = $('input[name="up-product-name"]').val();
+                let upProductPrice = $('input[name="up-product-price"]').val();
+                let upProductDescription = $('textarea[name="up-product-description"]').val();
+                let upProductCategory = $('select[name="up-category"]').val();
+                if (upProductCategory === 'new category') {
+                    upProductCategory = $('input[name="up-new-category"]').val();
+                }
+                $('.error').text('');
+                $.ajax({
+                    url: "{{route('admin.dish.update')}}",
+                    type: 'POST',
+                    data: {
+                        up_id: upProductID,
+                        up_name: upProductName,
+                        up_price: upProductPrice,
+                        up_description: upProductDescription,
+                        up_category: upProductCategory,
+                        _token: $(this).find('input[name="_token"]').val()
+                    },
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.status == 'success') {
+                            modal.style.display = "none";
+                            $('.add__modal').hide();
+                            $('.manager-site__category').load(location.href + ' .manager-site__category');
+                            $('.table').load(location.href + ' .table:not(.data__edit-btn)');
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        let responseJSON = error.responseJSON.errors;
+                        for (let key in responseJSON) {
+                            $('.' + key + '_error').text(responseJSON[key][0]);
+                        }
+                    }
+                });
             });
         });
     </script>

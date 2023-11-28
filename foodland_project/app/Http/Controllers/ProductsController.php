@@ -130,20 +130,60 @@ class ProductsController extends Controller
      * @param  \App\Models\Product  $product
 
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request)
     {
         $request->validate([
-            'Name' => 'required',
-            'Price' => 'required',
-            'CategoryID'=> 'required',
-            'Description'=> 'required',
+            'up_name' => 'required|unique:product,name,'.$request->up_id,
+            'up_price' => 'required',
+            'up_description' => 'required',
+            'up_category' => 'required'
+        ],
+            [
+                'up_name.required' => 'Name is required',
+                'up_price' => 'Price is required',
+                'up_name.unique' => 'Name already exists',
+                'up_description' => 'Description is required',
+                'up_category' => 'Category group is required'
+            ]);
+
+        Product::where('ID',$request->up_id)->update([
+            'Name' => $request->up_name,
+            'Price' => $request->up_price,
+            'Description' => $request->up_description
         ]);
+        //Check the category is exist or not
+        $isNewCategory = true;
+        $categories = Category::select('CategoryID', 'Title')->get();
+        foreach ($categories as $category) {
+            if ($category->Title == $request->up_category) {
+                $isNewCategory = false;
+            }
+        }
+        if ($isNewCategory == false)
+        {
+            //Add a product to a exist category
+            Product::where('ID',$request->up_id)->update([
+                'Name' => $request->up_name,
+                'Price' => $request->up_price,
+                'Description' => $request->up_description
+            ]);
+        }
+        else {
+            //Add a  new category
+            $new_category = new Category();
+            $new_category->Title = $request->up_category;
+            $new_category->save();
 
+            //Update product with new category
+            Product::where('ID',$request->up_id)->update([
+                'Name' => $request->up_name,
+                'Price' => $request->up_price,
+                'Description' => $request->up_description,
+                'CategoryID' => $new_category->CategoryID
+            ]);
+        }
 
-        $product->update($request->all());
-
-        return redirect()->route('products.index')
-                        ->with('success','Product updated successfully');
+        return response()->json(['status'=>'success']);
     }
 
     /**
