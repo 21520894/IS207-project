@@ -192,11 +192,10 @@ class ProductsController extends Controller
      * @param  \App\Models\Product  $product
 
      */
-    public function destroy(Product $product)
+    public function destroy(Request $request)
     {
-        $product->delete();
-
-        return redirect()->route('products.index')
-                        ->with('success','Product deleted successfully');
+        $ids = $request->ids;
+        Product::where('ID',$ids)->delete();
+        return response()->json(['status'=>'success']);
     }
 }

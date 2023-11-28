@@ -26,6 +26,7 @@ Route::middleware(['isAdmin'])->prefix('admin')->group(function (){
 
         Route::get('edit', [ProductsController::class,'edit'])->name('admin.dish.edit');
         Route::post('edit', [ProductsController::class,'update'])->name('admin.dish.update');
+        Route::delete('',[ProductsController::class,'destroy'])->name('admin.dish.delete');
     });
 
     Route::prefix('user')->group(function (){

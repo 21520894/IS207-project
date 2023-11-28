@@ -32,7 +32,7 @@
                                         @endif
                                     </form>
                                 </div>
-                                <button name="delete" class="manager-site__category-delete-btn btn">
+                                <button name="deleteDish" class="manager-site__category-delete-btn btn">
                                     <i class="manager-site__btn-icon fa-solid fa-trash"></i>
                                 </button>
                             </div>
@@ -47,20 +47,22 @@
                                     <th class="manager-site__manager-header">PRICE</th>
                                     <th class="manager-site__manager-header">DESCRIBE</th>
                                     <th class="manager-site__manager-header">STATUS</th>
-                                    <th class="manager-site__manager-header">DELETE</th>
                                     <th class="manager-site__manager-header">EDIT</th>
+                                    <th class="manager-site__manager-header">
+                                        <input type="checkbox" name="" id="select_all_ids">
+                                    </th>
                                 </tr>
                                 @if(!empty($dishes))
                                     @php($i=1)
                                     @foreach($dishes as $item)
-                                        <tr class="manager-site__manager-row">
+                                        <tr class="manager-site__manager-row" id="product_ids{{$item->ID}}">
                                             <td class="manager-site__manager-data">{{$item->ID}}</td>
                                             <td class="manager-site__manager-data">{{$item->Name}}</td>
                                             <td class="manager-site__manager-data">
                                                 <img class="data__img" src="../assets/img/item11.jpg" alt="">
                                             </td>
                                             <td class="manager-site__manager-data">{{$item->category_name}}</td>
-                                            <td class="manager-site__manager-data">{{$item->Price}} VND</td>
+                                            <td class="manager-site__manager-data reload">{{$item->Price}} VND</td>
                                             <td class="manager-site__manager-data">
                                                 <p class="data__desc">
                                                     {{$item->Description}}
@@ -72,9 +74,6 @@
                                                     class="item-status {{$statusStyle[$item->Status]}}">{{$item->Status}}</button>
                                             </td>
                                             <td class="manager-site__manager-data">
-                                                <input class="data__checkbox" type="checkbox" name="" id="">
-                                            </td>
-                                            <td class="manager-site__manager-data">
                                                 <button name="editDish"
                                                         class="data__edit-btn btn update_dish_form"
                                                         data-id="{{$item->ID}}"
@@ -83,6 +82,9 @@
                                                         data-description="{{$item->Description}}"
                                                         data-category="{{$item->category_name}}"
                                                 >EDIT</button>
+                                            </td>
+                                            <td class="manager-site__manager-data">
+                                                <input class="data__checkbox" type="checkbox" name="ids" id="" value="{{$item->ID}}">
                                             </td>
                                         </tr>
                                         @php($i+=1)
@@ -104,6 +106,21 @@
 @endsection
 @section('js')
     <script>
+        function editDish() {
+            $('.update_dish_form').on('click', function () {
+                let id = $(this).data('id');
+                let name = $(this).data('name');
+                let price = $(this).data('price');
+                let description = $(this).data('description');
+                let category = $(this).data('category')
+
+                $('#up_id').val(id);
+                $('#up_name').val(name);
+                $('#up_price').val(price);
+                $('#up_description').val(description);
+                $('#up_category').text(category);
+            });
+        }
         $(document).ready(function () {
             //Add dish data
             $('#add-dish-form').on('submit', function (e) {
@@ -132,7 +149,10 @@
                             modal.style.display = "none";
                             $('.add__modal').hide();
                             $('.manager-site__category').load(location.href + ' .manager-site__category');
-                            $('.table').load(location.href + ' .table');
+                            $('.table').load(location.href + ' .table',function (){
+                                editDish();
+                                loadModal();
+                            });
                         }
                     },
                     error: function (error) {
@@ -146,20 +166,7 @@
             });
 
             //Show data to edit dish modal
-            $('.update_dish_form').on('click', function (e) {
-                let id = $(this).data('id');
-                let name = $(this).data('name');
-                let price = $(this).data('price');
-                let description = $(this).data('description');
-                let category = $(this).data('category')
-
-                $('#up_id').val(id);
-                $('#up_name').val(name);
-                $('#up_price').val(price);
-                $('#up_description').val(description);
-                $('#up_category').text(category);
-                //$('select[name="group"]').value=category
-            });
+            editDish();
             //Update dish data
             $('#edit-dish-form').on('submit', function (e) {
                 e.preventDefault();
@@ -189,7 +196,10 @@
                             modal.style.display = "none";
                             $('.add__modal').hide();
                             $('.manager-site__category').load(location.href + ' .manager-site__category');
-                            $('.table').load(location.href + ' .table:not(.data__edit-btn)');
+                            $('.table').load(location.href + ' .table', function (){
+                                editDish();
+                                loadModal();
+                            });
                         }
                     },
                     error: function (error) {
@@ -200,6 +210,34 @@
                         }
                     }
                 });
+            });
+            //Delete dish data
+            $(function (e){
+               $('#select_all_ids').on('click', function (){
+                    $('.data__checkbox').prop('checked',$(this).prop('checked'))
+               });
+               let selected_ids = [];
+               $('.manager-site__category-delete-btn').on('click', function () {
+                  $('input:checkbox[name=ids]:checked').each(function (){
+                      selected_ids.push($(this).val())
+                  }) ;
+               });
+               $('.delete-dish-btn').on('click',function (){
+                   $.ajax({
+                       url: "{{route('admin.dish.delete')}}",
+                       type: "DELETE",
+                       data: {
+                           ids: selected_ids,
+                           _token: '{{csrf_token()}}'
+                       },
+                       success:function (response){
+                           closeModalBtn('deleteDish');
+                           $.each(selected_ids,function (key,val){
+                               $('#product_ids'+val).remove();
+                           });
+                       }
+                   });
+               });
             });
         });
     </script>

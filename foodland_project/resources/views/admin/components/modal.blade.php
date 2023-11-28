@@ -49,13 +49,13 @@
                 </div>
             </form>
         </div>
-        <div name="deleteModal" class="delete__modal">
+        <div name="deleteDishModal" class="delete__modal">
             <i class="delete__icon fa-solid fa-exclamation"></i>
             <p class="delete__message">
                 Are you sure you want to delete current data? These data cannot be recovered
             </p>
             <div class="delete__btn-wrapper">
-                <button class="delete__btn btn">Delete</button>
+                <button type="submit" class="delete-dish-btn delete__btn btn">Delete</button>
                 <button class="cancel__btn btn" onclick="closeModalBtn('delete')">Cancel</button>
             </div>
         </div>

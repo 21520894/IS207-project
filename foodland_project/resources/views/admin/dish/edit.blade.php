@@ -31,7 +31,7 @@
                                 <label for="" class="edit__input-label">Group <span
                                         class="edit__input-require">*</span></label>
                                 <select name="up-category" id="" class="edit__input-text">
-                                    <option id="up_category"></option>
+                                    <option id="up_category" selected></option>
                                     @if(!empty(getAllCategories()))
                                         @foreach(getAllCategories() as $item)
                                             <option value="{{$item->Title}}">{{$item->Title}}</option>
