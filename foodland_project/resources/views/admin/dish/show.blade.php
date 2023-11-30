@@ -70,8 +70,7 @@
                                             </td>
                                             <td class="manager-site__manager-data">
                                                 @php( $statusStyle = array('Stocking' => 'green-bg-color','Out of stock' => 'red-bg-color'))
-                                                <button
-                                                    class="item-status {{$statusStyle[$item->Status]}}">{{$item->Status}}</button>
+                                                <button class="item-status {{$statusStyle[$item->Status]}}">{{$item->Status}}</button>
                                             </td>
                                             <td class="manager-site__manager-data">
                                                 <button name="editDish"
@@ -79,6 +78,7 @@
                                                         data-id="{{$item->ID}}"
                                                         data-name="{{$item->Name}}"
                                                         data-price="{{$item->Price}}"
+                                                        data-status="{{$item->Status}}"
                                                         data-description="{{$item->Description}}"
                                                         data-category="{{$item->category_name}}"
                                                 >EDIT</button>
@@ -112,11 +112,20 @@
                 let name = $(this).data('name');
                 let price = $(this).data('price');
                 let description = $(this).data('description');
-                let category = $(this).data('category')
-
+                let category = $(this).data('category');
+                let status = $(this).data('status');
                 $('#up_id').val(id);
                 $('#up_name').val(name);
                 $('#up_price').val(price);
+                $('#up_status').text(status);
+                // if(status === 'Stocking'){
+                //     $('#other_status').text('Out of stock');
+                //     $('#other_status').val('Out of stock');
+                // }
+                // else {
+                //     $('#other_status').text('Stocking');
+                //     $('#other_status').val('Stocking');
+                // }
                 $('#up_description').val(description);
                 $('#up_category').text(category);
             });
@@ -175,6 +184,7 @@
                 let upProductPrice = $('input[name="up-product-price"]').val();
                 let upProductDescription = $('textarea[name="up-product-description"]').val();
                 let upProductCategory = $('select[name="up-category"]').val();
+                let upProductStatus = $('select[name="up-status"]').val();
                 if (upProductCategory === 'new category') {
                     upProductCategory = $('input[name="up-new-category"]').val();
                 }
@@ -187,6 +197,7 @@
                         up_name: upProductName,
                         up_price: upProductPrice,
                         up_description: upProductDescription,
+                        up_status: upProductStatus,
                         up_category: upProductCategory,
                         _token: $(this).find('input[name="_token"]').val()
                     },

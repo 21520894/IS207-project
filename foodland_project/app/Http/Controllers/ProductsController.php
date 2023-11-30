@@ -153,10 +153,13 @@ class ProductsController extends Controller
         ]);
         //Check the category is exist or not
         $isNewCategory = true;
+
         $categories = Category::select('CategoryID', 'Title')->get();
         foreach ($categories as $category) {
             if ($category->Title == $request->up_category) {
                 $isNewCategory = false;
+                $edit_category_id = $category->CategoryID;
+                break;
             }
         }
         if ($isNewCategory == false)
@@ -165,7 +168,9 @@ class ProductsController extends Controller
             Product::where('ID',$request->up_id)->update([
                 'Name' => $request->up_name,
                 'Price' => $request->up_price,
-                'Description' => $request->up_description
+                'Description' => $request->up_description,
+                'Status' => $request->up_status,
+                'CategoryID' => $edit_category_id
             ]);
         }
         else {

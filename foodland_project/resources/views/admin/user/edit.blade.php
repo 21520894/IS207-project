@@ -29,8 +29,8 @@
                                 <label for="" class="edit__input-label">Group <span
                                         class="edit__input-require">*</span></label>
                                 <select name="" id="" class="edit__input-text" >
-                                    <option id="up_user_role" value=""></option>
-                                    <option value="Admin">Admin</option>
+                                    <option id="up_user_role" value="" selected></option>
+{{--                                    <option value="Admin">Admin</option>--}}
                                     <option value="Customer">Customer</option>
                                 </select>
                             </div>

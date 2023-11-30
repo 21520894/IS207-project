@@ -49,6 +49,17 @@
                             <span style="color: red; font-size: 12px;" class="up_category_error error"></span>
                         </div>
                         <div class="edit__input-group">
+                            <label for="" class="edit__input-label">Status<span
+                                    class="edit__input-require">*</span></label>
+                            <select name="up-status" id="" class="edit__input-text">
+                                <option id="up_status" selected></option>
+                                <option value="Stocking">Stocking</option>
+                                <option value="Out of stock">Out of stock</option>
+{{--                                <option id="other_status" value=""></option>--}}
+                            </select>
+                            <span style="color: red; font-size: 12px;" class="up_category_error error"></span>
+                        </div>
+                        <div class="edit__input-group">
                             <label for="" class="edit__input-label">Describe <span
                                     class="edit__input-require">*</span></label>
                             <textarea class="edit__input-text" name="up-product-description" cols="30" rows="5" id="up_description">
@@ -61,7 +72,7 @@
                         </div>
                         <div class="edit__btn-wrapper">
                             <input class="edit__btn" type="submit" value="Save">
-                            <a href="index.php?action=dishManager&query=null" class="edit__btn cancel">Cancel</a>
+                            <button class="edit__btn cancel">Cancel</button>
                         </div>
                     </div>
                 </form>
