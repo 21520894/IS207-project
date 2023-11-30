@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 use DB;
 
 class User extends Authenticatable
@@ -20,6 +21,7 @@ class User extends Authenticatable
      */
     protected $table = 'users';
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
@@ -48,12 +50,13 @@ class User extends Authenticatable
     public function getAllUsers($filters)
     {
         $users = DB::table($this->table)
-            ->select('users.*');
+            ->select('users.*')
+            ->paginate(3);
         if($filters!='')
         {
-            $users = $users->where('users.role','=',$filters);
+            $users = $users->where('users.role','=',$filters)->paginate(3);
         }
-        $users = $users->get();
+//        $users = $users->get();
         return $users;
     }
 }

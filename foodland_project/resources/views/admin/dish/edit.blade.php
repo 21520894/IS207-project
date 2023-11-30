@@ -11,7 +11,6 @@
                             <div class="edit__input-group">
                                 <label for="" class="edit__input-label">ID</label>
                                 <input type="text" class="edit__input-text" name="up-product-id" disabled id="up_id">
-
                             </div>
                             <div class="edit__input-group">
                                 <label for="" class="edit__input-label">Name <span
@@ -52,10 +51,10 @@
                             <label for="" class="edit__input-label">Status<span
                                     class="edit__input-require">*</span></label>
                             <select name="up-status" id="" class="edit__input-text">
-                                <option id="up_status" selected></option>
-                                <option value="Stocking">Stocking</option>
-                                <option value="Out of stock">Out of stock</option>
-{{--                                <option id="other_status" value=""></option>--}}
+                                <option id="up_status"></option>
+{{--                                <option value="Stocking">Stocking</option>--}}
+{{--                                <option value="Out of stock">Out of stock</option>--}}
+                                <option id="other_status" ></option>
                             </select>
                             <span style="color: red; font-size: 12px;" class="up_category_error error"></span>
                         </div>

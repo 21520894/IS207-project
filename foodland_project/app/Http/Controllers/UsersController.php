@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DB;
-use App\Models\Users;
 use App\Http\Controllers\DateTime;
 class UsersController extends Controller
 {
@@ -70,16 +68,28 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'up_name' => 'required|unique:users,name,'.$request->up_id,
+        ],[
+            'up_name.required' => 'Name is required',
+            'up_name.unique' => 'Name already exists'
+        ]);
+        User::where('id', $request->up_id)->update([
+            'name' => $request->up_name,
+           'role' => $request->up_role
+        ]);
+        return response()->json(['status'=>'success']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $ids = $request->ids;
+        User::where('id',$ids)->delete();
+        return response()->json(['status'=>'success']);
     }
 }

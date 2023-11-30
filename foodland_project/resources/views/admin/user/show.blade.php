@@ -28,13 +28,13 @@
                                         {{request()->account_type=='Customer'?'manager-site__category-btn--active':''}}" name="account_type" value="Customer">
                                     </form>
                                 </div>
-                                <button name="delete" class="manager-site__category-delete-btn btn">
+                                <button name="deleteUser" class="manager-site__category-delete-btn btn">
                                     <i class="manager-site__btn-icon fa-solid fa-trash"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="manager-site__body">
-                            <table class="manager-site__manager">
+                            <table class="table manager-site__manager">
                                 <tr class="manager-site__manager-row">
                                     <th class="manager-site__manager-header">ID</th>
                                     <th class="manager-site__manager-header">PHONE</th>
@@ -42,21 +42,20 @@
                                     <th class="manager-site__manager-header">EMAIL</th>
                                     <th class="manager-site__manager-header">REGISTER DATE</th>
                                     <th class="manager-site__manager-header">ACCOUNT TYPE</th>
-                                    <th class="manager-site__manager-header">DELETE</th>
                                     <th class="manager-site__manager-header">EDIT</th>
+                                    <th class="manager-site__manager-header">
+                                        <input type="checkbox" name="" id="select_all_ids">
+                                    </th>
                                 </tr>
                                 @if($users!=null)
                                     @for($i=0;$i<count($users);$i++)
-                                        <tr class="manager-site__manager-row">
-                                            <td class="manager-site__manager-data">{{$i+1}}</td>
+                                        <tr class="manager-site__manager-row" id="user_ids{{$users[$i]->id}}">
+                                            <td class="manager-site__manager-data">{{$users[$i]->id}}</td>
                                             <td class="manager-site__manager-data">{{$users[$i]->phone}}</td>
                                             <td class="manager-site__manager-data">{{$users[$i]->name}}</td>
                                             <td class="manager-site__manager-data">{{$users[$i]->email}}</td>
                                             <td class="manager-site__manager-data">{{$users[$i]->created_at}}</td>
                                             <td class="manager-site__manager-data" id="account_type">{{$users[$i]->role==1?'Admin':'Customer'}}</td>
-                                            <td class="manager-site__manager-data">
-                                                <input class="data__checkbox" type="checkbox" name="" id="">
-                                            </td>
                                             <td class="manager-site__manager-data">
                                                 <button name="editUser"
                                                         class="data__edit-btn btn update_user_form"
@@ -68,10 +67,18 @@
                                                         data-role="{{$users[$i]->role==1}}"
                                                 >EDIT</button>
                                             </td>
+                                            <td class="manager-site__manager-data">
+                                                <input class="data__checkbox" type="checkbox" name="ids" id="" value="{{$users[$i]->id}}">
+                                            </td>
                                         </tr>
                                     @endfor
                                 @endif
                             </table>
+                            <div class="pagination">
+                                @if(!empty($users))
+                                    {{$users->links('vendor.pagination.default') }}
+                                @endif
+                            </div>
                         </div>
                     </div>
                     @include('admin.components.main')
@@ -82,7 +89,7 @@
 @endsection
 @section('js')
     <script>
-        $(document).ready(function () {
+        function showDataToEditUserForm() {
             $('.update_user_form').on('click', function (e) {
                 let id = $(this).data('id');
                 let name = $(this).data('name');
@@ -94,12 +101,94 @@
                 role = (role===1)?'Admin':'Customer';
                 created_time= created_time.split(" ")[0];
 
-                $('#up_user_id').val(id);
-                $('#up_user_name').val(name);
-                $('#up_user_phone').val(phone);
-                $('#up_user_email').val(email);
-                $('#up_user_role').text(role);
-                $('#up_user_created').val(created_time);
+                $('input[name="up-user-id"]').val(id);
+                $('input[name="up-user-name"]').val(name);
+                $('input[name="up-user-phone"]').val(phone);
+                $('input[name="up-user-email"]').val(email);
+                $('#up-user-role').text(role);
+                if(role==='Admin'){
+                    $('#other-user-role').text('Customer');
+                    $('#other-user-role').val('Customer');
+                    $('select[name="up-user-role"]').val('Admin');
+                } else {
+                    $('#other-user-role').text('Admin');
+                    $('#other-user-role').val('Admin');
+                    $('select[name="up-user-role"]').val('Customer');
+                }
+                $('option[id="up-user-role"]').text(role);
+                $('option[id="up-user-role"]').val(role);
+                $('input[name="up-user-created"]').val(created_time);
+            });
+        }
+        showDataToEditUserForm();
+        $(document).ready(function () {
+            $('#edit-user-form').on('submit', function (e){
+               e.preventDefault();
+               let upUserID = $('input[name="up-user-id"]').val();
+               let upUserName = $('input[name="up-user-name"]').val();
+               let upUserRole = $('select[name="up-user-role"]').val();
+               if(upUserRole==='Admin'){
+                   upUserRole = 1;
+               }
+               else {
+                   upUserRole = 0;
+               }
+               $('.error').text('');
+               $.ajax({
+                   url: "{{route('admin.user.update')}}",
+                   type: 'POST',
+                   data: {
+                       up_id: upUserID,
+                       up_name: upUserName,
+                       up_role: upUserRole,
+                       _token: $(this).find('input[name="_token"]').val()
+                   },
+                   dataType: 'json',
+                   success: function (response) {
+                       if (response.status == 'success') {
+                           modal.style.display = "none";
+                           $('.add__modal').hide();
+                           $('.table').load(location.href + ' .table', function (){
+                               showDataToEditUserForm();
+                               loadModal();
+                           });
+                       }
+                   },
+                   error: function (error) {
+                       console.log(error);
+                       let responseJSON = error.responseJSON.errors;
+                       for (let key in responseJSON) {
+                           $('.' + key + '_error').text(responseJSON[key][0]);
+                       }
+                   }
+               });
+            });
+            $(function (e){
+                $('#select_all_ids').on('click', function (){
+                    $('.data__checkbox').prop('checked',$(this).prop('checked'))
+                });
+                let selected_ids = [];
+                $('.manager-site__category-delete-btn').on('click', function () {
+                    $('input:checkbox[name=ids]:checked').each(function (){
+                        selected_ids.push($(this).val())
+                    }) ;
+                });
+                $('.delete-user-btn').on('click',function (){
+                    $.ajax({
+                        url: "{{route('admin.user.delete')}}",
+                        type: "DELETE",
+                        data: {
+                            ids: selected_ids,
+                            _token: '{{csrf_token()}}'
+                        },
+                        success:function (response){
+                            closeModalBtn('deleteUser');
+                            $.each(selected_ids,function (key,val){
+                                $('#user_ids'+val).remove();
+                            });
+                        }
+                    });
+                });
             });
         });
     </script>

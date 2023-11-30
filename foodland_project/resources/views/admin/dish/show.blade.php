@@ -118,14 +118,16 @@
                 $('#up_name').val(name);
                 $('#up_price').val(price);
                 $('#up_status').text(status);
-                // if(status === 'Stocking'){
-                //     $('#other_status').text('Out of stock');
-                //     $('#other_status').val('Out of stock');
-                // }
-                // else {
-                //     $('#other_status').text('Stocking');
-                //     $('#other_status').val('Stocking');
-                // }
+                if(status === 'Stocking'){
+                    $('#other_status').text('Out of stock');
+                    $('#other_status').val('Out of stock');
+                    $('select[name="up-status"]').val('Stocking');
+                }
+                else {
+                    $('#other_status').text('Stocking');
+                    $('#other_status').val('Stocking');
+                    $('select[name="up-status"]').val('Out of stock');
+                }
                 $('#up_description').val(description);
                 $('#up_category').text(category);
             });

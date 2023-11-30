@@ -32,6 +32,8 @@ Route::middleware(['isAdmin'])->prefix('admin')->group(function (){
     Route::prefix('user')->group(function (){
         Route::get('', [UsersController::class,'index'])->name('admin.user.show');
         Route::get('edit',[UsersController::class,'edit'])->name('admin.user.edit');
+        Route::post('edit',[UsersController::class,'update'])->name('admin.user.update');
+        Route::delete('',[UsersController::class,'destroy'])->name('admin.user.delete');
     });
     Route::get('order', [OrdersController::class,'index'])->name('admin.order.show');
     Route::get('voucher', function (){

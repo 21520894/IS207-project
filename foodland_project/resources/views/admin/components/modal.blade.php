@@ -59,6 +59,16 @@
                 <button class="cancel__btn btn" onclick="closeModalBtn('delete')">Cancel</button>
             </div>
         </div>
+        <div name="deleteUserModal" class="delete__modal">
+            <i class="delete__icon fa-solid fa-exclamation"></i>
+            <p class="delete__message">
+                Are you sure you want to delete current data? These data cannot be recovered
+            </p>
+            <div class="delete__btn-wrapper">
+                <button type="submit" class="delete-user-btn delete__btn btn">Delete</button>
+                <button class="cancel__btn btn" onclick="closeModalBtn('delete')">Cancel</button>
+            </div>
+        </div>
         <div name="viewDetailModal" class="detail__modal">
             <h1 class="detail__header">Order - <span class="detail__order-id">001</span></h1>
             <div class="detail__user-info">
