@@ -145,13 +145,31 @@
                    },
                    dataType: 'json',
                    success: function (response) {
-                       if (response.status == 'success') {
+                       if (response.status === 'success') {
                            modal.style.display = "none";
                            $('.add__modal').hide();
                            $('.table').load(location.href + ' .table', function (){
                                showDataToEditUserForm();
                                loadModal();
                            });
+                           toastr.options = {
+                               "closeButton": false,
+                               "debug": false,
+                               "newestOnTop": false,
+                               "progressBar": true,
+                               "positionClass": "toast-top-right",
+                               "preventDuplicates": false,
+                               "onclick": null,
+                               "showDuration": "500",
+                               "hideDuration": "500",
+                               "timeOut": "1500",
+                               "extendedTimeOut": "1000",
+                               "showEasing": "swing",
+                               "hideEasing": "linear",
+                               "showMethod": "fadeIn",
+                               "hideMethod": "fadeOut"
+                           }
+                           toastr["success"]("Update data successfully!", "Success")
                        }
                    },
                    error: function (error) {
@@ -186,10 +204,29 @@
                             $.each(selected_ids,function (key,val){
                                 $('#user_ids'+val).remove();
                             });
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "0",
+                                "hideDuration": "0",
+                                "timeOut": "1500",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
+                            Command: toastr["success"]("Delete data successfully!", "Success")
                         }
                     });
                 });
             });
         });
     </script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 @endsection

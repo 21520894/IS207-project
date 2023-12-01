@@ -187,7 +187,6 @@ class ProductsController extends Controller
                 'CategoryID' => $new_category->CategoryID
             ]);
         }
-
         return response()->json(['status'=>'success']);
     }
 

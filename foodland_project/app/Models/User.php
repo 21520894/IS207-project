@@ -54,7 +54,8 @@ class User extends Authenticatable
             ->paginate(3);
         if($filters!='')
         {
-            $users = $users->where('users.role','=',$filters)->paginate(3);
+            $users = DB::table($this->table)
+                ->select('users.*')->where('users.role','=',$filters)->paginate(3);
         }
 //        $users = $users->get();
         return $users;

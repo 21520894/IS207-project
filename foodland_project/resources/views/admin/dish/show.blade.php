@@ -19,7 +19,7 @@
                             </div>
                             <div class="manager-site__category-wrapper">
                                 <div class="manager-site__category">
-                                    <form action="" method="get">
+                                    <form action="" method="get" id="show-dish-via-category">
                                         <input type="submit" class="manager-site__category-btn btn
                                         {{(request()->category_type == null || request()->category_type == 'All')?'manager-site__category-btn--active':''}}"
                                                name="category_type" value="All">
@@ -62,7 +62,7 @@
                                                 <img class="data__img" src="../assets/img/item11.jpg" alt="">
                                             </td>
                                             <td class="manager-site__manager-data">{{$item->category_name}}</td>
-                                            <td class="manager-site__manager-data reload">{{$item->Price}} VND</td>
+                                            <td class="manager-site__manager-data">{{$item->Price}} VND</td>
                                             <td class="manager-site__manager-data">
                                                 <p class="data__desc">
                                                     {{$item->Description}}
@@ -156,7 +156,7 @@
                     },
                     dataType: 'json',
                     success: function (response) {
-                        if (response.status == 'success') {
+                        if (response.status === 'success') {
                             modal.style.display = "none";
                             $('.add__modal').hide();
                             $('.manager-site__category').load(location.href + ' .manager-site__category');
@@ -164,6 +164,24 @@
                                 editDish();
                                 loadModal();
                             });
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "0",
+                                "hideDuration": "0",
+                                "timeOut": "1500",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
+                            toastr["success"]("Add data successfully!", "Success")
                         }
                     },
                     error: function (error) {
@@ -213,6 +231,25 @@
                                 editDish();
                                 loadModal();
                             });
+
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "0",
+                                "hideDuration": "0",
+                                "timeOut": "1500",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
+                            Command: toastr["success"]("Update data successfully!", "Success")
                         }
                     },
                     error: function (error) {
@@ -248,10 +285,30 @@
                            $.each(selected_ids,function (key,val){
                                $('#product_ids'+val).remove();
                            });
+                           toastr.options = {
+                               "closeButton": false,
+                               "debug": false,
+                               "newestOnTop": false,
+                               "progressBar": true,
+                               "positionClass": "toast-top-right",
+                               "preventDuplicates": false,
+                               "onclick": null,
+                               "showDuration": "0",
+                               "hideDuration": "0",
+                               "timeOut": "1500",
+                               "extendedTimeOut": "1000",
+                               "showEasing": "swing",
+                               "hideEasing": "linear",
+                               "showMethod": "fadeIn",
+                               "hideMethod": "fadeOut"
+                           }
+                           toastr["success"]("Delete data successfully!", "Success")
                        }
                    });
                });
             });
         });
     </script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
 @endsection
