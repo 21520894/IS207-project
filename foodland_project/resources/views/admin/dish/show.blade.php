@@ -57,7 +57,7 @@
                                             <td class="manager-site__manager-data">{{$item->ID}}</td>
                                             <td class="manager-site__manager-data">{{$item->Name}}</td>
                                             <td class="manager-site__manager-data">
-                                                <img class="data__img" src="../assets/img/item11.jpg" alt="">
+                                                <img class="data__img" src="{{asset('assets/img/'.$item->Image)}}" alt="">
                                             </td>
                                             <td class="manager-site__manager-data">{{$item->category_name}}</td>
                                             <td class="manager-site__manager-data">{{$item->Price}} VND</td>
@@ -80,6 +80,7 @@
                                                         data-status="{{$item->Status}}"
                                                         data-description="{{$item->Description}}"
                                                         data-category="{{$item->category_name}}"
+                                                        data-image="{{$item->Image}}"
                                                 >EDIT
                                                 </button>
                                             </td>
@@ -107,7 +108,11 @@
 @endsection
 @section('js')
     <script>
+
         function editDish() {
+            $('#select_all_ids').on('click', function () {
+                $('.data__checkbox').prop('checked', $(this).prop('checked'))
+            });
             $('.update_dish_form').on('click', function () {
                 let id = $(this).data('id');
                 let name = $(this).data('name');
@@ -115,18 +120,20 @@
                 let description = $(this).data('description');
                 let category = $(this).data('category');
                 let status = $(this).data('status');
+                let image = $(this).data('image');
                 $('#up_id').val(id);
                 $('#up_name').val(name);
                 $('#up_price').val(price);
                 $('#up_status').text(status);
+                $('#up-product-image').attr('src',"{{asset('assets/img')}}"+"/"+image);
                 if (status === 'Stocking') {
                     $('#other_status').text('Out of stock');
                     $('#other_status').val('Out of stock');
-                    $('select[name="up-status"]').val('Stocking');
+                    $('select[name="up_status"]').val('Stocking');
                 } else {
                     $('#other_status').text('Stocking');
                     $('#other_status').val('Stocking');
-                    $('select[name="up-status"]').val('Out of stock');
+                    $('select[name="up_status"]').val('Out of stock');
                 }
                 $('#up_description').val(description);
                 $('#up_category').text(category);
@@ -137,26 +144,24 @@
             //Add dish data
             $('#add-dish-form').on('submit', function (e) {
                 e.preventDefault();
-                let productName = $('input[name="product-name"]').val().trim();
-                let productPrice = $('input[name="product-price"]').val().trim();
-                let productDescription = $('textarea[name="product-description"]').val().trim();
                 let productCategory = $('select[name="category-name"]').val().trim();
                 if (productCategory === 'new category') {
                     productCategory = $('input[name="new-category-name"]').val().trim();
                 }
                 $('.error').text('');
+                let productImage = $('input[name="product-image"]')[0].files[0];
+                let formData = new FormData(this);
+                formData.append('product-category',productCategory);
                 $.ajax({
                     url: "{{route('admin.dish.add')}}",
                     type: 'POST',
-                    data: {
-                        product_name: productName,
-                        product_price: productPrice,
-                        product_description: productDescription,
-                        product_category: productCategory,
-                        _token: $(this).find('input[name="_token"]').val()
-                    },
-                    dataType: 'json',
+                    data:
+                        formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
                     success: function (response) {
+                        console.log(response);
                         if (response.status === 'success') {
                             modal.style.display = "none";
                             $('.add__modal').hide();
@@ -193,11 +198,22 @@
                         }
                     }
                 });
+
             });
 
             //Show data to edit dish modal
             editDish();
             //Update dish data
+            $('#up_image').change(function(){
+                let reader = new FileReader();
+
+                reader.onload = (e) => {
+                    $('#up-product-image').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(this.files[0]);
+
+            });
             $('#edit-dish-form').on('submit', function (e) {
                 e.preventDefault();
                 let upProductID = $('input[name="up-product-id"]').val();
@@ -209,20 +225,18 @@
                 if (upProductCategory === 'new category') {
                     upProductCategory = $('input[name="up-new-category"]').val();
                 }
+                let formData = new FormData(this);
+                formData.append('up_id',upProductID);
+                formData.append('up_category',upProductCategory);
                 $('.error').text('');
                 $.ajax({
                     url: "{{route('admin.dish.update')}}",
                     type: 'POST',
-                    data: {
-                        up_id: upProductID,
-                        up_name: upProductName,
-                        up_price: upProductPrice,
-                        up_description: upProductDescription,
-                        up_status: upProductStatus,
-                        up_category: upProductCategory,
-                        _token: $(this).find('input[name="_token"]').val()
-                    },
-                    dataType: 'json',
+                    data:
+                    formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
                     success: function (response) {
                         if (response.status == 'success') {
                             modal.style.display = "none";
@@ -250,7 +264,7 @@
                                 "showMethod": "fadeIn",
                                 "hideMethod": "fadeOut"
                             }
-                            Command: toastr["success"]("Update data successfully!", "Success")
+                            toastr["success"]("Update data successfully!", "Success")
                         }
                     },
                     error: function (error) {
@@ -264,9 +278,7 @@
             });
             //Delete dish data
             $(function (e) {
-                $('#select_all_ids').on('click', function () {
-                    $('.data__checkbox').prop('checked', $(this).prop('checked'))
-                });
+
                 let selected_ids = [];
                 $('.manager-site__category-delete-btn').on('click', function () {
                     $('input:checkbox[name=ids]:checked').each(function () {
@@ -306,6 +318,8 @@
                                 "hideMethod": "fadeOut"
                             }
                             toastr["success"]("Delete data successfully!", "Success")
+                            editDish();
+                            loadModal();
                         }
                     });
                 });
@@ -319,6 +333,7 @@
                     url: "/admin/dish/pagination/paginate-data?page=" + page,
                     success: function (res) {
                         $('.manager-site__body').html(res);
+                        editDish();
                     }
                 });
             });
@@ -335,6 +350,8 @@
                         if (res.status === 'nothing_found') {
                             $('.manager-site__body').html('<span style="color: red; font-size: 18px;">' + 'Nothing found' + '</span>');
                         }
+                        editDish();
+                        loadModal();
                     },
                     error: function (error) {
                         console.log(error);
@@ -351,6 +368,11 @@
                     data: {category_type: category_group},
                     success: function (res) {
                         $('.manager-site__body').html(res);
+                        editDish();
+                        loadModal();
+                    },
+                    error: function (err){
+                        console.log(err);
                     }
                 });
             });

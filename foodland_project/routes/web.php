@@ -44,7 +44,11 @@ Route::middleware(['isAdmin'])->prefix('admin')->group(function (){
         Route::get('/search-user',[UsersController::class,'search'])->name('admin.user.search');
 
     });
-    Route::get('order', [OrdersController::class,'index'])->name('admin.order.show');
+    Route::prefix('order')->group(function (){
+        Route::get('', [OrdersController::class,'index'])->name('admin.order.show');
+        Route::get('/show-order-by-status',[OrdersController::class,'showOrderByStatus'])->name('admin.order.showByStatus');
+    });
+
     Route::get('voucher', function (){
         return view('admin.ecommerce.voucher');
     })->name('admin.voucher.show');

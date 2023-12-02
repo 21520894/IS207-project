@@ -12,18 +12,34 @@ class Order extends Model
     protected $primaryKey = 'OrderID';
     public $timestamps = false;
 
-    public function getOrders($filters)
+    public function getOrders()
     {
         $orders = DB::table($this->table)
             ->select('orders.*','users.name as customer_name','users.phone as customer_phone',
             'payment.PaymentMode as payment_method')
             ->join('users','users.id','=','orders.UserID')
-            ->join('payment','payment.OrderID','=','orders.OrderID');
+            ->join('payment','payment.OrderID','=','orders.OrderID')
+            ->paginate(5);
+        return $orders;
+    }
+    public function getOrdersByStatus($filters)
+    {
+        $orders = DB::table($this->table)
+            ->select('orders.*','users.name as customer_name','users.phone as customer_phone',
+                'payment.PaymentMode as payment_method')
+            ->join('users','users.id','=','orders.UserID')
+            ->join('payment','payment.OrderID','=','orders.OrderID')
+            ->paginate(5);
         if($filters!='' and $filters!='All')
         {
-            $oders = $orders->get();
+            $orders = DB::table($this->table)
+                ->select('orders.*','users.name as customer_name','users.phone as customer_phone',
+                    'payment.PaymentMode as payment_method')
+                ->join('users','users.id','=','orders.UserID')
+                ->join('payment','payment.OrderID','=','orders.OrderID')
+                ->where('orders.OrderStatus','=',$filters)
+                ->paginate(5);
         }
-        $oders = $orders->get();
-        return $oders;
+        return $orders;
     }
 }

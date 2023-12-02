@@ -21,14 +21,14 @@
                             <div class="manager-site__category-wrapper">
                                 <form action="" method="get">
                                 <div class="manager-site__category">
-                                        <input type="submit" class="manager-site__category-btn btn manager-site__category-btn--active"
+                                        <input type="submit" class="manager-site__category-btn order_status btn manager-site__category-btn--active"
                                                name="order_status" value="All">
-                                        <input type="submit" class="manager-site__category-btn btn" name="order_status" value="Wait to pay">
-                                        <input type="submit" class="manager-site__category-btn btn" name="order_status" value="Wait to accept">
-                                        <input type="submit" class="manager-site__category-btn btn" name="order_status" value="Processing">
-                                        <input type="submit" class="manager-site__category-btn btn" name="order_status" value="Shipping">
-                                        <input type="submit" class="manager-site__category-btn btn" name="order_status" value="Finished">
-                                        <input type="submit" class="manager-site__category-btn btn" name="order_status" value="Cancel">
+                                        <input type="submit" class="manager-site__category-btn order_status btn" name="order_status" value="Wait to pay">
+                                        <input type="submit" class="manager-site__category-btn order_status btn" name="order_status" value="Wait to accept">
+                                        <input type="submit" class="manager-site__category-btn order_status btn" name="order_status" value="Processing">
+                                        <input type="submit" class="manager-site__category-btn order_status btn" name="order_status" value="Shipping">
+                                        <input type="submit" class="manager-site__category-btn order_status btn" name="order_status" value="Finished">
+                                        <input type="submit" class="manager-site__category-btn order_status btn" name="order_status" value="Cancel">
                                 </div>
                                 </form>
                                 <button name="delete" class="manager-site__category-delete-btn btn">
@@ -58,71 +58,24 @@
                                             <td class="manager-site__manager-data">{{$orders[$i]->TotalPrice}} VND</td>
                                             <td class="manager-site__manager-data">{{$orders[$i]->payment_method}}</td>
                                             <td class="manager-site__manager-data">
-                                                <a onclick="return false" class="item-status">Wait</a>
+                                                <a onclick="return false" class="item-status">Paid</a>
                                             </td>
                                             <td class="manager-site__manager-data">
-                                                <button name="viewDetail" class="item-status">Wait</button>
+                                                <button name="viewDetail" class="item-status">{{$orders[$i]->OrderStatus}}</button>
                                             </td>
-                                            <td class="manager-site__manager-data">01/01/2023</td>
+                                            <td class="manager-site__manager-data">{{$orders[$i]->DeliveryTime}}</td>
                                             <td class="manager-site__manager-data">
                                                 <input class="data__checkbox" type="checkbox" name="" id="">
                                             </td>
                                         </tr>
                                     @endfor
                                 @endif
-
-                                <tr class="manager-site__manager-row">
-                                    <td class="manager-site__manager-data">001</td>
-                                    <td class="manager-site__manager-data">Beef Wellington</td>
-                                    <td class="manager-site__manager-data">Beefsteak</td>
-                                    <td class="manager-site__manager-data">149,000 VND</td>
-                                    <td class="manager-site__manager-data">Visa</td>
-                                    <td class="manager-site__manager-data">
-                                        <a onclick="return false" class="item-status">Paid</a>
-                                    </td>
-                                    <td class="manager-site__manager-data">
-                                        <button name="viewDetail" class="item-status">Finished</button>
-                                    </td>
-                                    <td class="manager-site__manager-data">01/01/2023</td>
-                                    <td class="manager-site__manager-data">
-                                        <input class="data__checkbox" type="checkbox" name="" id="">
-                                    </td>
-                                </tr>
-                                <tr class="manager-site__manager-row">
-                                    <td class="manager-site__manager-data">001</td>
-                                    <td class="manager-site__manager-data">Beef Wellington</td>
-                                    <td class="manager-site__manager-data">Beefsteak</td>
-                                    <td class="manager-site__manager-data">149,000 VND</td>
-                                    <td class="manager-site__manager-data">Visa</td>
-                                    <td class="manager-site__manager-data">
-                                        <a onclick="return false" class="item-status">Paid</a>
-                                    </td>
-                                    <td class="manager-site__manager-data">
-                                        <button name="viewDetail" class="item-status">Cancel</button>
-                                    </td>
-                                    <td class="manager-site__manager-data">01/01/2023</td>
-                                    <td class="manager-site__manager-data">
-                                        <input class="data__checkbox" type="checkbox" name="" id="">
-                                    </td>
-                                </tr>
-                                <tr class="manager-site__manager-row">
-                                    <td class="manager-site__manager-data">001</td>
-                                    <td class="manager-site__manager-data">Beef Wellington</td>
-                                    <td class="manager-site__manager-data">Beefsteak</td>
-                                    <td class="manager-site__manager-data">149,000 VND</td>
-                                    <td class="manager-site__manager-data">Visa</td>
-                                    <td class="manager-site__manager-data">
-                                        <a onclick="return false" class="item-status">Paid</a>
-                                    </td>
-                                    <td class="manager-site__manager-data">
-                                        <button name="viewDetail" class="item-status">Shipping</button>
-                                    </td>
-                                    <td class="manager-site__manager-data">01/01/2023</td>
-                                    <td class="manager-site__manager-data">
-                                        <input class="data__checkbox" type="checkbox" name="" id="">
-                                    </td>
-                                </tr>
                             </table>
+                            <div class="pagination">
+                                @if(!empty($orders))
+                                    {{$orders->links('vendor.pagination.default') }}
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,3 +83,28 @@
         </div>
     </div>
 @endsection
+@section('js')
+    <script>
+        $(document).ready(function (){
+            //Order status
+            $(document).on('click', '.order_status', function (e) {
+                e.preventDefault();
+                let order_status = $(this).val();
+                $(this).addClass('manager-site__category-btn--active')
+                $.ajax({
+                    url: "{{route('admin.order.showByStatus')}}",
+                    data: {order_status: order_status},
+                    success: function (res) {
+                        $('.manager-site__body').html(res);
+                        addItemStatus();
+                        loadModal();
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+@endsection
+

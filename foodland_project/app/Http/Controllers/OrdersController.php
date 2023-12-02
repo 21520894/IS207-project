@@ -18,12 +18,15 @@ class OrdersController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = $request->order_status;
-        $orders = $this->orders->getOrders($filters);
-        //dd($orders);
+        $orders = $this->orders->getOrders();
+
         return view('admin.ecommerce.order',compact('orders'));
     }
+    public function showOrderByStatus(Request $request){
 
+        $orders = $this->orders->getOrdersByStatus($request->order_status);
+        return view('admin.ecommerce.order_pagination',compact('orders'))->render();
+    }
     /**
      * Show the form for creating a new resource.
      */

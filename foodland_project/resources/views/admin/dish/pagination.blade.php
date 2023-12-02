@@ -19,7 +19,7 @@
                     <td class="manager-site__manager-data">{{$item->ID}}</td>
                     <td class="manager-site__manager-data">{{$item->Name}}</td>
                     <td class="manager-site__manager-data">
-                        <img class="data__img" src="../assets/img/item11.jpg" alt="">
+                        <img class="data__img" src="{{asset('assets/img/'.$item->Image)}}" alt="">
                     </td>
                     <td class="manager-site__manager-data">{{$item->category_name}}</td>
                     <td class="manager-site__manager-data">{{$item->Price}} VND</td>

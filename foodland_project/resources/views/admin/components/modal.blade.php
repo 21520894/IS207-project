@@ -5,17 +5,17 @@
         @include('admin.user.edit')
         <div class="add__modal" name="addDishModal">
             <h1 class="add__modal-header">Add new dish</h1>
-            <form class="add__modal-wrapper" action="" method="POST" id="add-dish-form">
+            <form class="add__modal-wrapper" action="" method="POST" id="add-dish-form" enctype="multipart/form-data">
                 @csrf
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Name <span class="add__input-require">*</span></label>
                     <input type="text" class="add__input-text" name="product-name">
-                    <span style="color: red; font-size: 12px;" class="product_name_error error"></span>
+                    <span style="color: red; font-size: 12px;" class="product-name_error error"></span>
                 </div>
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Price (VND) <span class="add__input-require">*</span></label>
                     <input type="number" min="0" class="add__input-text" name="product-price">
-                    <span style="color: red; font-size: 12px;" class="product_price_error error"></span>
+                    <span style="color: red; font-size: 12px;" class="product-price_error error"></span>
                 </div>
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Group <span class="add__input-require">*</span></label>
@@ -28,7 +28,7 @@
                         @endif
                         <option value="new category">Add new group</option>
                     </select>
-                    <span style="color: red; font-size: 12px;" class="product_category_error error"></span>
+                    <span style="color: red; font-size: 12px;" class="product-category_error error"></span>
                 </div>
                 <div class="add__input-group add-group input-group--inactive">
                     <label for="" class="add__input-label">Category name <span class="add__input-require">*</span></label>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Image <span class="add__input-require">*</span></label>
-                    <input type="file" class="add__input-text" accept="image/*" >
+                    <input type="file" class="add__input-text" name="product-image" id="product-image">
                 </div>
                 <div class="add__btn-wrapper">
                     <input class="add__btn" type="submit" value="Add new dish">
