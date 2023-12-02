@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use function Laravel\Prompts\select;
 
 class User extends Authenticatable
 {
@@ -57,7 +58,23 @@ class User extends Authenticatable
             $users = DB::table($this->table)
                 ->select('users.*')->where('users.role','=',$filters)->paginate(3);
         }
-//        $users = $users->get();
+        return $users;
+    }
+    public function getUsersBySearch($filters,$search_string)
+    {
+        $users = DB::table($this->table)
+            ->select('users.*')
+            ->where('name','like','%'.$search_string.'%')
+            ->orWhere('phone','like','%'.$search_string.'%')
+            ->paginate(3);
+        if($filters!='')
+        {
+            $users = DB::table($this->table)
+                ->select('users.*')->where('users.role','=',$filters)
+                ->where('name','like','%'.$search_string.'%')
+                ->orWhere('phone','like','%'.$search_string.'%')
+                ->paginate(3);
+        }
         return $users;
     }
 }

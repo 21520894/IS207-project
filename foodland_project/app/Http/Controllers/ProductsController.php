@@ -202,4 +202,45 @@ class ProductsController extends Controller
         Product::where('ID',$ids)->delete();
         return response()->json(['status'=>'success']);
     }
+
+    public function pagination(Request $request)
+    {
+        $product = new Product();
+        $filter = '';
+        if(!empty($request->category_type))
+        {
+            $filter = $request->category_type;
+        }
+        $dishes = $product->getAllProducts($filter);
+        return view('admin.dish.pagination',compact('dishes'))->render();
+    }
+    public function search(Request $request)
+    {
+        $product = new Product();
+        $filter = '';
+        if(!empty($request->category_type))
+        {
+            $filter = $request->category_type;
+        }
+        $dishes = $product->getProductsBySearch($filter,$request->search_string);
+
+        if($dishes->count()>=1){
+            return view('admin.dish.pagination',compact('dishes'))->render();
+        }
+        else{
+            return response()->json([
+               'status' => 'nothing_found'
+            ]);
+        }
+    }
+    public function showDishByGroup(Request $request){
+        $product = new Product();
+        $filter = '';
+        if(!empty($request->category_type))
+        {
+            $filter = $request->category_type;
+        }
+        $dishes = $product->getAllProducts($filter);
+        return view('admin.dish.pagination',compact('dishes'))->render();
+    }
 }

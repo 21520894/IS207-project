@@ -92,4 +92,42 @@ class UsersController extends Controller
         User::where('id',$ids)->delete();
         return response()->json(['status'=>'success']);
     }
+
+    public function pagination(Request $request)
+    {
+        $filters = '';
+        if(!empty($request->account_type) and $request->account_type!='All'){
+            $filters = $request->account_type;
+            $filters = ($filters=='Admin')?'1':'0';
+        }
+        $users = $this->user->getAllUsers($filters);
+        return view('admin.user.pagination', compact('users'))->render();
+    }
+    public function search(Request $request)
+    {
+        $filters = '';
+        if(!empty($request->account_type) and $request->account_type!='All'){
+            $filters = $request->account_type;
+            $filters = ($filters=='Admin')?'1':'0';
+        }
+        $users = $this->user->getUsersBySearch($filters,$request->search_string);
+        if($users->count()>=1){
+            return view('admin.user.pagination',compact('users'))->render();
+        }
+        else{
+            return response()->json([
+                'status' => 'nothing_found'
+            ]);
+        }
+    }
+    public function showUserByGroup(Request $request){
+        $filters = '';
+        if(!empty($request->account_type) and $request->account_type!='All'){
+            $filters = $request->account_type;
+            $filters = ($filters=='Admin')?'1':'0';
+        }
+        $users = $this->user->getAllUsers($filters);
+        return view('admin.user.pagination',compact('users'))->render();
+    }
+
 }

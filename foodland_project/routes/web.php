@@ -27,13 +27,22 @@ Route::middleware(['isAdmin'])->prefix('admin')->group(function (){
         Route::get('edit', [ProductsController::class,'edit'])->name('admin.dish.edit');
         Route::post('edit', [ProductsController::class,'update'])->name('admin.dish.update');
         Route::delete('',[ProductsController::class,'destroy'])->name('admin.dish.delete');
-    });
+
+        Route::get('/pagination/paginate-data',[ProductsController::class,'pagination']);
+        Route::get('/show-product-via-category',[ProductsController::class,'showDishByGroup'])->name('admin.dish.show.category');
+        Route::get('/search-product',[ProductsController::class,'search'])->name('admin.dish.search');
+ });
 
     Route::prefix('user')->group(function (){
         Route::get('', [UsersController::class,'index'])->name('admin.user.show');
         Route::get('edit',[UsersController::class,'edit'])->name('admin.user.edit');
         Route::post('edit',[UsersController::class,'update'])->name('admin.user.update');
         Route::delete('',[UsersController::class,'destroy'])->name('admin.user.delete');
+        Route::get('/pagination/paginate-data',[UsersController::class,'pagination']);
+        Route::get('/show-user-by-group',[UsersController::class,'showUserByGroup'])->name('admin.user.showByGroup');
+
+        Route::get('/search-user',[UsersController::class,'search'])->name('admin.user.search');
+
     });
     Route::get('order', [OrdersController::class,'index'])->name('admin.order.show');
     Route::get('voucher', function (){

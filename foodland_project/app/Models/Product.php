@@ -46,6 +46,32 @@ class Product extends Model
         }
         return $products;
     }
+    public function getProductsBySearch($filters,$search_string)
+    {
+        if($filters!='' and $filters!='All')
+        {
+            $products = DB::table($this->table)
+                ->select('product.*', 'category.Title as category_name')
+                ->join('category', 'category.CategoryID', '=', 'product.CategoryID')
+                ->where('category.Title', '=', $filters)
+                ->where(function ($query) use ($search_string) {
+                    $query->where('Name', 'like', '%' . $search_string . '%')
+                        ->orWhere('Price', 'like', '%' . $search_string . '%');
+                })
+                ->paginate(5);
+        }
+        else {
+            $products = DB::table($this->table)
+                ->select('product.*', 'category.Title as category_name')
+                ->join('category', 'category.CategoryID', '=', 'product.CategoryID')
+                ->where(function ($query) use ($search_string) {
+                    $query->where('Name', 'like', '%' . $search_string . '%')
+                        ->orWhere('Price', 'like', '%' . $search_string . '%');
+                })
+                ->paginate(5);
+        }
+        return $products;
+    }
     public function getProductById($id)
     {
         $product =  DB::table($this->table)
