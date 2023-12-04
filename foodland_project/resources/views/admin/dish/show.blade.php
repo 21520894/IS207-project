@@ -121,6 +121,7 @@
                 let category = $(this).data('category');
                 let status = $(this).data('status');
                 let image = $(this).data('image');
+                console.log(image);
                 $('#up_id').val(id);
                 $('#up_name').val(name);
                 $('#up_price').val(price);
@@ -241,8 +242,7 @@
                         if (response.status == 'success') {
                             modal.style.display = "none";
                             $('.add__modal').hide();
-                            $('.manager-site__category').load(location.href + ' .manager-site__category');
-                            $('.table').load(location.href + ' .table', function () {
+                            $('.table').load(location.href+'.table', function () {
                                 editDish();
                                 loadModal();
                             });
@@ -299,7 +299,6 @@
                             $.each(selected_ids, function (key, val) {
                                 $('#product_ids' + val).remove();
                             });
-                            $('.manager-site__body').load(location.href + ' .manager-site__body');
                             toastr.options = {
                                 "closeButton": false,
                                 "debug": false,
@@ -334,6 +333,7 @@
                     success: function (res) {
                         $('.manager-site__body').html(res);
                         editDish();
+                        loadModal();
                     }
                 });
             });
@@ -362,6 +362,7 @@
             $(document).on('click', '.category_group', function (e) {
                 e.preventDefault();
                 let category_group = $(this).val();
+                $('.manager-site__category-btn--active').removeClass('manager-site__category-btn--active');
                 $(this).addClass('manager-site__category-btn--active')
                 $.ajax({
                     url: "{{route('admin.dish.show.category')}}",

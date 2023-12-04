@@ -211,7 +211,9 @@ class ProductsController extends Controller
     public function destroy(Request $request)
     {
         $ids = $request->ids;
-        Product::where('ID', $ids)->delete();
+        foreach ($ids as $id) {
+            Product::where('ID', $id)->delete();
+        }
         return response()->json(['status' => 'success']);
     }
 
