@@ -20,15 +20,18 @@
                             </div>
                             <div class="manager-site__category-wrapper">
                                 <div class="manager-site__category">
-                                    <input type="submit"
-                                           class="manager-site__category-btn btn category_group manager-site__category-btn--active"
-                                           name="category_type" value="All">
-                                    @if(!empty(getAllCategories()))
-                                        @foreach(getAllCategories() as $item)
-                                            <input type="submit" class="manager-site__category-btn btn category_group"
-                                                   name="category_type" value="{{$item->Title}}">
-                                        @endforeach
-                                    @endif
+{{--                                    <form action="" method="get" id="show-dish-via-category">--}}
+                                        <input type="submit" class="manager-site__category-btn btn category_group
+                                        {{(request()->category_type == null || request()->category_type == 'All')?'manager-site__category-btn--active':''}}"
+                                               name="category_type" value="All">
+                                        @if(!empty(getAllCategories()))
+                                            @foreach(getAllCategories() as $item)
+                                                <input type="submit" class="manager-site__category-btn btn category_group
+                                                       {{request()->category_type==$item->Title?'manager-site__category-btn--active':''}}"
+                                                       name="category_type" value="{{$item->Title}}">
+                                            @endforeach
+                                        @endif
+{{--                                    </form>--}}
                                 </div>
                                 <button name="deleteDish" class="manager-site__category-delete-btn btn">
                                     <i class="manager-site__btn-icon fa-solid fa-trash"></i>
@@ -36,6 +39,7 @@
                             </div>
                         </div>
                         <div class="manager-site__body">
+                            <div class="table-data">
                             <table class="manager-site__manager table">
                                 <tr class="manager-site__manager-row">
                                     <th class="manager-site__manager-header">ID</th>
@@ -98,6 +102,7 @@
                                     {{$dishes->links('vendor.pagination.default') }}
                                 @endif
                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -152,6 +157,10 @@
                 $('.error').text('');
                 let productImage = $('input[name="product-image"]')[0].files[0];
                 let formData = new FormData(this);
+                let currentTab = $('.manager-site__category-btn--active').val();
+                let currentPage = $('li.active span').text()
+                console.log(currentTab);
+                console.log(currentPage);
                 formData.append('product-category',productCategory);
                 $.ajax({
                     url: "{{route('admin.dish.add')}}",
@@ -162,12 +171,12 @@
                     contentType: false,
                     processData: false,
                     success: function (response) {
-                        console.log(response);
                         if (response.status === 'success') {
                             modal.style.display = "none";
                             $('.add__modal').hide();
-                            $('.manager-site__category').load(location.href + ' .manager-site__category');
-                            $('.manager-site__body').load(location.href + ' .manager-site__body', function () {
+                            //$('.manager-site__category').load(location.href + ' .manager-site__category');
+
+                            $('.manager-site__body').load(location.href + '?category_type='+currentTab+'&page='+currentPage+' .table-data', function () {
                                 editDish();
                                 loadModal();
                             });
@@ -229,6 +238,8 @@
                 let formData = new FormData(this);
                 formData.append('up_id',upProductID);
                 formData.append('up_category',upProductCategory);
+                let currentTab = $('.manager-site__category-btn--active').val();
+                let currentPage = $('li.active span').text()
                 $('.error').text('');
                 $.ajax({
                     url: "{{route('admin.dish.update')}}",
@@ -242,7 +253,7 @@
                         if (response.status == 'success') {
                             modal.style.display = "none";
                             $('.add__modal').hide();
-                            $('.table').load(location.href+'.table', function () {
+                            $('.table').load(location.href + '?category_type='+currentTab+'&page='+currentPage+' .table', function () {
                                 editDish();
                                 loadModal();
                             });
@@ -366,11 +377,13 @@
                 $(this).addClass('manager-site__category-btn--active')
                 $.ajax({
                     url: "{{route('admin.dish.show.category')}}",
+                    type: 'GET',
                     data: {category_type: category_group},
                     success: function (res) {
-                        $('.manager-site__body').html(res);
-                        editDish();
-                        loadModal();
+                        $('.manager-site__body').load(location.href + '?category_type='+category_group+' .table-data', function () {
+                            editDish();
+                            loadModal();
+                        });
                     },
                     error: function (err){
                         console.log(err);
