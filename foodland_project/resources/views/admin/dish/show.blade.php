@@ -36,67 +36,70 @@
                             </div>
                         </div>
                         <div class="manager-site__body">
-                            <table class="manager-site__manager table">
-                                <tr class="manager-site__manager-row">
-                                    <th class="manager-site__manager-header">ID</th>
-                                    <th class="manager-site__manager-header">NAME</th>
-                                    <th class="manager-site__manager-header">IMG</th>
-                                    <th class="manager-site__manager-header">GROUP</th>
-                                    <th class="manager-site__manager-header">PRICE</th>
-                                    <th class="manager-site__manager-header">DESCRIBE</th>
-                                    <th class="manager-site__manager-header">STATUS</th>
-                                    <th class="manager-site__manager-header">EDIT</th>
-                                    <th class="manager-site__manager-header">
-                                        <input type="checkbox" name="" id="select_all_ids">
-                                    </th>
-                                </tr>
-                                @if(!empty($dishes))
-                                    @php($i=1)
-                                    @foreach($dishes as $item)
-                                        <tr class="manager-site__manager-row" id="product_ids{{$item->ID}}">
-                                            <td class="manager-site__manager-data">{{$item->ID}}</td>
-                                            <td class="manager-site__manager-data">{{$item->Name}}</td>
-                                            <td class="manager-site__manager-data">
-                                                <img class="data__img" src="{{asset('assets/img/'.$item->Image)}}" alt="">
-                                            </td>
-                                            <td class="manager-site__manager-data">{{$item->category_name}}</td>
-                                            <td class="manager-site__manager-data">{{$item->Price}} VND</td>
-                                            <td class="manager-site__manager-data">
-                                                <p class="data__desc">
-                                                    {{$item->Description}}
-                                                </p>
-                                            </td>
-                                            <td class="manager-site__manager-data">
-                                                @php( $statusStyle = array('Stocking' => 'green-bg-color','Out of stock' => 'red-bg-color'))
-                                                <button
-                                                    class="item-status {{$statusStyle[$item->Status]}}">{{$item->Status}}</button>
-                                            </td>
-                                            <td class="manager-site__manager-data">
-                                                <button name="editDish"
-                                                        class="data__edit-btn btn update_dish_form"
-                                                        data-id="{{$item->ID}}"
-                                                        data-name="{{$item->Name}}"
-                                                        data-price="{{$item->Price}}"
-                                                        data-status="{{$item->Status}}"
-                                                        data-description="{{$item->Description}}"
-                                                        data-category="{{$item->category_name}}"
-                                                        data-image="{{$item->Image}}"
-                                                >EDIT
-                                                </button>
-                                            </td>
-                                            <td class="manager-site__manager-data">
-                                                <input class="data__checkbox" type="checkbox" name="ids" id=""
-                                                       value="{{$item->ID}}">
-                                            </td>
-                                        </tr>
-                                        @php($i+=1)
-                                    @endforeach
-                                @endif
-                            </table>
-                            <div class="pagination">
-                                @if(!empty($dishes))
-                                    {{$dishes->links('vendor.pagination.default') }}
-                                @endif
+                            <div class="table-data">
+                                <table class="manager-site__manager table">
+                                    <tr class="manager-site__manager-row">
+                                        <th class="manager-site__manager-header">ID</th>
+                                        <th class="manager-site__manager-header">NAME</th>
+                                        <th class="manager-site__manager-header">IMG</th>
+                                        <th class="manager-site__manager-header">GROUP</th>
+                                        <th class="manager-site__manager-header">PRICE</th>
+                                        <th class="manager-site__manager-header">DESCRIBE</th>
+                                        <th class="manager-site__manager-header">STATUS</th>
+                                        <th class="manager-site__manager-header">EDIT</th>
+                                        <th class="manager-site__manager-header">
+                                            <input type="checkbox" name="" id="select_all_ids">
+                                        </th>
+                                    </tr>
+                                    @if(!empty($dishes))
+                                        @php($i=1)
+                                        @foreach($dishes as $item)
+                                            <tr class="manager-site__manager-row" id="product_ids{{$item->ID}}">
+                                                <td class="manager-site__manager-data">{{$item->ID}}</td>
+                                                <td class="manager-site__manager-data">{{$item->Name}}</td>
+                                                <td class="manager-site__manager-data">
+                                                    <img class="data__img" src="{{asset('assets/img/'.$item->Image)}}"
+                                                         alt="">
+                                                </td>
+                                                <td class="manager-site__manager-data">{{$item->category_name}}</td>
+                                                <td class="manager-site__manager-data">{{$item->Price}} VND</td>
+                                                <td class="manager-site__manager-data">
+                                                    <p class="data__desc">
+                                                        {{$item->Description}}
+                                                    </p>
+                                                </td>
+                                                <td class="manager-site__manager-data">
+                                                    @php( $statusStyle = array('Stocking' => 'green-bg-color','Out of stock' => 'red-bg-color'))
+                                                    <button
+                                                        class="item-status {{$statusStyle[$item->Status]}}">{{$item->Status}}</button>
+                                                </td>
+                                                <td class="manager-site__manager-data">
+                                                    <button name="editDish"
+                                                            class="data__edit-btn btn update_dish_form"
+                                                            data-id="{{$item->ID}}"
+                                                            data-name="{{$item->Name}}"
+                                                            data-price="{{$item->Price}}"
+                                                            data-status="{{$item->Status}}"
+                                                            data-description="{{$item->Description}}"
+                                                            data-category="{{$item->category_name}}"
+                                                            data-image="{{$item->Image}}"
+                                                    >EDIT
+                                                    </button>
+                                                </td>
+                                                <td class="manager-site__manager-data">
+                                                    <input class="data__checkbox" type="checkbox" name="ids" id=""
+                                                           value="{{$item->ID}}">
+                                                </td>
+                                            </tr>
+                                            @php($i+=1)
+                                        @endforeach
+                                    @endif
+                                </table>
+                                <div class="pagination">
+                                    @if(!empty($dishes))
+                                        {{$dishes->links('vendor.pagination.default') }}
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -126,7 +129,7 @@
                 $('#up_name').val(name);
                 $('#up_price').val(price);
                 $('#up_status').text(status);
-                $('#up-product-image').attr('src',"{{asset('assets/img')}}"+"/"+image);
+                $('#up-product-image').attr('src', "{{asset('assets/img')}}" + "/" + image);
                 if (status === 'Stocking') {
                     $('#other_status').text('Out of stock');
                     $('#other_status').val('Out of stock');
@@ -152,12 +155,14 @@
                 $('.error').text('');
                 let productImage = $('input[name="product-image"]')[0].files[0];
                 let formData = new FormData(this);
-                formData.append('product-category',productCategory);
+                let currentTab = $('.manager-site__category-btn--active').val();
+                let currentPage = $('li.active span').text()
+                formData.append('product-category', productCategory);
                 $.ajax({
                     url: "{{route('admin.dish.add')}}",
                     type: 'POST',
                     data:
-                        formData,
+                    formData,
                     cache: false,
                     contentType: false,
                     processData: false,
@@ -167,7 +172,7 @@
                             modal.style.display = "none";
                             $('.add__modal').hide();
                             $('.manager-site__category').load(location.href + ' .manager-site__category');
-                            $('.manager-site__body').load(location.href + ' .manager-site__body', function () {
+                            $('.manager-site__body').load(location.href + '?category_type=' + currentTab + '&page=' + currentPage + ' .table-data', function () {
                                 editDish();
                                 loadModal();
                             });
@@ -205,7 +210,7 @@
             //Show data to edit dish modal
             editDish();
             //Update dish data
-            $('#up_image').change(function(){
+            $('#up_image').change(function () {
                 let reader = new FileReader();
 
                 reader.onload = (e) => {
@@ -227,8 +232,10 @@
                     upProductCategory = $('input[name="up-new-category"]').val();
                 }
                 let formData = new FormData(this);
-                formData.append('up_id',upProductID);
-                formData.append('up_category',upProductCategory);
+                formData.append('up_id', upProductID);
+                formData.append('up_category', upProductCategory);
+                let currentTab = $('.manager-site__category-btn--active').val();
+                let currentPage = $('li.active span').text()
                 $('.error').text('');
                 $.ajax({
                     url: "{{route('admin.dish.update')}}",
@@ -242,7 +249,7 @@
                         if (response.status == 'success') {
                             modal.style.display = "none";
                             $('.add__modal').hide();
-                            $('.table').load(location.href+'.table', function () {
+                            $('.table').load(location.href + '?category_type='+currentTab+'&page='+currentPage+' .table', function () {
                                 editDish();
                                 loadModal();
                             });
@@ -368,11 +375,12 @@
                     url: "{{route('admin.dish.show.category')}}",
                     data: {category_type: category_group},
                     success: function (res) {
-                        $('.manager-site__body').html(res);
-                        editDish();
-                        loadModal();
+                        $('.manager-site__body').load(location.href + '?category_type='+category_group+' .table-data', function () {
+                            editDish();
+                            loadModal();
+                        });
                     },
-                    error: function (err){
+                    error: function (err) {
                         console.log(err);
                     }
                 });
