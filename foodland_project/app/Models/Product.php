@@ -35,14 +35,14 @@ class Product extends Model
                 ->select('product.*','category.Title as category_name')
                 ->join('category','category.CategoryID','=','product.CategoryID')
                 ->where('category.Title','=',$filters)
-                ->paginate(5);
+                ->paginate(3);
 
         }
         else {
             $products = DB::table($this->table)
                 ->select('product.*','category.Title as category_name')
                 ->join('category','category.CategoryID','=','product.CategoryID')
-                ->paginate(5);
+                ->paginate(3);
         }
         return $products;
     }
@@ -58,7 +58,7 @@ class Product extends Model
                     $query->where('Name', 'like', '%' . $search_string . '%')
                         ->orWhere('Price', 'like', '%' . $search_string . '%');
                 })
-                ->paginate(5);
+                ->paginate(4);
         }
         else {
             $products = DB::table($this->table)
@@ -68,7 +68,7 @@ class Product extends Model
                     $query->where('Name', 'like', '%' . $search_string . '%')
                         ->orWhere('Price', 'like', '%' . $search_string . '%');
                 })
-                ->paginate(5);
+                ->paginate(4);
         }
         return $products;
     }
