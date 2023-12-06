@@ -47,6 +47,9 @@ Route::middleware(['isAdmin'])->prefix('admin')->group(function (){
     Route::prefix('order')->group(function (){
         Route::get('', [OrdersController::class,'index'])->name('admin.order.show');
         Route::get('/show-order-by-status',[OrdersController::class,'showOrderByStatus'])->name('admin.order.showByStatus');
+        Route::get('/search-oder',[OrdersController::class,'search'])->name('admin.order.search');
+        Route::get('/search-oder-by-date',[OrdersController::class,'searchByDate'])->name('admin.order.searchByDate');
+
     });
 
     Route::get('voucher', function (){

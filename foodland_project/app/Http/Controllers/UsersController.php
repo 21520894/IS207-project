@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\DateTime;
 class UsersController extends Controller
 {
@@ -71,7 +72,7 @@ class UsersController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'up_name' => 'required|unique:users,name,'.$request->up_id,
+            'up_name' => 'required',Rule::unique('products')->ignore($request->up_id),
         ],[
             'up_name.required' => 'Name is required',
             'up_name.unique' => 'Name already exists'

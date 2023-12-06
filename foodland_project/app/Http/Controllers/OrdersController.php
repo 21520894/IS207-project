@@ -74,4 +74,39 @@ class OrdersController extends Controller
     {
         //
     }
+    //Search orders
+    public function search(Request $request)
+    {
+        $product = new Order();
+        $filter = '';
+        if (!empty($request->category_type)) {
+            $filter = $request->category_type;
+        }
+        $orders = $product->getOrdersBySearch($filter, $request->search_string);
+
+        if ($orders->count() >= 1) {
+            return view('admin.ecommerce.order_pagination', compact('orders'))->render();
+        } else {
+            return response()->json([
+                'status' => 'nothing_found'
+            ]);
+        }
+    }
+    public function searchByDate(Request $request)
+    {
+        $product = new Order();
+        $filter = '';
+        if (!empty($request->category_type)) {
+            $filter = $request->category_type;
+        }
+        $orders = $product->getOrdersByDate($filter, $request->date);
+
+        if ($orders->count() >= 1) {
+            return view('admin.ecommerce.order_pagination', compact('orders'))->render();
+        } else {
+            return response()->json([
+                'status' => 'nothing_found'
+            ]);
+        }
+    }
 }

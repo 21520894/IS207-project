@@ -16,7 +16,7 @@
             @php($i=1)
             @foreach($dishes as $item)
                 <tr class="manager-site__manager-row" id="product_ids{{$item->ID}}">
-                    <td class="manager-site__manager-data">{{$item->ID}}</td>
+                    <td class="manager-site__manager-data">{{$i}}</td>
                     <td class="manager-site__manager-data">{{$item->Name}}</td>
                     <td class="manager-site__manager-data">
                         <img class="data__img" src="{{asset('assets/img/'.$item->Image)}}" alt="">
@@ -41,6 +41,7 @@
                                 data-status="{{$item->Status}}"
                                 data-description="{{$item->Description}}"
                                 data-category="{{$item->category_name}}"
+                                data-image="{{$item->Image}}"
                         >EDIT</button>
                     </td>
                     <td class="manager-site__manager-data">

@@ -23,7 +23,7 @@
         <td class="manager-site__manager-data">
             <button name="editUser"
                     class="data__edit-btn btn update_user_form"
-                    data-id="{{$i+1}}"
+                    data-id="{{$users[$i]->id}}"
                     data-name="{{$users[$i]->name}}"
                     data-phone="{{$users[$i]->phone}}"
                     data-email="{{$users[$i]->email}}"

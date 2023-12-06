@@ -59,7 +59,7 @@
                                             <td class="manager-site__manager-data">
                                                 <button name="editUser"
                                                         class="data__edit-btn btn update_user_form"
-                                                        data-id="{{$i+1}}"
+                                                        data-id="{{$users[$i]->id}}"
                                                         data-name="{{$users[$i]->name}}"
                                                         data-phone="{{$users[$i]->phone}}"
                                                         data-email="{{$users[$i]->email}}"
@@ -117,14 +117,15 @@
                     $('#other-user-role').val('Admin');
                     $('select[name="up-user-role"]').val('Customer');
                 }
-                $('option[id="up-user-role"]').text(role);
-                $('option[id="up-user-role"]').val(role);
+
                 $('input[name="up-user-created"]').val(created_time);
             });
         }
 
         showDataToEditUserForm();
         $(document).ready(function () {
+
+            //Update
             $('#edit-user-form').on('submit', function (e) {
                 e.preventDefault();
                 let upUserID = $('input[name="up-user-id"]').val();
@@ -135,6 +136,8 @@
                 } else {
                     upUserRole = 0;
                 }
+                let currentTab = $('.manager-site__category-btn--active').val();
+                let currentPage = $('li.active span').text()
                 $('.error').text('');
                 $.ajax({
                     url: "{{route('admin.user.update')}}",
@@ -150,7 +153,7 @@
                         if (response.status === 'success') {
                             modal.style.display = "none";
                             $('.add__modal').hide();
-                            $('.table').load(location.href + ' .table', function () {
+                            $('.table').load(location.href + '?category_type='+currentTab+'&page='+currentPage+' .table', function () {
                                 showDataToEditUserForm();
                                 loadModal();
                             });
@@ -223,7 +226,7 @@
                                 "showMethod": "fadeIn",
                                 "hideMethod": "fadeOut"
                             }
-                            Command: toastr["success"]("Delete data successfully!", "Success")
+                            toastr["success"]("Delete data successfully!", "Success")
                         }
                     });
                 });
@@ -236,6 +239,8 @@
                     url: "/admin/user/pagination/paginate-data?page=" + page,
                     success: function (res) {
                         $('.manager-site__body').html(res);
+                        showDataToEditUserForm();
+                        loadModal();
                     }
                 });
             });

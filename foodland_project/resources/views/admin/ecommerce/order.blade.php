@@ -13,10 +13,10 @@
                         <div class="manager-site__header">
                             <div class="manager-site__search-wrapper">
                                 <div class="manager-site__search-box">
-                                    <input type="text" class="manager-site__search-input" placeholder="Search ...">
+                                    <input type="text" id="search_order" class="manager-site__search-input" placeholder="Search ...">
                                     <i class="manager-site__search-icon fa-solid fa-magnifying-glass"></i>
                                 </div>
-                                <input type="date" class="manager-site__date-btn btn" >
+                                <input type="date" id="search_order_by_date" class="manager-site__date-btn btn" >
                             </div>
                             <div class="manager-site__category-wrapper">
                                 <form action="" method="get">
@@ -58,12 +58,12 @@
                                             <td class="manager-site__manager-data">{{$orders[$i]->TotalPrice}} VND</td>
                                             <td class="manager-site__manager-data">{{$orders[$i]->payment_method}}</td>
                                             <td class="manager-site__manager-data">
-                                                <a onclick="return false" class="item-status">Paid</a>
+                                                <a onclick="return false" class="item-status">{{!empty($orders[$i]->payment_method)?'Paid':'Unpaid'}}</a>
                                             </td>
                                             <td class="manager-site__manager-data">
                                                 <button name="viewDetail" class="item-status">{{$orders[$i]->OrderStatus}}</button>
                                             </td>
-                                            <td class="manager-site__manager-data">{{$orders[$i]->DeliveryTime}}</td>
+                                            <td class="manager-site__manager-data">{{$orders[$i]->OrderTime}}</td>
                                             <td class="manager-site__manager-data">
                                                 <input class="data__checkbox" type="checkbox" name="" id="">
                                             </td>
@@ -104,7 +104,51 @@
                     }
                 });
             });
+
+            //Search
+            $('#search_order').on('keyup', function (e) {
+                e.preventDefault();
+                let search_string = $('#search_order').val();
+                console.log(search_string);
+                $.ajax({
+                    url: "{{route('admin.order.search')}}",
+                    method: 'GET',
+                    data: {search_string: search_string},
+                    success: function (res) {
+                        $('.manager-site__body').html(res);
+                        if (res.status === 'nothing_found') {
+                            $('.manager-site__body').html('<span style="color: red; font-size: 18px;">' + 'Nothing found' + '</span>');
+                        }
+                        addItemStatus();
+                        loadModal();
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+            $('#search_order_by_date').on('change', function (e) {
+                e.preventDefault();
+                let date = $('#search_order_by_date').val();
+                $.ajax({
+                    url: "{{route('admin.order.searchByDate')}}",
+                    method: 'GET',
+                    data: {date: date},
+                    success: function (res) {
+                        $('.manager-site__body').html(res);
+                        if (res.status === 'nothing_found') {
+                            $('.manager-site__body').html('<span style="color: red; font-size: 18px;">' + 'Nothing found' + '</span>');
+                        }
+                        addItemStatus();
+                        loadModal();
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
         });
+
     </script>
 @endsection
 

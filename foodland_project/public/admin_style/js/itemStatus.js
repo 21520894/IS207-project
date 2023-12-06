@@ -5,11 +5,11 @@ function addItemStatus() {
             background: 'green-bg-color'
         },
         {
-            status: ['cash on delivery', 'wait'],
+            status: ['cash on delivery', 'wait to pay','wait to accept'],
             background: 'yellow-bg-color'
         },
         {
-            status: ['cancel'],
+            status: ['cancel','unpaid'],
             background: 'red-bg-color'
         },
         {

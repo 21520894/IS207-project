@@ -58,7 +58,7 @@ class Product extends Model
                     $query->where('Name', 'like', '%' . $search_string . '%')
                         ->orWhere('Price', 'like', '%' . $search_string . '%');
                 })
-                ->paginate(4);
+                ->paginate(3);
         }
         else {
             $products = DB::table($this->table)
@@ -68,7 +68,7 @@ class Product extends Model
                     $query->where('Name', 'like', '%' . $search_string . '%')
                         ->orWhere('Price', 'like', '%' . $search_string . '%');
                 })
-                ->paginate(4);
+                ->paginate(3);
         }
         return $products;
     }

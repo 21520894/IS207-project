@@ -55,7 +55,7 @@
                                         @php($i=1)
                                         @foreach($dishes as $item)
                                             <tr class="manager-site__manager-row" id="product_ids{{$item->ID}}">
-                                                <td class="manager-site__manager-data">{{$item->ID}}</td>
+                                                <td class="manager-site__manager-data">{{$i}}</td>
                                                 <td class="manager-site__manager-data">{{$item->Name}}</td>
                                                 <td class="manager-site__manager-data">
                                                     <img class="data__img" src="{{asset('assets/img/'.$item->Image)}}"
@@ -124,7 +124,6 @@
                 let category = $(this).data('category');
                 let status = $(this).data('status');
                 let image = $(this).data('image');
-                console.log(image);
                 $('#up_id').val(id);
                 $('#up_name').val(name);
                 $('#up_price').val(price);
@@ -345,7 +344,7 @@
                 });
             });
             //Search
-            $(document).on('keyup', function (e) {
+            $('#search_dish').on('keyup', function (e) {
                 e.preventDefault();
                 let search_string = $('#search_dish').val();
                 $.ajax({
