@@ -199,11 +199,11 @@
   text-align: center;
 }
 .app .content .dashboard__wrapper .dashboard__body .dashboard__total-wrapper .dashboard__total {
-  height: 50%;
   margin-top: 2.6rem;
   background-color: var(--white-color);
   border: 1px solid #BFBFBF;
   text-align: center;
+  padding: 2rem;
 }
 .app .content .dashboard__wrapper .dashboard__body .dashboard__total-wrapper .dashboard__total .dashboard__total-header {
   font-size: 1.6rem;
@@ -211,7 +211,6 @@
   line-height: 2rem;
   letter-spacing: 0em;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2509803922);
-  margin-top: 1.6rem;
   text-transform: uppercase;
 }
 .app .content .dashboard__wrapper .dashboard__body .dashboard__total-wrapper .dashboard__total .dashboard__total-number {

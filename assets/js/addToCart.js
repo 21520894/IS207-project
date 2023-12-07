@@ -12,21 +12,28 @@ for (const btn of addCartBtns) {
         const img = product.querySelector('[class*="__product-img"]').src;
         const name = product.querySelector('[class*="__product-name"]').innerText;
         const price = product.querySelector('[class*="__product-price"]').innerText;
-        const id = product.id;
+        let id = product.id;
+        id = id.replace(/[^0-9]/g, '');
+        parseInt(id);
 
         // Get the list name of item, if duplicate in cart, increase the quantity
         // Get the list name of item
-        const cartItemNameList = document.querySelectorAll('.cart-item__name');
-        for (const cartItemName of cartItemNameList) {
+        const cartItems = document.querySelectorAll('.cart-item');
+        for (const cartItem of cartItems) {
             
+            let cartItemId = cartItem.id;
+            cartItemId = cartItemId.replace(/[^0-9]/g, '');
+            parseInt(cartItemId);
             // If duplicate
-            if (cartItemName.innerText == name) {
+            if (cartItemId == id) {
                 
                 // Increase quantity
-                for (const cartItemName of cartItemNameList) {
-                    const menuCartItem = getParentElement(cartItemName, 'cart-item');
-                    if (cartItemName.innerText == name) {
-                        menuCartItem.querySelector('.cart-item__quantity-input').value++;
+                for (const cartItem of cartItems) {
+                    let cartItemId = cartItem.id;
+                    cartItemId = cartItemId.replace(/[^0-9]/g, '');
+                    parseInt(cartItemId);
+                    if (cartItemId == id) {
+                        cartItem.querySelector('.cart-item__quantity-input').value++;
                     }
                 }
 

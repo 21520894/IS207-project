@@ -172,14 +172,14 @@
   background-color: #5BD4EE;
   opacity: 1 !important;
 }
-.app #menu__page {
+.app #menu__page, .app #menu__staff-page {
   padding: 4.5rem 0;
 }
-.app #menu__page .menu__page-container {
+.app #menu__page .menu__page-container, .app #menu__staff-page .menu__page-container {
   margin-top: 2.5rem;
   margin-bottom: 5.5rem;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__search {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__search, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__search {
   max-width: 620px;
   height: 48px;
   display: flex;
@@ -189,12 +189,12 @@
   border-radius: 20px;
   margin: 0 auto;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__search .menu__search-icon {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__search .menu__search-icon, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__search .menu__search-icon {
   font-size: 2.4rem;
   color: #BFBFBF;
   cursor: pointer;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__search .menu__search-input {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__search .menu__search-input, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__search .menu__search-input {
   display: block;
   width: 100%;
   height: 100%;
@@ -209,12 +209,12 @@
   background-color: transparent;
   color: var(--text-color);
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__category-list {
   margin-top: 5rem;
   padding-bottom: 2rem;
   flex-wrap: wrap;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item {
   background-color: var(--white-color);
   border-radius: 10px;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
@@ -222,13 +222,13 @@
   cursor: pointer;
   margin-bottom: 2rem;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item .menu__category-item-img {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item .menu__category-item-img, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item .menu__category-item-img {
   width: 100%;
   height: 120px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item .menu__category-item-name {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item .menu__category-item-name, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item .menu__category-item-name {
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 2rem;
@@ -237,16 +237,16 @@
   text-align: center;
   margin: 1rem 0;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item:hover .menu__category-item-img {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item:hover .menu__category-item-img, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item:hover .menu__category-item-img {
   opacity: 0.8;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item--active {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item--active, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__category-list .menu__category-item--active {
   border: 2px solid var(--primary-color);
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper {
   position: relative;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list {
   --growth-from: 0%;
   --growth-to: 100%;
   display: none;
@@ -258,7 +258,7 @@
   flex-wrap: nowrap;
   scroll-behavior: smooth;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper {
   background-color: var(--white-color);
   padding: 3.2rem 3.2rem 1.6rem 3.2rem;
   text-align: center;
@@ -268,7 +268,7 @@
   flex-direction: column;
   align-items: center;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-label {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-label, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-label {
   font-size: 1.6rem;
   font-weight: 500;
   line-height: 2rem;
@@ -277,14 +277,14 @@
   top: 1.2rem;
   left: 2rem;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-img {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-img, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-img {
   width: 100%;
   height: 120px;
   -o-object-fit: cover;
      object-fit: cover;
   cursor: pointer;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-name {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-name, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-name {
   font-size: 2.2rem;
   font-weight: 600;
   line-height: 2.7rem;
@@ -294,26 +294,26 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-btn {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-btn, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-btn {
   cursor: pointer;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-price {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-price, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-price {
   font-size: 2.2rem;
   font-weight: 600;
   line-height: 2.7rem;
   margin: 0;
   width: 125px;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-desc {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-desc, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list .menu__product-wrapper .menu__product-desc {
   display: none;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list::-webkit-scrollbar {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list::-webkit-scrollbar, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list::-webkit-scrollbar {
   display: none !important;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list--active {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list--active, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-list--active {
   display: flex;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-scroll-btn {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-scroll-btn, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .menu__product-scroll-btn {
   position: absolute;
   font-size: 2.5rem;
   padding: 1.2rem;
@@ -325,43 +325,43 @@
   display: none;
   z-index: 1;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .btn-right {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .btn-right, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .btn-right {
   top: 35%;
   right: 0.5%;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .btn-left {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .btn-left, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-list-wrapper .btn-left {
   top: 35%;
   left: 2.5%;
 }
-.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-scroll-btn--active .menu__product-scroll-btn {
+.app #menu__page .menu__page-container .menu__order-wrapper .menu__product-scroll-btn--active .menu__product-scroll-btn, .app #menu__staff-page .menu__page-container .menu__order-wrapper .menu__product-scroll-btn--active .menu__product-scroll-btn {
   display: block;
   text-shadow: 1px 2px 3px #000;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__user-address {
   background-color: var(--white-color);
   border-radius: 10px;
   padding: 0.8rem 2.4rem;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-header {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-header, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-header {
   font-size: 3.2rem;
   font-weight: 600;
   line-height: 3.9rem;
   margin: 0;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-sub-header {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-sub-header, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-sub-header {
   font-size: 2rem;
   font-weight: 400;
   line-height: 2.4rem;
   color: var(--text-color);
   margin: 1.2rem 0 0 0;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-info {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-info, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-info {
   font-size: 2.4rem;
   font-weight: 400;
   line-height: 2.9rem;
   margin: 1.5rem 0 0 0;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-ship {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-ship, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-ship {
   font-size: 2.4rem;
   font-weight: 400;
   line-height: 2.9rem;
@@ -370,17 +370,17 @@
   align-items: center;
   margin: 1.2rem 0 0 0;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-ship .menu__ship-time {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-ship .menu__ship-time, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-ship .menu__ship-time {
   margin: 0;
   margin-right: 3.8rem;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-ship .menu__ship-icon {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-ship .menu__ship-icon, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-ship .menu__ship-icon {
   margin-right: 0.8rem;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-ship .menu__ship-distance {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-ship .menu__ship-distance, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-ship .menu__ship-distance {
   margin: 0;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-change-btn {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-change-btn, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__user-address .menu__address-change-btn {
   display: inline-block;
   font-size: 1.8rem;
   font-style: italic;
@@ -390,7 +390,7 @@
   color: #075985;
   cursor: pointer;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper {
   background-color: var(--white-color);
   border-radius: 10px;
   margin-top: 0.8rem;
@@ -398,23 +398,23 @@
   overflow-x: hidden;
   overflow-y: scroll;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .menu__cart-header {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .menu__cart-header, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .menu__cart-header {
   font-size: 3.2rem;
   font-weight: 600;
   line-height: 3.9rem;
   padding: 1.5rem 2.4rem 0;
   margin: 0;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item {
   margin: 2.4rem 2.4rem 0;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper {
   display: flex;
   align-items: center;
   margin-top: 0.4rem;
   justify-content: space-between;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__name {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__name, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__name {
   font-size: 2.2rem;
   font-weight: 400;
   line-height: 2.7rem;
@@ -422,12 +422,12 @@
   width: 100px;
   margin: 0;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__img {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__img, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__img {
   width: 100px;
   height: 100px;
   border-radius: 10px;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__quantity-input {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__quantity-input, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__quantity-input {
   font-size: 2.2rem;
   font-weight: 400;
   line-height: 2.7rem;
@@ -439,13 +439,13 @@
   padding-left: 1.2rem;
   margin-top: 1.2rem;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__del-btn {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__del-btn, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__del-btn {
   cursor: pointer;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__del-btn .cart-item__del-icon {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__del-btn .cart-item__del-icon, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__cart-item-wrapper .cart-item .cart-item__wrapper .cart-item__del-btn .cart-item__del-icon {
   font-size: 3rem;
 }
-.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-btn {
+.app #menu__page .menu__page-container .menu__user-wrapper .menu__cart-btn, .app #menu__staff-page .menu__page-container .menu__user-wrapper .menu__cart-btn {
   display: block;
   font-size: 2.4rem;
   font-weight: 600;
@@ -453,6 +453,90 @@
   width: 100%;
   text-align: center;
   margin-top: 1.6rem;
+}
+.app .menu__staff-page .menu__cart-item-wrapper {
+  margin: 0 !important;
+}
+.app .menu__staff-page .order__pay-bill {
+  background: var(--white-color);
+  border-radius: 10px;
+  margin-top: 3.2rem;
+  padding-bottom: 2rem;
+}
+.app .menu__staff-page .order__pay-bill .order__bill-header {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 3.2rem;
+  font-weight: 600;
+  line-height: 3.9rem;
+  border-bottom: 2px solid #F0F0F0;
+  margin: 0;
+  border: none;
+}
+.app .menu__staff-page .order__pay-bill .order__bill-info-list {
+  padding: 0 2rem;
+}
+.app .menu__staff-page .order__pay-bill .order__bill-info-list .order__info-header {
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 2.9rem;
+}
+.app .menu__staff-page .order__pay-bill .order__bill-info-list .order__info-list-item {
+  font-size: 2.2rem;
+  font-weight: 400;
+  line-height: 2.5rem;
+  color: var(--text-color);
+  margin: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+.app .menu__staff-page .order__pay-bill .order__bill-info-list .order__info-list-item .order__item-header {
+  margin: 0;
+}
+.app .menu__staff-page .order__pay-bill .order__bill-info-list .order__info-list-item .order__item-price {
+  margin: 0;
+}
+.app .menu__staff-page .order__pay-bill .order__bill-info-list .order__info-list-item:nth-child(5) {
+  border-bottom: 1px solid var(--text-color);
+  border-top: 1px dashed var(--text-color);
+  margin-top: 1.6rem;
+  padding: 1.6rem 0;
+}
+.app .menu__staff-page .order__pay-bill .order__bill-total {
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.app .menu__staff-page .order__pay-bill .order__bill-total .order__bill-header {
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 2.9rem;
+}
+.app .menu__staff-page .order__pay-bill .order__bill-total .order__bill-price {
+  font-size: 2.2rem;
+  font-weight: 400;
+  line-height: 2.5rem;
+  color: var(--text-color);
+}
+.app .menu__staff-page .order__pay-bill .order__pay-btn {
+  display: block;
+  margin: 1.6rem 2rem;
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 2.9rem;
+  text-align: center;
+}
+.app .menu__staff-page .menu__cart-table {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border: none;
+  border-radius: 6px;
+  text-align: center;
+  margin-top: 0.8rem;
 }
 .app #consult__page {
   padding: 7.5rem 0;
@@ -781,7 +865,7 @@
 .app #order__page .order__page-container .order__pay-wrapper .order__pay-bill .order__bill-info-list .order__info-list-item .order__item-price {
   margin: 0;
 }
-.app #order__page .order__page-container .order__pay-wrapper .order__pay-bill .order__bill-info-list .order__info-list-item:nth-child(5) {
+.app #order__page .order__page-container .order__pay-wrapper .order__pay-bill .order__bill-info-list .order__info-list-item:last-child {
   border-bottom: 1px solid var(--text-color);
   border-top: 1px dashed var(--text-color);
   margin-top: 1.6rem;
@@ -811,6 +895,12 @@
   font-weight: 600;
   line-height: 2.9rem;
   text-align: center;
+}
+.app .order__staff-page {
+  padding: 0 !important;
+}
+.app .order__staff-page .order__pay-bill {
+  margin: 0 !important;
 }
 .app #promotion__page {
   padding-top: 7.5rem;

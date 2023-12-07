@@ -55,4 +55,5 @@
 <script type="text/javascript" src="./js/modal.js"></script>
 <script type="text/javascript" src="./js/editCategory.js"></script>
 <script type="text/javascript" src="./js/itemStatus.js"></script>
+
 </html>
