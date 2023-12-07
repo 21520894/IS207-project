@@ -1,6 +1,6 @@
-@extends('layouts/clients')
+{{--@extends('layouts/clients')--}}
 
-@section('content')
+{{--@section('content')--}}
 <!-- Menu page -->
 <section id="menu__page">
     <div class="menu__page-container grid__full-width grid__row">
@@ -80,4 +80,4 @@
     </div>
 </section>
 <!-- End of Menu page -->
-@endsection
+{{--@endsection--}}

@@ -40,7 +40,7 @@
     <div class="modal__overlay"></div>
     <div class="modal__body">
         <!-- Sign in form -->
-        <form class="auth-form" name="signinModal" action="{{route('login')}}" method="POST">
+        <form class="auth-form"  id="loginModal" name="signinModal" action="{{route('login')}}" method="POST">
             @csrf
             <div class="auth-form__container">
                 <div class="auth-form__header">
@@ -51,11 +51,13 @@
                     </div>
                 </div>
                 <div class="auth-form__form">
-                    <div class="auth-form__group">
-                        <input type="email" class="auth-form__input-text"  placeholder="email" name="email" required>
+                    <div class="auth-form__group" >
+                        <input type="email" class="auth-form__input-text"  placeholder="email" name="email">
+                        <span style="color: red;font-size:12px; white-space: nowrap;" class="email_error error"></span>
                     </div>
                     <div class="auth-form__group">
-                        <input type="password" class="auth-form__input-text" placeholder="password" name = "password" required = "required">
+                        <input type="password" class="auth-form__input-text" placeholder="password" name = "password" >
+                        <span style="color: red; font-size: 12px;" class="password_error error"></span>
                     </div>
                     <div class="auth-form__aside">
                         <div class="auth-form__help">
@@ -71,7 +73,7 @@
         <!-- End of Sign in form -->
 
         <!-- Sign up form -->
-        <form class="auth-form" name="signupModal" action="{{ route('register') }}" method="POST">
+        <form class="auth-form" id="signupModal" name="signupModal" action="{{ route('register') }}" method="POST">
             @csrf
             <div class="auth-form__container">
                 <div class="auth-form__header">
@@ -82,21 +84,25 @@
                     </div>
                 </div>
                 <div class="auth-form__form">
-                    <div class="auth-form__group">
-                        <input type="name" class="auth-form__input-text" placeholder="Full name" name= "name" required = "required">
+                    <div class="auth-form__group" >
+                        <input type="name" class="auth-form__input-text" placeholder="Full name" name= "name" >
+                        <span style="color: red; font-size: 12px;" class="name_register_error error"></span>
                     </div>
                     <div class="auth-form__group">
-                        <input type="phone" class="auth-form__input-text" placeholder="Phone number" name ="phone" required>
+                        <input type="phone" class="auth-form__input-text" placeholder="Phone number" name ="phone" >
+                        <span style="color: red; font-size: 12px;" class="phone_register_error error"></span>
                     </div>
                     <div class="auth-form__group">
-                        <input type="email" class="auth-form__input-text" placeholder="Email" name = "email" required>
+                        <input type="email" class="auth-form__input-text" placeholder="Email" name = "email" >
+                        <span style="color: red; font-size: 12px;" class="email_register_error error"></span>
                     </div>
                     <div class="auth-form__group">
-                        <input type="password" class="auth-form__input-text" placeholder="Password" name = "password" required>
+                        <input type="password" class="auth-form__input-text" placeholder="Password" name = "password" >
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                        <span style="color: red; font-size: 12px;" class="password_register_error error"></span>
                     </div>
                     <div class="auth-form__group">
-                        <input type="password" class="auth-form__input-text" placeholder="Confirm password" name = "password_confirmation" required>
+                        <input type="password" class="auth-form__input-text" placeholder="Confirm password" name = "password_confirmation" >
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
                     <div class="auth-form__controls">
@@ -205,6 +211,7 @@
 <!-- End of Modal -->
 
 </body>
+
 <script type="text/javascript" src="./assets/js/showSlides.js"></script>
 <script type="text/javascript" src="./assets/js/getParentElement.js"></script>
 <script type="text/javascript" src="./assets/js/collapseContent.js"></script>
@@ -218,4 +225,54 @@
 <script type="text/javascript" src="./assets/js/productQuantity.js"></script>
 <script type="text/javascript" src="./assets/js/addToCart.js"></script>
 <script type="text/javascript" src="./assets/js/mobileMenu.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //login validate
+        $('#loginModal').submit(function (e) {
+
+            e.preventDefault();
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: '{{route('login')}}', // Đường dẫn đến route xử lý đăng nhập
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    if(response.status === "success")
+                        window.location.href = response.redirect
+                },
+                error: function (errors) {
+                    // Hiển thị lỗi từ server
+                    $.each(errors.responseJSON.errors, function (key, value) {
+                        $('.' + key + '_error').text(value);
+                    });
+                }
+            });
+        });
+        //Sign up validate
+        $('#signupModal').submit(function (e) {
+
+            e.preventDefault();
+            let formData = $(this).serialize();
+
+            $.ajax({
+                url: '{{route('register')}}', // Đường dẫn đến route xử lý đăng nhập
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    if(response.status === "success")
+                        window.location.href = response.redirect
+                },
+                error: function (errors) {
+                    // Hiển thị lỗi từ server
+                    $.each(errors.responseJSON.errors, function (key, value) {
+                        $('.' + key + '_register_error').text(value);
+                    });
+                }
+            });
+        });
+    });</script>
+
 </html>

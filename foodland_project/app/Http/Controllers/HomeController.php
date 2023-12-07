@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use function Laravel\Prompts\alert;
 
 class HomeController extends Controller
 {
@@ -23,14 +25,23 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (!session()->has('message')) {
+            session()->flash('message', 'Please Login to order');
+        }
         return view('clients/user/home');
     }
     public function menu()
     {
-        return view('clients/user/menu');
+        return redirect('/#menu__page');
     }
     public function order()
     {
-        return view('clients/user/order');
+        if(Auth::check())
+        {
+            return redirect('/#order__page');
+        }
+        else {
+            return redirect('/')->with('message', 'Please Login');
+        }
     }
 }

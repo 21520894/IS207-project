@@ -21,7 +21,7 @@
                     align-items: center;
                     max-width: 120px;
                     // .header__logo-image {
-                        
+
                     // }
                     .header__logo-name {
                         font-size: 1.4rem;
@@ -181,7 +181,7 @@
             }
         }
     }
-    #menu__page {
+    #menu__page, #menu__staff-page {
         padding: 4.5rem 0;
         .menu__page-container {
             margin-top: 2.5rem;
@@ -469,6 +469,94 @@
             }
         }
     }
+
+    .menu__staff-page {
+        .menu__cart-item-wrapper {
+            margin: 0 !important;
+        }
+        .order__pay-bill {
+            background: var(--white-color);
+            border-radius: 10px;
+            margin-top: 3.2rem;
+            padding-bottom: 2rem;
+            .order__bill-header {
+                padding-top: 2rem;
+                padding-bottom: 1rem;
+                text-align: center;
+                font-family: Montserrat;
+                font-size: 3.2rem;
+                font-weight: 600;
+                line-height: 3.9rem;
+                border-bottom: 2px solid #F0F0F0;
+                margin: 0;
+                border: none;
+            }
+            .order__bill-info-list {
+                padding: 0 2rem;
+                .order__info-header {
+                    font-size: 2.4rem;
+                    font-weight: 600;
+                    line-height: 2.9rem;
+                }
+                .order__info-list-item {
+                    font-size: 2.2rem;
+                    font-weight: 400;
+                    line-height: 2.5rem;
+                    color: var(--text-color);
+                    margin: 2rem;
+                    display: flex;
+                    justify-content: space-between;
+                    .order__item-header {
+                        margin: 0;
+                    }
+                    .order__item-price {
+                        margin: 0;
+                    }
+                }
+                .order__info-list-item:nth-child(5) {
+                    border-bottom: 1px solid var(--text-color);
+                    border-top: 1px dashed var(--text-color);
+                    margin-top: 1.6rem;
+                    padding: 1.6rem 0;
+                }
+            }
+            .order__bill-total {
+                padding: 0 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .order__bill-header {
+                    font-size: 2.4rem;
+                    font-weight: 600;
+                    line-height: 2.9rem;
+                }
+                .order__bill-price {
+                    font-size: 2.2rem;
+                    font-weight: 400;
+                    line-height: 2.5rem;
+                    color: var(--text-color);
+                }
+            }
+            .order__pay-btn {
+                display: block;
+                margin: 1.6rem 2rem;
+                font-size: 2.4rem;
+                font-weight: 600;
+                line-height: 2.9rem;
+                text-align: center;
+            }
+        }
+        .menu__cart-table {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.6rem;
+            border: none;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 0.8rem;
+        }
+    }
+
     #consult__page {
         padding: 7.5rem 0;
         margin: auto;
@@ -537,7 +625,7 @@
                 text-align: center;
                 position: relative;
                 // .order__cart-quantity {
-    
+
                 // }
             }
             .order__cart-header::before {
@@ -553,7 +641,7 @@
                 content: "";
                 position: absolute;
                 background-color: var(--black-color);
-                height: 2px;                    
+                height: 2px;
                 width: calc(100% - 800px);
                 top: 50%;
                 right: 0;
@@ -611,7 +699,7 @@
                                     font-weight: 300;
                                     line-height: 1.8rem;
                                     // .cart-item__note-icon {
-                                        
+
                                     // }
                                     .cart-item__note-input {
                                         outline: none;
@@ -726,7 +814,7 @@
                             margin-top: 1.2rem;
                             display: flex;
                             flex-direction: column;
-    
+
                             .order__radio {
                                 margin-bottom: 1rem;
                                 font-size: 2.2rem;
@@ -808,7 +896,7 @@
                                 margin: 0;
                             }
                         }
-                        .order__info-list-item:nth-child(5) {
+                        .order__info-list-item:last-child {
                             border-bottom: 1px solid var(--text-color);
                             border-top: 1px dashed var(--text-color);
                             margin-top: 1.6rem;
@@ -839,9 +927,15 @@
                         font-weight: 600;
                         line-height: 2.9rem;
                         text-align: center;
-                    }   
+                    }
                 }
             }
+        }
+    }
+    .order__staff-page {
+        padding: 0 !important;
+        .order__pay-bill {
+            margin: 0 !important;
         }
     }
     #promotion__page {
@@ -1234,7 +1328,7 @@
                     }
                 }
             }
-        }    
+        }
     }
     .detail__product-wrapper {
         background-color: var(--white-color);

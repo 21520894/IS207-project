@@ -25,7 +25,6 @@
             <option value = "{{$category->CategoryID}}">{{$category->Title}}</option>
             @endforeach
         </select>
-        <!-- <input type="text" placeholder = "dị ứng" name = "allergen"> -->
         <input type="text" placeholder = "describe" name = "Description">
     <input type="submit" value="submit">
     </div>

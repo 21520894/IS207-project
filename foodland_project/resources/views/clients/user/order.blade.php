@@ -1,5 +1,5 @@
-@extends('layouts/clients')
-@section('content')
+{{--@extends('layouts/clients')--}}
+{{--@section('content')--}}
 <!-- Order page -->
 <section id="order__page">
     <div class="order__page-container grid__full-width grid__row">
@@ -103,4 +103,4 @@
     </div>
 </section>
 <!-- End of Order page -->
-@endsection
+{{--@endsection--}}
