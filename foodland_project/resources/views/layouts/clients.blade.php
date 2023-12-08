@@ -118,7 +118,7 @@
         <!-- End of Sign up form -->
 
         <!-- Forgot form -->
-        <form class="auth-form" name="forgotModal" action="{{route("password.email")}}" method="POST">
+        <form class="auth-form" id="forgotModal" name="forgotModal" action="{{route("password.email")}}" method="POST">
             @csrf
             <div class="auth-form__container">
                 <div class="auth-form__header">
@@ -127,6 +127,7 @@
                 <div class="auth-form__form">
                     <div class="auth-form__group">
                         <input type="email" class="auth-form__input-text mt-32" placeholder="Email" name="email" required>
+                        <span class="success-message" style="font-size: 12px; color: green"></span>
                     </div>
                     <div class="auth-form__controls mb-32">
                         <input type="submit" class="btn btn--primary auth-form__button" value="Submit">
@@ -279,6 +280,24 @@
                 }
             });
         });
+        //Forgot password
+        $('#forgotModal').submit(function (e) {
+            e.preventDefault();
+            let formData = $(this).serialize();
+            $('.success-message').text('');
+            $.ajax({
+                url: '{{route('password.email')}}',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    $('.success-message').text('We have emailed your password reset link');
+                },
+
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        })
     });</script>
 
 </html>
