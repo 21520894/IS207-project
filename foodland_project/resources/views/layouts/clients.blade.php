@@ -4,6 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Foodland, Food land, food website, foodland website, foodland demo, foodland design website"/>
+{{--    <script>--}}
+{{--        addEventListener("load", function () {--}}
+{{--            setTimeout(hideURLbar, 0);--}}
+{{--        }, false);--}}
+
+{{--        function hideURLbar() {--}}
+{{--            window.scrollTo(0, 1);--}}
+{{--        }--}}
+{{--    </script>--}}
+    <!-- //Meta tag Keywords -->
     <title>Foodland - Eat to live not live to eat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="./assets/css/base.css">
@@ -21,17 +32,10 @@
 <body>
 <div class="app">
 
-{{--    <?php--}}
 @include('layouts/header');
-{{--    include ("./pages/home.php");--}}
-{{--    include ("./pages/menu.php");--}}
-{{--    include ("./pages/order.php");--}}
-{{--    include ("./pages/promotion.php");--}}
-{{--    include ("./pages/about.php");--}}
-{{--    include ("./pages/consult.php");--}}
+
 @yield('content')
 @include('layouts/footer');
-{{--    ?>--}}
 
 </div>
 
@@ -114,17 +118,18 @@
         <!-- End of Sign up form -->
 
         <!-- Forgot form -->
-        <form class="auth-form" name="forgotModal" action="" method="">
+        <form class="auth-form" name="forgotModal" action="{{route("password.email")}}" method="POST">
+            @csrf
             <div class="auth-form__container">
                 <div class="auth-form__header">
                     <h3 class="auth-form__heading">Forgot password?</h3>
                 </div>
                 <div class="auth-form__form">
                     <div class="auth-form__group">
-                        <input type="email" class="auth-form__input-text mt-32" placeholder="Email" required>
+                        <input type="email" class="auth-form__input-text mt-32" placeholder="Email" name="email" required>
                     </div>
                     <div class="auth-form__controls mb-32">
-                        <button class="btn btn--primary auth-form__button">Submit</button>
+                        <input type="submit" class="btn btn--primary auth-form__button" value="Submit">
                         <span class="auth-form__switch-btn mt-16" name="signin">Back to Sign in</span>
                     </div>
                 </div>
@@ -133,7 +138,8 @@
         <!-- End of Forgot form -->
 
         <!-- Reset password form -->
-        <form class="auth-form" name="resetModal" action="" method="">
+        <form class="auth-form" name="resetModal" action="{{ route('password.update') }}" method="POST">
+{{--            <input type="hidden" name="token" value="{{ $request->route('token') }}">--}}
             <div class="auth-form__container">
                 <div class="auth-form__header">
                     <h3 class="auth-form__heading">Reset password</h3>
