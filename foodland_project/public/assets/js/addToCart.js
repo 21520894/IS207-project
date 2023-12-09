@@ -1,56 +1,60 @@
-// Get all button of product
-const addCartBtns = document.querySelectorAll("[class*='__product-btn']");
 
-for (const btn of addCartBtns) {
+function btnAddToCart() {
+    // Get all button of product
 
-    btn.addEventListener('click', function() {
+    const addCartBtns = document.querySelectorAll("[class*='__product-btn']");
 
-        // Get product element
-        const product = getParentElement(this, 'product-wrapper');
+    for (const btn of addCartBtns) {
 
-        // Get product content
-        const img = product.querySelector('[class*="__product-img"]').src;
-        const name = product.querySelector('[class*="__product-name"]').innerText;
-        const price = product.querySelector('[class*="__product-price"]').innerText;
-        let id = product.id;
-        id = id.replace(/[^0-9]/g, '');
-        parseInt(id);
+        btn.addEventListener('click', function() {
 
-        // Get the list name of item, if duplicate in cart, increase the quantity
-        // Get the list name of item
-        const cartItems = document.querySelectorAll('.cart-item');
-        for (const cartItem of cartItems) {
+            // Get product element
+            const productID = this.id;
+            const product = document.getElementById(productID);
+            console.log(product);
+            // Get product content
+            const img = product.querySelector('[class*="__product-img"]').src;
+            const name = product.querySelector('[class*="__product-name"]').innerText;
+            const price = product.querySelector('[class*="__product-price"]').innerText;
+            let id = product.id;
+            id = id.replace(/[^0-9]/g, '');
+            parseInt(id);
 
-            let cartItemId = cartItem.id;
-            cartItemId = cartItemId.replace(/[^0-9]/g, '');
-            parseInt(cartItemId);
-            // If duplicate
-            if (cartItemId == id) {
+            // Get the list name of item, if duplicate in cart, increase the quantity
+            // Get the list name of item
+            const cartItems = document.querySelectorAll('.cart-item');
+            for (const cartItem of cartItems) {
 
-                // Increase quantity
-                for (const cartItem of cartItems) {
-                    let cartItemId = cartItem.id;
-                    cartItemId = cartItemId.replace(/[^0-9]/g, '');
-                    parseInt(cartItemId);
-                    if (cartItemId == id) {
-                        cartItem.querySelector('.cart-item__quantity-input').value++;
+                let cartItemId = cartItem.id;
+                cartItemId = cartItemId.replace(/[^0-9]/g, '');
+                parseInt(cartItemId);
+                // If duplicate
+                if (cartItemId == id) {
+
+                    // Increase quantity
+                    for (const cartItem of cartItems) {
+                        let cartItemId = cartItem.id;
+                        cartItemId = cartItemId.replace(/[^0-9]/g, '');
+                        parseInt(cartItemId);
+                        if (cartItemId == id) {
+                            cartItem.querySelector('.cart-item__quantity-input').value++;
+                        }
                     }
+
+                    // Update order
+                    updateOrder();
+                    return;
                 }
-
-                // Update order
-                updateOrder();
-                return;
             }
-        }
 
-        // Add item to cart
-        addToCart(img, name, price, id);
+            // Add item to cart
+            addToCart(img, name, price, id);
 
-        // Update order
-        updateOrder();
-    })
+            // Update order
+            updateOrder();
+        })
+    }
 }
-
 function addToCart(img, name, price, id) {
 
     // Get list wrapper of item
@@ -115,3 +119,4 @@ function addToCart(img, name, price, id) {
         quantityInput(quantityInput);
     }
 }
+btnAddToCart();

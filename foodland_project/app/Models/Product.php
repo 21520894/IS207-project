@@ -46,6 +46,24 @@ class Product extends Model
         }
         return $products;
     }
+    public function getAllProductsForClients($filters='')
+    {
+        if($filters!='' and $filters!='All')
+        {
+            $products = DB::table($this->table)
+                ->select('product.*','category.Title as category_name')
+                ->join('category','category.CategoryID','=','product.CategoryID')
+                ->where('category.Title','=',$filters);
+
+        }
+        else {
+            $products = DB::table($this->table)
+                ->select('product.*','category.Title as category_name')
+                ->join('category','category.CategoryID','=','product.CategoryID')
+                ->where('category.Title','=','Beefsteak');
+        }
+        return $products->get();
+    }
     public function getProductsBySearch($filters,$search_string)
     {
         if($filters!='' and $filters!='All')

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Http\Controllers\CategoriesController;
 
 class OrdersController extends Controller
 {

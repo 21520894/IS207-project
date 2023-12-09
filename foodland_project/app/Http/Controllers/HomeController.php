@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Product;
+use App\Models\Category;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,13 +27,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
         if (!session()->has('message')) {
             session()->flash('message', 'Please Login to order');
         }
-        return view('clients/user/home');
+        $products = new Product();
+        $products = $products->getAllProductsForClients();
+        return view('clients/user/home',compact('categories','products'));
     }
     public function menu()
     {
+
         return redirect('/#menu__page');
     }
     public function order()

@@ -51,7 +51,6 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'product-name' => 'required',
             'product-price' => 'required',
@@ -253,5 +252,15 @@ class ProductsController extends Controller
         }
         $dishes = $product->getAllProducts($filter);
         return view('admin.dish.pagination', compact('dishes'))->render();
+    }
+    public function showMenuByGroup(Request $request)
+    {
+        $product = new Product();
+        $filter = '';
+        if (!empty($request->category_type)) {
+            $filter = $request->category_type;
+        }
+        $products = $product->getAllProductsForClients($filter);
+        return view('clients.products.menu', compact('products'))->render();
     }
 }

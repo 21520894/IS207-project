@@ -25,10 +25,10 @@
                     <a href="{{route('home_page')}}" class="header__item-link header__item-link--active">Home</a>
                 </li>
                 <li class="header__navbar-item">
-                    <a href="{{route('menu_page')}}" class="header__item-link">Menu</a>
+                    <a href="#menu__page" class="header__item-link">Menu</a>
                 </li>
                 <li class="header__navbar-item">
-                    <a href="{{route('order_page')}}" class="header__item-link">Order</a>
+                    <a href="#order__page" class="header__item-link">Order</a>
                 </li>
                 <li class="header__navbar-item">
                     <a href="#promotion__page" class="header__item-link">Promotion</a>

@@ -31,6 +31,7 @@ Route::middleware(['isAdmin'])->prefix('admin')->group(function () {
 
         Route::get('/pagination/paginate-data', [ProductsController::class, 'pagination']);
         Route::get('/show-product-via-category', [ProductsController::class, 'showDishByGroup'])->name('admin.dish.show.category');
+        Route::get('/show-menu-via-category', [ProductsController::class, 'showMenuByGroup'])->name('clients.dish.show.category');
         Route::get('/search-product', [ProductsController::class, 'search'])->name('admin.dish.search');
     });
 

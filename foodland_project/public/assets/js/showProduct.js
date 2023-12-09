@@ -10,9 +10,9 @@ for (const category of categoryList) {
 
         // Get category type
         let categoryType = category.getAttribute('name');
-        
+
         for (const productList of productListListWrapper) {
-            
+
             // Get productList type
             let productListType = productList.getAttribute('name');
 
@@ -28,17 +28,17 @@ for (const category of categoryList) {
                 } else {
                     wrapper.classList.remove('menu__product-scroll-btn--active');
                 }
-                
+
             } else {
                 productList.classList.remove('menu__product-list--active');
             }
-            
-            
+
+
         }
 
         // Add category border
         category.classList.add('menu__category-item--active');
-        
+
         // Remove other category border
         for (const category of categoryList) {
             if (category != this) {
