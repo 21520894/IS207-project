@@ -40,8 +40,6 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('clients/products/add_product', compact('categories'));
     }
 
     /**

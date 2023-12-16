@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PromotionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,9 +55,7 @@ Route::middleware(['isAdmin'])->prefix('admin')->group(function () {
         Route::get('/show-order-detail',[OrdersController::class,'orderDetail'])->name('admin.order.detail');
     });
 
-    Route::get('voucher', function () {
-        return view('admin.ecommerce.voucher');
-    })->name('admin.voucher.show');
+    Route::get('/promotion',[PromotionController::class,'index'])->name('admin.promotion.show');
 });
 
 

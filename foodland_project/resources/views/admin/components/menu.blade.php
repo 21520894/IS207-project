@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li class="menu__item">
-                <a class="menu__item-link" href="{{route('admin.voucher.show')}}">
+                <a class="menu__item-link" href="{{route('admin.promotion.show')}}">
                     Voucher Manager
                 </a>
             </li>
