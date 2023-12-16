@@ -618,6 +618,76 @@
     }
     #order__page {
         padding: 7.5rem 0;
+        .order__page-header {
+            text-align: center;
+            font-size: 4.2rem;
+            font-weight: 500;
+            line-height: 5.1rem;
+            text-transform: capitalize;
+            text-shadow: 0px 4px 10px #00000040;
+            .header__highlight {
+                color: red;
+            }
+        }
+        .order__page-sub-header {
+            font-size: 2.4rem;
+            font-weight: 400;
+            line-height: 2.9rem;
+            text-align: center;
+        }
+        .order__progress-bar {
+            padding: 0;
+            margin-top: 2.6rem;
+            .progress__icon-wrapper {
+                float: left;
+                list-style: none;
+                position: relative;
+                text-align: center;
+                width: calc(100% / 4);
+                z-index: 1;
+                .progress__icon {
+                    border-radius: 50%;
+                    background-color: #D9D9D9;
+                    color: #353535;
+                    font-size: 3.6rem;
+                    box-shadow: 0px 10px 10px 0px #00000040;
+                    padding: 3.2rem;
+                }
+                .progress__name {
+                    font-size: 1.8rem;
+                    line-height: 2.2rem;
+                    text-align: center;
+                    margin-top: 1.4rem;
+                    display: block;
+                }
+            }
+              
+            .progress__icon-wrapper::after {
+                background: #D9D9D9;
+                content: "";
+                height: 8px;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-200%);
+                width: 100%;
+                z-index: -1;
+            }
+            
+            .progress__icon-wrapper:last-child:after {
+                content: none;
+            }
+            
+            .progress__icon-wrapper.complete::after {
+                background: var(--primary-color);
+            }
+
+            .progress__icon-wrapper.complete {
+                .progress__icon {
+                    background-color: var(--primary-color);
+                    color: var(--white-color);
+                }
+            }
+        }
         .order__page-container {
             .order__cart-header {
                 font-size: 5.0rem;
@@ -827,6 +897,31 @@
                                     margin-right: 1rem;
                                 }
                             }
+                        }
+                    }
+                    .order__pay-info {
+                        background: var(--white-color);
+                        padding: 2rem;
+                        border-radius: 10px;
+                        .order__info-header {
+                            font-size: 2.4rem;
+                            font-weight: 600;
+                            line-height: 2.9rem;
+                            margin: 0;
+                        }
+                        .order__address-info {
+                            font-size: 2.0rem;
+                            font-weight: 400;
+                            line-height: 2.4rem;
+                            margin: 1rem 0 0 0;
+                            color: var(--text-color);
+                        }
+                        .order__phone-info {
+                            font-size: 2.0rem;
+                            font-weight: 400;
+                            line-height: 2.4rem;
+                            color: var(--text-color);
+                            margin: 1rem 0 1.6rem 0;
                         }
                     }
                 }
