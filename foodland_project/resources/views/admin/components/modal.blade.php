@@ -31,13 +31,20 @@
                     <span style="color: red; font-size: 12px;" class="product-category_error error"></span>
                 </div>
                 <div class="add__input-group add-group input-group--inactive">
-                    <label for="" class="add__input-label">Category name <span class="add__input-require">*</span></label>
-                    <input type="text" class="add__input-text " name="new-category-name" >
+                    <label for="" class="add__input-label">Category name <span
+                            class="add__input-require">*</span></label>
+                    <input type="text" class="add__input-text " name="new-category-name">
+                    <span style="color: red; font-size: 12px;" class="product-image_error error"></span>
+                    <div class="add__input-group">
+                        <label for="" class="add__input-label">Category Image <span class="add__input-require">*</span></label>
+                        <input type="file" class="add__input-text" name="category-image" id="category-image">
+                        <span style="color: red; font-size: 12px;" class="category-image_error error"></span>
+                    </div>
                 </div>
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Describe <span class="add__input-require">*</span></label>
-                    <textarea class="add__input-text" name="product-description" id="" cols="30" rows="5" ></textarea>
-                    <span style="color: red; font-size: 12px;" class="product_description_error error"></span>
+                    <textarea class="add__input-text" name="product-description" id="" cols="30" rows="5"></textarea>
+                    <span style="color: red; font-size: 12px;" class="product-description_error error"></span>
                 </div>
                 <div class="add__input-group">
                     <label for="" class="add__input-label">Image <span class="add__input-require">*</span></label>
@@ -74,19 +81,19 @@
             <div class="detail__user-info">
                 <div class="detail__info-row">
                     <p class="detail__info-header">Name:</p>
-                    <p class="detail__info-data">Nguyễn Văn A</p>
+                    <p class="detail__info-data" id="user_name">Nguyễn Văn A</p>
                 </div>
                 <div class="detail__info-row">
                     <p class="detail__info-header">Phone:</p>
-                    <p class="detail__info-data">090123456</p>
+                    <p class="detail__info-data" id="user_phone">090123456</p>
                 </div>
                 <div class="detail__info-row">
                     <p class="detail__info-header">Address:</p>
-                    <p class="detail__info-data">KTX Khu B, ĐHQG TP.HCM</p>
+                    <p class="detail__info-data" id="user_address"></p>
                 </div>
                 <div class="detail__info-row">
                     <p class="detail__info-header">Time:</p>
-                    <p class="detail__info-data">11:00 AM, 11/12/2023</p>
+                    <p class="detail__info-data" id="order_time"></p>
                 </div>
                 <div class="detail__info-row">
                     <p class="detail__info-header">Shipping unit:</p>
@@ -116,9 +123,8 @@
                 </div>
             </div>
             <div class="detail__user-bill">
-                <div class="detail__info-row">
-                    <p class="detail__info-header">Sub-total</p>
-                    <p class="detail__info-data">298,000 VND</p>
+                <div class="detail__info-row sub_total">
+
                 </div>
                 <div class="detail__info-row">
                     <p class="detail__info-header">Shipping</p>
@@ -156,7 +162,8 @@
                         </select>
                     </div>
                     <div class="add__input-group">
-                        <label for="" class="add__input-label">Value (VND) <span class="add__input-require">*</span></label>
+                        <label for="" class="add__input-label">Value (VND) <span
+                                class="add__input-require">*</span></label>
                         <input type="number" class="add__input-text" min="0" required>
                     </div>
                 </div>

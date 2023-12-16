@@ -597,6 +597,70 @@
 .app #order__page {
     padding: 7.5rem 0;
 }
+.app #order__page .order__page-header {
+    text-align: center;
+    font-size: 4.2rem;
+    font-weight: 500;
+    line-height: 5.1rem;
+    text-transform: capitalize;
+    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2509803922);
+}
+.app #order__page .order__page-header .header__highlight {
+    color: red;
+}
+.app #order__page .order__page-sub-header {
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 2.9rem;
+    text-align: center;
+}
+.app #order__page .order__progress-bar {
+    padding: 0;
+    margin-top: 2.6rem;
+}
+.app #order__page .order__progress-bar .progress__icon-wrapper {
+    float: left;
+    list-style: none;
+    position: relative;
+    text-align: center;
+    width: 25%;
+    z-index: 1;
+}
+.app #order__page .order__progress-bar .progress__icon-wrapper .progress__icon {
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    color: #353535;
+    font-size: 3.6rem;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.2509803922);
+    padding: 3.2rem;
+}
+.app #order__page .order__progress-bar .progress__icon-wrapper .progress__name {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+    text-align: center;
+    margin-top: 1.4rem;
+    display: block;
+}
+.app #order__page .order__progress-bar .progress__icon-wrapper::after {
+    background: #D9D9D9;
+    content: "";
+    height: 8px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-200%);
+    width: 100%;
+    z-index: -1;
+}
+.app #order__page .order__progress-bar .progress__icon-wrapper:last-child:after {
+    content: none;
+}
+.app #order__page .order__progress-bar .progress__icon-wrapper.complete::after {
+    background: var(--primary-color);
+}
+.app #order__page .order__progress-bar .progress__icon-wrapper.complete .progress__icon {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
 .app #order__page .order__page-container .order__cart-header {
     font-size: 5rem;
     font-weight: 600;
@@ -798,6 +862,31 @@
     width: 2rem;
     height: 2rem;
     margin-right: 1rem;
+}
+.app #order__page .order__page-container .order__cart-wrapper .order__cart-option .order__pay-info {
+    background: var(--white-color);
+    padding: 2rem;
+    border-radius: 10px;
+}
+.app #order__page .order__page-container .order__cart-wrapper .order__cart-option .order__pay-info .order__info-header {
+    font-size: 2.4rem;
+    font-weight: 600;
+    line-height: 2.9rem;
+    margin: 0;
+}
+.app #order__page .order__page-container .order__cart-wrapper .order__cart-option .order__pay-info .order__address-info {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    margin: 1rem 0 0 0;
+    color: var(--text-color);
+}
+.app #order__page .order__page-container .order__cart-wrapper .order__cart-option .order__pay-info .order__phone-info {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 2.4rem;
+    color: var(--text-color);
+    margin: 1rem 0 1.6rem 0;
 }
 .app #order__page .order__page-container .order__pay-wrapper .order__pay-info {
     background: var(--white-color);

@@ -56,7 +56,7 @@ class ProductsController extends Controller
             'product-price' => 'required',
             'product-description' => 'required',
             'product-category' => 'required',
-            'product-image' => 'required|image'
+            'product-image' => 'required|image',
         ],
             [
                 'product-name.required' => 'Name is required',
@@ -64,12 +64,17 @@ class ProductsController extends Controller
                 'product-description' => 'Description is required',
                 'product-category' => 'Category group is required',
                 'product-image' => 'Image is required',
-                'product-image.image' => 'File must be an image'
+                'product-image.image' => 'File must be an image',
             ]);
         if ($request->hasFile('product-image')) {
             $image = $request->file('product-image');
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('assets/img'), $imageName);
+        }
+        if ($request->hasFile('category-image')) {
+            $categoryImage = $request->file('category-image');
+            $categoryImageName = time() . '_' .$categoryImage->getClientOriginalName();
+            $categoryImage->move(public_path('assets/img'), $categoryImageName);
         }
         $new_product = new Product();
         $new_product->Name = $request->input('product-name');
@@ -93,6 +98,7 @@ class ProductsController extends Controller
             //Add a  new category
             $new_category = new Category();
             $new_category->Title = $request->input('product-category');
+            $new_category->Image = $categoryImageName;
             $new_category->save();
 
             //Add new product to new category

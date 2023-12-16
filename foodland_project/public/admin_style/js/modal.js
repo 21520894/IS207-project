@@ -45,7 +45,7 @@ function loadModal()
                     const accept = viewDetailModal.querySelector('.accept');
                     const cancel = viewDetailModal.querySelector('.cancel');
                     const print = viewDetailModal.querySelector('.print');
-                    if (item.innerText.toLowerCase() === "wait") {
+                    if (item.innerText.toLowerCase() === "wait to accept") {
                         accept.style.display = 'inline-block';
                         cancel.style.display = 'inline-block';
                         print.style.display = 'none';

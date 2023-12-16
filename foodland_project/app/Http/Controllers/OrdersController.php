@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Controllers\CategoriesController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\CategoriesController;
 class OrdersController extends Controller
 {
     private $orders;
+
     public function __construct()
     {
         $this->orders = new Order();
@@ -23,13 +26,16 @@ class OrdersController extends Controller
     {
         $orders = $this->orders->getOrders();
 
-        return view('admin.ecommerce.order',compact('orders'));
+        return view('admin.ecommerce.order', compact('orders'));
     }
-    public function showOrderByStatus(Request $request){
+
+    public function showOrderByStatus(Request $request)
+    {
 
         $orders = $this->orders->getOrdersByStatus($request->order_status);
-        return view('admin.ecommerce.order_pagination',compact('orders'))->render();
+        return view('admin.ecommerce.order_pagination', compact('orders'))->render();
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -77,10 +83,11 @@ class OrdersController extends Controller
     {
         //
         $ids = $request->ids;
-        Order::where('OrderID',$ids)->delete();
-        OrderDetail::where('OrderID',$ids)->delete();
-        return response()->json(['status'=>'success']);
+        Order::where('OrderID', $ids)->delete();
+        OrderDetail::where('OrderID', $ids)->delete();
+        return response()->json(['status' => 'success']);
     }
+
     //Search orders
     public function search(Request $request)
     {
@@ -99,6 +106,7 @@ class OrdersController extends Controller
             ]);
         }
     }
+
     public function searchByDate(Request $request)
     {
         $product = new Order();
@@ -115,5 +123,33 @@ class OrdersController extends Controller
                 'status' => 'nothing_found'
             ]);
         }
+    }
+
+    public function orderDetail(Request $request)
+    {
+        $res = [
+            'Product_name' => [],
+            'Product_quantity' => [],
+            'Product_price' => [],
+        ];
+        $order = Order::find($request->orderID)->getAttributes();
+        $orderDetails = OrderDetail::where('OrderID',$request->orderID)->get();
+        foreach ($orderDetails as $orderDetail) {
+            $item = $orderDetail->getAttributes();
+            $productName = Product::find($item['ProductID'])->getAttributes()['Name'];
+            $productPrice = Product::find($item['ProductID'])->getAttributes()['Price'];
+            $productPrice = number_format($productPrice, 0, ',', ',');
+
+
+            array_push($res['Product_name'],$productName);
+            array_push($res['Product_quantity'],$item['quantity']);
+            array_push($res['Product_price'],$productPrice);
+
+        }
+        $user = User::find($order['UserID'])->getAttributes();
+
+        $res['User_address'] = $user['address'];
+        $res['Order_total'] = number_format($order['TotalPrice'], 0, ',', ',');;
+        return $res;
     }
 }

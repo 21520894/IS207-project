@@ -148,14 +148,13 @@
             $('#add-dish-form').on('submit', function (e) {
                 e.preventDefault();
                 let productCategory = $('select[name="category-name"]').val().trim();
-                if (productCategory === 'new category') {
-                    productCategory = $('input[name="new-category-name"]').val().trim();
-                }
                 $('.error').text('');
-                let productImage = $('input[name="product-image"]')[0].files[0];
                 let formData = new FormData(this);
                 let currentTab = $('.manager-site__category-btn--active').val();
                 let currentPage = $('li.active span').text()
+                if (productCategory === 'new category') {
+                    productCategory = $('input[name="new-category-name"]').val().trim();
+                }
                 formData.append('product-category', productCategory);
                 $.ajax({
                     url: "{{route('admin.dish.add')}}",

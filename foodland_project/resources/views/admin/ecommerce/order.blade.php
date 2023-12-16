@@ -1,4 +1,3 @@
-
 @extends('layouts.admin')
 @section('content')
     <div class="content">
@@ -13,23 +12,31 @@
                         <div class="manager-site__header">
                             <div class="manager-site__search-wrapper">
                                 <div class="manager-site__search-box">
-                                    <input type="text" id="search_order" class="manager-site__search-input" placeholder="Search ...">
+                                    <input type="text" id="search_order" class="manager-site__search-input"
+                                           placeholder="Search ...">
                                     <i class="manager-site__search-icon fa-solid fa-magnifying-glass"></i>
                                 </div>
-                                <input type="date" id="search_order_by_date" class="manager-site__date-btn btn" >
+                                <input type="date" id="search_order_by_date" class="manager-site__date-btn btn">
                             </div>
                             <div class="manager-site__category-wrapper">
                                 <form action="" method="get">
-                                <div class="manager-site__category">
-                                        <input type="submit" class="manager-site__category-btn order_status btn manager-site__category-btn--active"
+                                    <div class="manager-site__category">
+                                        <input type="submit"
+                                               class="manager-site__category-btn order_status btn manager-site__category-btn--active"
                                                name="order_status" value="All">
-                                        <input type="submit" class="manager-site__category-btn order_status btn" name="order_status" value="Wait to pay">
-                                        <input type="submit" class="manager-site__category-btn order_status btn" name="order_status" value="Wait to accept">
-                                        <input type="submit" class="manager-site__category-btn order_status btn" name="order_status" value="Processing">
-                                        <input type="submit" class="manager-site__category-btn order_status btn" name="order_status" value="Shipping">
-                                        <input type="submit" class="manager-site__category-btn order_status btn" name="order_status" value="Finished">
-                                        <input type="submit" class="manager-site__category-btn order_status btn" name="order_status" value="Cancel">
-                                </div>
+                                        <input type="submit" class="manager-site__category-btn order_status btn"
+                                               name="order_status" value="Wait to pay">
+                                        <input type="submit" class="manager-site__category-btn order_status btn"
+                                               name="order_status" value="Wait to accept">
+                                        <input type="submit" class="manager-site__category-btn order_status btn"
+                                               name="order_status" value="Processing">
+                                        <input type="submit" class="manager-site__category-btn order_status btn"
+                                               name="order_status" value="Shipping">
+                                        <input type="submit" class="manager-site__category-btn order_status btn"
+                                               name="order_status" value="Finished">
+                                        <input type="submit" class="manager-site__category-btn order_status btn"
+                                               name="order_status" value="Cancel">
+                                    </div>
                                 </form>
                                 <button name="deleteDish" class="manager-site__category-delete-btn btn">
                                     <i class="manager-site__btn-icon fa-solid fa-trash"></i>
@@ -58,14 +65,21 @@
                                             <td class="manager-site__manager-data">{{$orders[$i]->TotalPrice}} VND</td>
                                             <td class="manager-site__manager-data">{{$orders[$i]->payment_method}}</td>
                                             <td class="manager-site__manager-data">
-                                                <a onclick="return false" class="item-status">{{!empty($orders[$i]->payment_method)?'Paid':'Unpaid'}}</a>
+                                                <a onclick="return false"
+                                                   class="item-status">{{!empty($orders[$i]->payment_method)?'Paid':'Unpaid'}}</a>
                                             </td>
                                             <td class="manager-site__manager-data">
-                                                <button name="viewDetail" class="item-status">{{$orders[$i]->OrderStatus}}</button>
+                                                <button name="viewDetail" class="item-status view-order-detail"
+                                                        data-id="{{$orders[$i]->OrderID}}"
+                                                        data-name="{{$orders[$i]->customer_name}}"
+                                                        data-phone="{{$orders[$i]->customer_phone}}"
+                                                        data-time="{{$orders[$i]->OrderTime}}">{{$orders[$i]->OrderStatus}}
+                                                        </button>
                                             </td>
                                             <td class="manager-site__manager-data">{{$orders[$i]->OrderTime}}</td>
                                             <td class="manager-site__manager-data">
-                                                <input class="data__checkbox" type="checkbox" name="ids" id="" value="{{$orders[$i]->OrderID}}">
+                                                <input class="data__checkbox" type="checkbox" name="ids" id=""
+                                                       value="{{$orders[$i]->OrderID}}">
                                             </td>
                                         </tr>
                                     @endfor
@@ -85,7 +99,49 @@
 @endsection
 @section('js')
     <script>
-        $(document).ready(function (){
+        function showDataToOrderDetail() {
+            $('.view-order-detail').on('click', function (e) {
+                let id = $(this).data('id');
+                let user_name = $(this).data('name');
+                let user_phone = $(this).data('phone');
+                let order_time = $(this).data('time');
+
+                $('.detail__user-order').html('');
+                $('.sub_total').html('');
+                $.ajax({
+                    url: "{{route('admin.order.detail')}}",
+                    data: {orderID: id},
+                    success: function (res) {
+                        for (let i = 0; i < res['Product_name'].length; i++) {
+                            $('.detail__user-order').append(
+                                `<div class="detail__info-row">
+                                <p class="detail__info-header">
+                                    ${res['Product_name'][i]}
+                                    <span class="detail__info-sign">x</span>
+                                    <span class="detail__info-quantity">${res['Product_quantity'][i]}</span>
+                                </p>
+                                <p class="detail__info-data"> ${res['Product_price'][i]} VND</p>
+                            </div>`
+                            );
+                        }
+                        $('.sub_total').append(
+                            `<p class="detail__info-header">Sub-total</p>
+                            <p class="detail__info-data">${res['Order_total']} VND</p>`
+                        );
+                        $('#user_name').text(user_name);
+                        $('#user_phone').text(user_phone);
+                        $('#order_time').text(order_time);
+                        $('#user_address').text(res['User_address']);
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+            });
+        }
+
+        showDataToOrderDetail();
+        $(document).ready(function () {
             //Order status
             $(document).on('click', '.order_status', function (e) {
                 e.preventDefault();
@@ -104,7 +160,12 @@
                     }
                 });
             });
+            $('.accept').on('submit', function (e) {
+                e.preventDefault();
+                $.ajax({
 
+                });
+            })
             //Search
             $('#search_order').on('keyup', function (e) {
                 e.preventDefault();
@@ -119,6 +180,7 @@
                         if (res.status === 'nothing_found') {
                             $('.manager-site__body').html('<span style="color: red; font-size: 18px;">' + 'Nothing found' + '</span>');
                         }
+                        showDataToOrderDetail();
                         addItemStatus();
                         loadModal();
                     },
@@ -191,6 +253,7 @@
                             toastr["success"]("Delete data successfully!", "Success")
                             addItemStatus();
                             loadModal();
+                            showDataToOrderDetail();
                         },
                         error: function (error) {
                             console.log(error)
@@ -198,6 +261,7 @@
                     });
                 });
             });
+
         });
 
     </script>

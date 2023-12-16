@@ -2,7 +2,7 @@
 
 {{--@section('content')--}}
 <!-- Menu page -->
-<section id="menu__page">
+<section id="menu__page" style="padding-top: 5%;">
     <div class="menu__page-container grid__full-width grid__row">
         <div class="menu__order-wrapper grid__col-8">
             <div class="menu__search">
@@ -22,7 +22,7 @@
                     @for($i=1;$i<count($categories);$i++)
                         <li class="grid__col-1-8">
                             <div class="menu__category-item" name="menu{{$i+1}}">
-                                <img class="menu__category-item-img" src="./assets/img/menu{{$i+1}}.jpg" alt="">
+                                <img class="menu__category-item-img" src="{{asset('assets/img/'.$categories[$i]->Image)}}" alt="">
                                 <h1 class="menu__category-item-name">{{$categories[$i]->Title}}</h1>
                             </div>
                         </li>

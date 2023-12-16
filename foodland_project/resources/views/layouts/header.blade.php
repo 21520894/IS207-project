@@ -44,26 +44,23 @@
 
             @auth
                 <!-- Người dùng đã đăng nhập -->
-                <ul class="header__navbar-control">
-                <li class="header__navbar-item">
-                <a href="" onclick="return false;" class="header__item-btn">Welcome, {{ Auth::user()->name }}!</a> <!-- Hiển thị tên người dùng -->
-
-                </li>
-                <form method="POST" action="{{ route('logout') }}">
+                <div class="header__navbar-user">
+                    <i class="header__user-img fa-solid fa-user"></i>
+                    <div class="header__user-controls">
+                        <p class="header__user">Hello, <span class="header__user-name">{{ Auth::user()->name }}</span></p>
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                             onclick="event.preventDefault();
+                                                this.closest('form').submit(); ">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
-
-                <li class="header__navbar-item header__cart">
-                    <a href="{{route('order_page')}}" class="header__item-btn">
+                    </div>
+                    <a href="#order__page" class="header__item-btn">
                         <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
                     </a>
-                </li>
-            </ul>
+                </div>
 
             @else
     <!-- Người dùng chưa đăng nhập -->

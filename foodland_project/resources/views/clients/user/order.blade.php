@@ -1,10 +1,8 @@
 {{--@extends('layouts/clients')--}}
 {{--@section('content')--}}
 <!-- Order page -->
-@if(session('order_status'))
-    @php(toastr()->success('Thanh toan thanh cong'))
-@endif
-<section id="order__page">
+
+<section id="order__page" style="padding-top: 5%;">
     <form action="{{route('vnpay.payment')}}" id="payment-form" method="POST">
         @csrf
     <div class="order__page-container grid__full-width grid__row">
