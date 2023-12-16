@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use function Laravel\Prompts\alert;
@@ -33,7 +34,9 @@ class HomeController extends Controller
         }
         $products = new Product();
         $products = $products->getAllProductsForClients();
-        return view('clients/user/home',compact('categories','products'));
+        $userID = Auth::id();
+        $user = User::find($userID);
+        return view('clients/user/home',compact('categories','products','user'));
     }
     public function menu()
     {

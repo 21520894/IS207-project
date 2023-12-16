@@ -45,7 +45,7 @@
             @auth
                 <!-- Người dùng đã đăng nhập -->
                 <ul class="header__navbar-control">
-                <li class="header__navbar-item" name="signin">
+                <li class="header__navbar-item">
                 <a href="" onclick="return false;" class="header__item-btn">Welcome, {{ Auth::user()->name }}!</a> <!-- Hiển thị tên người dùng -->
 
                 </li>

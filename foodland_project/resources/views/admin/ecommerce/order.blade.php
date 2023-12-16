@@ -31,7 +31,7 @@
                                         <input type="submit" class="manager-site__category-btn order_status btn" name="order_status" value="Cancel">
                                 </div>
                                 </form>
-                                <button name="delete" class="manager-site__category-delete-btn btn">
+                                <button name="deleteDish" class="manager-site__category-delete-btn btn">
                                     <i class="manager-site__btn-icon fa-solid fa-trash"></i>
                                 </button>
                             </div>
@@ -51,7 +51,7 @@
                                 </tr>
                                 @if($orders!=null)
                                     @for($i=0;$i<count($orders);$i++)
-                                        <tr class="manager-site__manager-row">
+                                        <tr class="manager-site__manager-row" id="order_ids{{$orders[$i]->OrderID}}">
                                             <td class="manager-site__manager-data">{{$i+1}}</td>
                                             <td class="manager-site__manager-data">{{$orders[$i]->customer_phone}}</td>
                                             <td class="manager-site__manager-data">{{$orders[$i]->customer_name}}</td>
@@ -65,7 +65,7 @@
                                             </td>
                                             <td class="manager-site__manager-data">{{$orders[$i]->OrderTime}}</td>
                                             <td class="manager-site__manager-data">
-                                                <input class="data__checkbox" type="checkbox" name="" id="">
+                                                <input class="data__checkbox" type="checkbox" name="ids" id="" value="{{$orders[$i]->OrderID}}">
                                             </td>
                                         </tr>
                                     @endfor
@@ -127,6 +127,7 @@
                     }
                 });
             });
+            //Search order by date
             $('#search_order_by_date').on('change', function (e) {
                 e.preventDefault();
                 let date = $('#search_order_by_date').val();
@@ -145,6 +146,56 @@
                     error: function (error) {
                         console.log(error);
                     }
+                });
+            });
+            //Delete Order
+            $(function (e) {
+                let selected_ids = [];
+                $('.manager-site__category-delete-btn').on('click', function () {
+                    $('input:checkbox[name=ids]:checked').each(function () {
+                        selected_ids.push($(this).val())
+                    });
+                });
+                console.log(selected_ids);
+                $('.delete-dish-btn').on('click', function () {
+                    $.ajax({
+                        url: "{{route('admin.order.delete')}}",
+                        type: "DELETE",
+                        data: {
+                            ids: selected_ids,
+                            _token: '{{csrf_token()}}'
+                        },
+                        success: function (response) {
+                            closeModalBtn('deleteDish');
+
+                            $.each(selected_ids, function (key, val) {
+                                $('#order_ids' + val).remove();
+                            });
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": true,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "0",
+                                "hideDuration": "0",
+                                "timeOut": "1500",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
+                            toastr["success"]("Delete data successfully!", "Success")
+                            addItemStatus();
+                            loadModal();
+                        },
+                        error: function (error) {
+                            console.log(error)
+                        }
+                    });
                 });
             });
         });

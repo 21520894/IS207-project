@@ -225,6 +225,23 @@ class ProductsController extends Controller
         return view('admin.dish.pagination', compact('dishes'))->render();
     }
 
+    public function searchForClients(Request $request)
+    {
+        $product = new Product();
+        $filter = '';
+        if (!empty($request->category_type)) {
+            $filter = $request->category_type;
+        }
+        $products = $product->getProductsBySearchForClients($filter, $request->search_string);
+
+        if ($products->count() >= 1) {
+            return view('clients.products.menu', compact('products'))->render();
+        } else {
+            return response()->json([
+                'status' => 'nothing_found'
+            ]);
+        }
+    }
     public function search(Request $request)
     {
         $product = new Product();

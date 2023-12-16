@@ -1,9 +1,7 @@
-
 function btnAddToCart() {
-    // Get all button of product
-
     const addCartBtns = document.querySelectorAll("[class*='__product-btn']");
 
+    // Get all button of product
     for (const btn of addCartBtns) {
 
         btn.addEventListener('click', function() {
@@ -11,7 +9,6 @@ function btnAddToCart() {
             // Get product element
             const productID = this.id;
             const product = document.getElementById(productID);
-            console.log(product);
             // Get product content
             const img = product.querySelector('[class*="__product-img"]').src;
             const name = product.querySelector('[class*="__product-name"]').innerText;
@@ -29,14 +26,14 @@ function btnAddToCart() {
                 cartItemId = cartItemId.replace(/[^0-9]/g, '');
                 parseInt(cartItemId);
                 // If duplicate
-                if (cartItemId == id) {
+                if (cartItemId === id) {
 
                     // Increase quantity
                     for (const cartItem of cartItems) {
                         let cartItemId = cartItem.id;
                         cartItemId = cartItemId.replace(/[^0-9]/g, '');
                         parseInt(cartItemId);
-                        if (cartItemId == id) {
+                        if (cartItemId === id) {
                             cartItem.querySelector('.cart-item__quantity-input').value++;
                         }
                     }
@@ -55,6 +52,7 @@ function btnAddToCart() {
         })
     }
 }
+
 function addToCart(img, name, price, id) {
 
     // Get list wrapper of item
@@ -85,6 +83,7 @@ function addToCart(img, name, price, id) {
         // Order item content
         const orderCartContent = `
         <div class="cart-item" id="cart${id}">
+            <input type="hidden" name="product_ids[]" value="${id}">
             <span class="cart-item__del-btn btn--hover" onclick="delItem()"><i class="fa-regular fa-circle-xmark"></i></span>
             <div class="cart-item__wrapper">
                 <img src="${img}" class="cart-item__img">
@@ -96,7 +95,7 @@ function addToCart(img, name, price, id) {
                         <label for="cart-item__note-input">Add note:</label>
                         <input type="textarea" class="cart-item__note-input" name="cart-item__note-input">
                     </p>
-                    <input type="number" class="cart-item__quantity-input" min="1" value="1">
+                    <input type="hidden" name="quantity[]" class="cart-item__quantity-input" min="1" value="1">
                 </div>
             </div>
             <span class="cart-item__price">${price}</span>

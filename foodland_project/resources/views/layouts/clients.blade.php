@@ -327,6 +327,29 @@
                 }
             });
         });
+        //Product search
+        $('#search_dish').on('keyup', function (e) {
+            e.preventDefault();
+            let search_string = $('#search_dish').val();
+            let category_type = $(document).find('.menu__category-item--active').text();
+            console.log(category_type);
+            $.ajax({
+                url: "{{route('clients.dish.search')}}",
+                method: 'GET',
+                data: {search_string: search_string, category_type: category_type},
+                success: function (res) {
+                    $('.menu__product-list-wrapper').html(res);
+                    if (res.status === 'nothing_found') {
+                        $('.menu__product-list-wrapper').html('<span style="color: red; font-size: 18px;">' + 'Nothing found' + '</span>');
+                    }
+                    btnAddToCart();
+                    productListScroll();
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
     });
 </script>
 

@@ -1,12 +1,18 @@
 {{--@extends('layouts/clients')--}}
 {{--@section('content')--}}
 <!-- Order page -->
+@if(session('order_status'))
+    @php(toastr()->success('Thanh toan thanh cong'))
+@endif
 <section id="order__page">
+    <form action="{{route('vnpay.payment')}}" id="payment-form" method="POST">
+        @csrf
     <div class="order__page-container grid__full-width grid__row">
         <div class="order__cart-container grid__col-8">
             <h1 class="order__cart-header">My Cart (<span class="order__cart-quantity">0</span>)</h1>
             <div class="order__cart-wrapper grid__row">
                 <div class="grid__col-4-8">
+
                     <div class="order__cart-item-wrapper">
 
                     </div>
@@ -52,13 +58,10 @@
                             <h1 class="order__radio-header">Payment Method</h1>
                             <div class="order__radio-wrapper">
                                 <span class="order__radio">
-                                    <input type="radio" name="order__payment" class="order__radio-item" checked>Cash on Delivery
+                                    <input type="radio" name="order__payment" class="order__radio-item" value="COD" checked>Cash on Delivery
                                 </span>
                                 <span class="order__radio">
-                                    <input type="radio" name="order__payment" class="order__radio-item">ATM
-                                </span>
-                                <span class="order__radio">
-                                    <input type="radio" name="order__payment" class="order__radio-item">VISA
+                                    <input type="radio" name="order__payment" class="order__radio-item" value="VNPAY">VNPAY
                                 </span>
                             </div>
                         </div>
@@ -93,14 +96,33 @@
                         <p class="order__item-price order__discount">0 VND</p>
                     </li>
                 </ul>
-                <div class="order__bill-total">
-                    <h1 class="order__bill-header">Total</h1>
-                    <div class="order__bill-price order__total">0 VND</div>
-                </div>
-                <span class="order__pay-btn btn btn--primary" onclick="alert('Success')">ORDER</span>
+
+                    <div class="order__bill-total">
+                        <h1 class="order__bill-header">Total</h1>
+                        <div class="order__bill-price order__total" id="totalValue" data-currency="VND">0 VND</div>
+                    </div>
+                    <input type="hidden" id="totalInput" name="total" value="">
+                    <input type="submit" style="width: 92%" class="order__pay-btn btn btn--primary" name="redirect" value="ORDER">
+
             </div>
         </div>
     </div>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', function (event) {
+
+            // Lấy giá trị từ thẻ div
+            let totalValue = document.getElementById('totalValue').innerText;
+
+            // Xử lý chuỗi để lấy giá trị số
+            let numericValue = parseFloat(totalValue);
+
+            // Gán giá trị số vào input hidden
+            document.getElementById('totalInput').value = numericValue;
+
+        });
+    </script>
 </section>
 <!-- End of Order page -->
 {{--@endsection--}}

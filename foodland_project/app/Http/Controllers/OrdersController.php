@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Controllers\CategoriesController;
@@ -72,9 +73,13 @@ class OrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
         //
+        $ids = $request->ids;
+        Order::where('OrderID',$ids)->delete();
+        OrderDetail::where('OrderID',$ids)->delete();
+        return response()->json(['status'=>'success']);
     }
     //Search orders
     public function search(Request $request)
