@@ -54,6 +54,7 @@ Route::middleware(['isAdmin'])->prefix('admin')->group(function () {
         Route::delete('', [OrdersController::class, 'destroy'])->name('admin.order.delete');
         Route::get('/pagination/paginate-data', [OrdersController::class, 'pagination']);
         Route::get('/show-order-detail',[OrdersController::class,'orderDetail'])->name('admin.order.detail');
+        Route::get('/update-order',[OrdersController::class,'update'])->name('admin.order.update');
     });
 
     Route::prefix('promotion')->group(function (){
@@ -69,13 +70,14 @@ Route::middleware(['isAdmin'])->prefix('admin')->group(function () {
 //Customer
 Route::get('/', [HomeController::class, 'index'])->name('home_page');
 Route::get('/menu_page', [HomeController::class, 'menu'])->name('menu_page');
-Route::get('/order_page', [HomeController::class, 'order'])->name('order_page');
 Route::get('/show-menu-via-category', [ProductsController::class, 'showMenuByGroup'])->name('clients.dish.show.category');
 Route::get('/search-dish', [ProductsController::class, 'searchForClients'])->name('clients.dish.search');
 Route::middleware(['auth'])->group(function (){
-    Route::post('/vnpay-payment',[CheckoutController::class,'vnpayPayment'])->name('vnpay.payment');
+    Route::post('vnpay-payment',[CheckoutController::class,'vnpayPayment'])->name('vnpay.payment');
     Route::get('/vnpay-return',[CheckoutController::class,'vnpayReturn'])->name('vnpay.return');
+    Route::get('/#order__page', [HomeController::class, 'order'])->name('order_page');
     Route::get('/order-progress',[CheckoutController::class,'orderProgress'])->name('order.progress');
+    Route::get('/order-voucher',[CheckoutController::class,'applyVoucher'])->name('order.voucher');
 });
 
 Auth::routes();

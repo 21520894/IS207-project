@@ -84,6 +84,7 @@
                 $('.data__checkbox').prop('checked', $(this).prop('checked'))
             });
         }
+        deleteVoucher();
         //Add new promotion
         $('#add-voucher-form').on('submit', function (e) {
             e.preventDefault();

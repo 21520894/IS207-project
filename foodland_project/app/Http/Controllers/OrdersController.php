@@ -24,8 +24,13 @@ class OrdersController extends Controller
      */
     public function index(Request $request)
     {
-        $orders = $this->orders->getOrders();
-
+        if (!empty($request->order_status))
+        {
+            $filter = $request->order_status;
+        } else {
+            $filter = '';
+        }
+        $orders = $this->orders->getOrdersByStatus($filter);
         return view('admin.ecommerce.order', compact('orders'));
     }
 
@@ -71,9 +76,12 @@ class OrdersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
         //
+        $orderId = $request->order_id;
+        $order = Order::where('OrderID',$orderId)->update(['OrderStatus' => $request->up_order_status]);
+        return response()->json(['status' => 'success']);
     }
 
     /**

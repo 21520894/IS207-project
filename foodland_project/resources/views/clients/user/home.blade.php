@@ -1,10 +1,6 @@
 @extends('layouts/clients')
 @section('content')
-    @if(session('message'))
-        <div class="alert alert-info">
-            {{ session('message') }}
-        </div>
-    @endif
+
     @include('clients/blocks/slider')
     @include('clients/user/menu')
     @if(\Illuminate\Support\Facades\Auth::check())

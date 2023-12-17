@@ -32,14 +32,15 @@
 
 <body>
 <div class="app">
-
+    <div class="alert alert-info">
+        {{ session('message') }}
+    </div>
     @include('layouts/header');
 
     @yield('content')
     @include('layouts/footer');
 
 </div>
-
 <!-- Modal -->
 <div class="modal">
     <div class="modal__overlay"></div>

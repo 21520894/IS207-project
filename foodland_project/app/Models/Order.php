@@ -22,7 +22,7 @@ class Order extends Model
             ->paginate(5);
         return $orders;
     }
-    public function getOrdersByStatus($filters)
+    public function getOrdersByStatus($filters='')
     {
         $orders = DB::table($this->table)
             ->select('orders.*','users.name as customer_name','users.phone as customer_phone',

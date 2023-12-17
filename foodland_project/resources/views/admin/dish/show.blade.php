@@ -165,7 +165,6 @@
                     contentType: false,
                     processData: false,
                     success: function (response) {
-                        console.log(response);
                         if (response.status === 'success') {
                             modal.style.display = "none";
                             $('.add__modal').hide();
