@@ -106,7 +106,11 @@ class OrdersController extends Controller
             ]);
         }
     }
-
+    public function pagination(Request $request)
+    {
+        $orders = $this->orders->getOrders();
+        return view('admin.ecommerce.order_pagination', compact('orders'))->render();
+    }
     public function searchByDate(Request $request)
     {
         $product = new Order();

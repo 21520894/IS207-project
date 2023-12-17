@@ -52,10 +52,17 @@ Route::middleware(['isAdmin'])->prefix('admin')->group(function () {
         Route::get('/search-oder', [OrdersController::class, 'search'])->name('admin.order.search');
         Route::get('/search-oder-by-date', [OrdersController::class, 'searchByDate'])->name('admin.order.searchByDate');
         Route::delete('', [OrdersController::class, 'destroy'])->name('admin.order.delete');
+        Route::get('/pagination/paginate-data', [OrdersController::class, 'pagination']);
         Route::get('/show-order-detail',[OrdersController::class,'orderDetail'])->name('admin.order.detail');
     });
 
-    Route::get('/promotion',[PromotionController::class,'index'])->name('admin.promotion.show');
+    Route::prefix('promotion')->group(function (){
+        Route::get('/',[PromotionController::class,'index'])->name('admin.promotion.show');
+        Route::post('',[PromotionController::class,'store'])->name('admin.promotion.add');
+        Route::get('/pagination/paginate-data', [PromotionController::class, 'pagination']);
+        Route::delete('', [PromotionController::class, 'destroy'])->name('admin.promotion.delete');
+        Route::get('/search-promotion', [PromotionController::class, 'search'])->name('admin.promotion.search');
+    });
 });
 
 

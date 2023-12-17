@@ -210,6 +210,19 @@
                     }
                 });
             });
+            //Pagination
+            $(document).on('click', '.pagination a', function (e) {
+                e.preventDefault();
+                let page = $(this).attr('href').split('page=')[1];
+                $.ajax({
+                    url: "/admin/order/pagination/paginate-data?page=" + page,
+                    success: function (res) {
+                        $('.manager-site__body').html(res);
+                        addItemStatus();
+                        loadModal();
+                    },
+                });
+            });
             //Delete Order
             $(function (e) {
                 let selected_ids = [];
@@ -265,5 +278,6 @@
         });
 
     </script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 @endsection
 

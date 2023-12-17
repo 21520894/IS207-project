@@ -346,10 +346,13 @@
             $('#search_dish').on('keyup', function (e) {
                 e.preventDefault();
                 let search_string = $('#search_dish').val();
+                let currentTab = $('.manager-site__category-btn--active').val();
                 $.ajax({
                     url: "{{route('admin.dish.search')}}",
                     method: 'GET',
-                    data: {search_string: search_string},
+                    data: {
+                        category_type: currentTab,
+                        search_string: search_string},
                     success: function (res) {
                         $('.manager-site__body').html(res);
                         if (res.status === 'nothing_found') {
@@ -370,7 +373,6 @@
                 $('.manager-site__category-btn--active').removeClass('manager-site__category-btn--active');
                 $(this).addClass('manager-site__category-btn--active')
                 $.ajax({
-                    url: "{{route('admin.dish.show.category')}}",
                     data: {category_type: category_group},
                     success: function (res) {
                         $('.manager-site__body').load(location.href + '?category_type='+category_group+' .table-data', function () {

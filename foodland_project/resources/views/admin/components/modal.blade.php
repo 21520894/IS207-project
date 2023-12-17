@@ -151,45 +151,53 @@
         </div>
         <div name="addVoucherModal" class="add__modal">
             <h1 class="add__modal-header">Add new voucher</h1>
-            <form class="add__modal-wrapper" action="" method="">
+            <form class="add__modal-wrapper" action="" method="POST"  id="add-voucher-form">
+                @csrf
                 <div class="add__input-group-wrapper">
                     <div class="add__input-group">
                         <label for="" class="add__input-label">Group <span class="add__input-require">*</span></label>
-                        <select name="" id="" class="add__input-text" required>
+                        <select name="voucher-type" id="" class="add__input-text">
                             <option value="">-- Voucher type --</option>
-                            <option value="">Discount</option>
-                            <option value="">Freeship</option>
+                            <option value="Discount">Discount</option>
+                            <option value="Freeship">Freeship</option>
                         </select>
+                        <span style="color: red; font-size: 12px;" class="voucher-type_error error"></span>
                     </div>
                     <div class="add__input-group">
                         <label for="" class="add__input-label">Value (VND) <span
                                 class="add__input-require">*</span></label>
-                        <input type="number" class="add__input-text" min="0" required>
+                        <input type="number" name="voucher-value" class="add__input-text" min="0">
+                        <span style="color: red; font-size: 12px;" class="voucher-value_error error"></span>
                     </div>
                 </div>
                 <div class="add__input-group-wrapper">
-                    <div class="add__input-group">
+                    <div class="add__input-group" style="padding-right: 20px">
                         <label for="" class="add__input-label">Effective date <span class="add__input-require">*</span></label>
-                        <input type="date" class="add__input-text" required>
+                        <input type="date" name="voucher-start-date" class="add__input-text">
+                        <span style="color: red; font-size: 12px;" class="voucher-start-date_error error"></span>
                     </div>
                     <div class="add__input-group">
                         <label for="" class="add__input-label">Expiration date <span class="add__input-require">*</span></label>
-                        <input type="date" class="add__input-text" required>
+                        <input type="date" name="voucher-end-date" class="add__input-text">
+                        <span style="color: red; font-size: 12px;" class="voucher-end-date_error error"></span>
                     </div>
                 </div>
                 <div class="add__input-group-wrapper">
-                    <div class="add__input-group">
-                        <label for="" class="add__input-label">Bill over (VND)</label>
-                        <input type="number" min="0" class="add__input-text">
+                    <div class="add__input-group" style="padding-right: 10px">
+                        <label for="" class="add__input-label">Bill over (VND) <span class="add__input-require">*</span></label>
+                        <input type="number" name="voucher-constraint" min="0" class="add__input-text">
+                        <span style="color: red; font-size: 12px;" class="voucher-constraint_error error"></span>
                     </div>
                     <div class="add__input-group">
-                        <label for="" class="add__input-label">Discount maximum (VND)</label>
-                        <input type="number" min="0" class="add__input-text">
+                        <label for="" class="add__input-label">CODE <span class="add__input-require">*</span></label>
+                        <input type="text" name="voucher-code" class="add__input-text">
+                        <span style="color: red; font-size: 12px;" class="voucher-code_error error"></span>
                     </div>
                 </div>
                 <div class="add__input-group">
-                    <label for="" class="add__input-label">Quantity</label>
-                    <input type="number" class="add__input-text" min="1" required>
+                    <label for="" class="add__input-label">Quantity <span class="add__input-require">*</span></label>
+                    <input type="number" name="voucher-quantity" class="add__input-text" min="1">                        <span style="color: red; font-size: 12px;" class="voucher-constraint_error error"></span>
+                    <span style="color: red; font-size: 12px;" class="voucher-quantity_error error"></span>
                 </div>
                 <div class="add__btn-wrapper">
                     <input class="add__btn" type="submit" value="Create">
