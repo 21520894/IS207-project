@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .app {
   background-color: var(--grey-color);
 }
@@ -625,6 +626,7 @@
   text-align: center;
   width: 25%;
   z-index: 1;
+  margin-bottom: 3rem;
 }
 .app #order__page .order__progress-bar .progress__icon-wrapper .progress__icon {
   border-radius: 50%;
@@ -984,6 +986,96 @@
   font-weight: 600;
   line-height: 2.9rem;
   text-align: center;
+}
+.app #order__page .order__feedback-wrapper {
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white-color);
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.2509803922);
+  padding: 2.2rem 3.4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.app #order__page .order__feedback-wrapper .feedback__header {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 2.9rem;
+  margin: 0;
+}
+.app #order__page .order__feedback-wrapper .feedback__body {
+  border-collapse: separate;
+  border-spacing: 0 2.7rem;
+}
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__label {
+  font-size: 2.4rem;
+  line-height: 2.9rem;
+  max-width: 360px;
+  display: block;
+}
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__input {
+  font-size: 2.4rem;
+  line-height: 2.9rem;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 10px;
+}
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__rating {
+  float: left;
+  padding: 0 1rem;
+}
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__rating:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__rating:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #ccc;
+  font-size: 4rem;
+  line-height: 4.4rem;
+}
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__rating:not(:checked) > label:before {
+  content: "★";
+}
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__rating > input:checked ~ label {
+  color: #ffc700;
+}
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__rating:not(:checked) > label:hover,
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__rating:not(:checked) > label:hover ~ label {
+  color: #deb217;
+}
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__rating > input:checked + label:hover,
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__rating > input:checked + label:hover ~ label,
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__rating > input:checked ~ label:hover,
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__rating > input:checked ~ label:hover ~ label,
+.app #order__page .order__feedback-wrapper .feedback__body .feedback__row .feedback__rating > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+.app #order__page .order__feedback-wrapper .feedback__btn-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.app #order__page .order__feedback-wrapper .feedback__btn-wrapper .feedback__submit-btn {
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 2.9rem;
+  padding: 1.2rem 3rem;
+}
+.app #order__page .order__feedback-wrapper .feedback__btn-wrapper .feedback__skip-btn {
+  font-size: 2.4rem;
+  font-style: italic;
+  line-height: 2.9rem;
+  color: #797575;
+  margin-top: 1rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 .app .order__staff-page {
   padding: 0 !important;

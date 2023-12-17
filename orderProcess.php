@@ -43,7 +43,7 @@
                     <span class="progress__name">Feedback</span>
                 </li>
             </ul>
-            <div class="order__page-container grid__full-width grid__row">
+            <!-- <div class="order__page-container grid__full-width grid__row">
                 <div class="order__cart-container grid__col-8">
                     <div class="order__cart-wrapper grid__row">
                         <div class="grid__col-4-8">
@@ -95,50 +95,47 @@
                         <span class="order__pay-btn btn btn--primary" onclick="alert('Success')">ORDER</span>
                     </div>
                 </div>
+            </div> -->
+            <div class="order__feedback-wrapper grid__full-width grid__row">
+                <h1 class="feedback__header">Please tell us your feedback</h1>
+                <table class="feedback__body">
+                    <tr class="feedback__row">
+                        <td>
+                            <label for="" class="feedback__label">How satisfied are you with our service?</label>
+                        </td>
+                        <td>
+                            <div class="feedback__rating">
+                                <input type="radio" id="star5" name="rate" value="5" />
+                                <label for="star5" title="text"></label>
+                                <input type="radio" id="star4" name="rate" value="4" />
+                                <label for="star4" title="text"></label>
+                                <input type="radio" id="star3" name="rate" value="3" />
+                                <label for="star3" title="text"></label>
+                                <input type="radio" id="star2" name="rate" value="2" />
+                                <label for="star2" title="text"></label>
+                                <input type="radio" id="star1" name="rate" value="1" />
+                                <label for="star1" title="text"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="feedback__row">
+                        <td>
+                            <label for="" class="feedback__label">Suggestions or comments</label>
+                        </td>
+                        <td>
+                            <input type="text" class="feedback__input">
+                        </td>
+                    </tr>
+
+                </table>
+                <div class="feedback__btn-wrapper">
+                    <input type="submit" class="feedback__submit-btn btn btn--primary" value="Send">
+                    <input type="button" class="feedback__skip-btn" value="Skip">
+                </div>
             </div>
         </section>
         <!-- End of Order page -->
     </div>
 
-     <!-- Modal -->
-     <div class="modal">
-        <div class="modal__overlay"></div>
-        <div class="modal__body">
-            <!-- Product detail modal -->
-            <div class="detail__product-wrapper" name="productDetailModal">
-                <img src="./assets/img/item11.jpg" alt="" class="detail__product-img">
-                <div class="detail__product">
-                    <h1 class="detail__product-name">Beef wellington</h1>
-                    <p class="detail__product-desc">Our Beef Wellington is made with the finest ingredients, including prime beef tenderloin, wild mushrooms, and imported puff pastry. 
-                        <br>The steak is seasoned to perfection and seared over high heat to lock in the juices, then wrapped in the duxelles and puff pastry. The Wellington is then baked until the pastry is golden brown and the steak is cooked to your desired doneness.
-                        <br>Beef Wellington is typically served with a side of mashed potatoes and asparagus, but it can also be paired with a variety of other vegetables, such as green beans, roasted carrots, or Brussels sprouts. For a truly special meal, add a side of truffle oil or foie gras butter.
-                    </p>
-                    <div class="detail__product-btn" onclick="closeModalBtn('productDetail')">
-                        <p class="detail__product-price">149,000 đ/ 100gr</p>
-                        <p class="detail__product-add">
-                            Add to cart
-                            <i class="detail__product-add-icon fa-solid fa-plus"></i>
-                        </p>
-                    </div>
-                </div>
-                <div style="clear:both"></div>
-            </div>
-            <!-- End of Product detail -->
-        </div>
-     </div>
-
 </body>
-
-<script type="text/javascript" src="./assets/js/getParentElement.js"></script>
-<script type="text/javascript" src="./assets/js/collapseContent.js"></script>
-<script type="text/javascript" src="./assets/js/navbarActive.js"></script>
-<script type="text/javascript" src="./assets/js/modal.js"></script>
-<script type="text/javascript" src="./assets/js/cardContent.js"></script>
-<script type="text/javascript" src="./assets/js/showProduct.js"></script>
-<script type="text/javascript" src="./assets/js/updateOrder.js"></script>
-<script type="text/javascript" src="./assets/js/deleteItem.js"></script>
-<script type="text/javascript" src="./assets/js/productListScroll.js"></script>
-<script type="text/javascript" src="./assets/js/productQuantity.js"></script>
-<script type="text/javascript" src="./assets/js/addToCart.js"></script>
-
 </html>
