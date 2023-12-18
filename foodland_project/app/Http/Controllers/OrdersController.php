@@ -156,4 +156,45 @@ class OrdersController extends Controller
         $res['Order_total'] = number_format($order['TotalPrice'], 0, ',', ',');;
         return $res;
     }
+    public function getRevenueByMonths()
+    {
+        $revenueByMonths = Order::selectRaw('MONTH(OrderTime) as month, SUM(TotalPrice) as revenue')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $revenueData = [];
+        foreach ($revenueByMonths as $revenue) {
+            $revenueData[$revenue->month] = $revenue->revenue;
+        }
+
+        $monthlyRevenue = [];
+        for ($month = 1; $month <= 12; $month++) {
+            $monthlyRevenue[] = $revenueData[$month] ?? 0;
+        }
+
+        return $monthlyRevenue;
+    }
+    public function getRevenue(Request $request){
+        $month = $request->input('month');
+        $year = $request->input('year');
+        $daysInMonth = $request->input('daysInMonth');
+        
+        $revenueData = [];
+
+        // Lặp qua từng ngày trong tháng
+        for ($day = 1; $day <= $daysInMonth; $day++) {
+            // Tạo ngày đầy đủ từ tháng, năm và ngày hiện tại
+            $date = sprintf('%04d-%02d-%02d', $year, $month, $day);
+
+            // Truy xuất doanh thu từ cơ sở dữ liệu dựa trên ngày
+            $revenue = Order::whereDate('OrderTime', $date)->first();
+
+            // Thêm thông tin doanh thu vào mảng
+            $revenueData[$day] = $revenue;
+        }
+
+        // Trả về mảng doanh thu dưới dạng JSON
+        return response()->json($revenueData);
+    }
 }
