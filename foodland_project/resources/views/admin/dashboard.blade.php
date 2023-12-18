@@ -47,7 +47,7 @@
                                     <!-- Chart -->
                                     <canvas class="chart" id="revenueChart"></canvas>
                                 </div>
-                                <div class="dashboard__chart chart">
+                                <div class="dashboard__chart">
                                     <h1 class="dashboard__chart-header">REVENUE BY DISH GROUP</h1>
                                     <!-- Chart -->
                                     <canvas class="chart" id="dishChart"></canvas>

@@ -90,7 +90,7 @@ class UsersController extends Controller
     public function destroy(Request $request)
     {
         $ids = $request->ids;
-        User::where('id',$ids)->delete();
+        User::where('id',$ids)->update(['status' => 'locked']);
         return response()->json(['status'=>'success']);
     }
 

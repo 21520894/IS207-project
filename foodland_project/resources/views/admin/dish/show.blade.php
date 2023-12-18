@@ -292,7 +292,7 @@
                 $('.delete-dish-btn').on('click', function () {
                     $.ajax({
                         url: "{{route('admin.dish.delete')}}",
-                        type: "DELETE",
+                        type: "post",
                         data: {
                             ids: selected_ids,
                             _token: '{{csrf_token()}}'

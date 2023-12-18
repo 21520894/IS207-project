@@ -199,7 +199,7 @@
                 $('.delete-user-btn').on('click', function () {
                     $.ajax({
                         url: "{{route('admin.user.delete')}}",
-                        type: "DELETE",
+                        type: "POST",
                         data: {
                             ids: selected_ids,
                             _token: '{{csrf_token()}}'

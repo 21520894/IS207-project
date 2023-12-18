@@ -22,10 +22,10 @@
 
             <ul class="header__navbar-nav">
                 <li class="header__navbar-item">
-                    <a href="/" class="header__item-link header__item-link--active">Home</a>
+                    <a href="{{route('home_page')}}" class="header__item-link header__item-link__active">Home</a>
                 </li>
                 <li class="header__navbar-item">
-                    <a href="/#menu__page" class="header__item-link">Menu</a>
+                    <a href="/#menu__page" class="header__item-link ">Menu</a>
                 </li>
                 <li class="header__navbar-item">
                     <a href="{{route('order_page')}}" class="header__item-link">CART</a>

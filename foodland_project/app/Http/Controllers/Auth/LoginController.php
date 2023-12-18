@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use http\Env\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Validator;
+use DB;
 
 class LoginController extends Controller
 {

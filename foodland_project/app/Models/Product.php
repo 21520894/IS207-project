@@ -35,12 +35,14 @@ class Product extends Model
                 ->select('product.*','category.Title as category_name')
                 ->join('category','category.CategoryID','=','product.CategoryID')
                 ->where('category.Title','=',$filters)
+                ->where('product.Status','<>','Stop business')
                 ->paginate(3);
 
         }
         else {
             $products = DB::table($this->table)
                 ->select('product.*','category.Title as category_name')
+                ->where('product.Status','<>','Stop business')
                 ->join('category','category.CategoryID','=','product.CategoryID')
                 ->paginate(3);
         }
@@ -53,14 +55,16 @@ class Product extends Model
             $products = DB::table($this->table)
                 ->select('product.*','category.Title as category_name')
                 ->join('category','category.CategoryID','=','product.CategoryID')
-                ->where('category.Title','=',$filters);
+                ->where('category.Title','=',$filters)
+                ->where('product.Status','<>','Stop business');
 
         }
         else {
             $products = DB::table($this->table)
                 ->select('product.*','category.Title as category_name')
                 ->join('category','category.CategoryID','=','product.CategoryID')
-                ->where('category.Title','=','Beefsteak');
+                ->where('category.Title','=','Beefsteak')
+                ->where('product.Status','<>','Stop business');
         }
         return $products->get();
     }
@@ -76,6 +80,7 @@ class Product extends Model
                     $query->where('Name', 'like', '%' . $search_string . '%')
                         ->orWhere('Price', 'like', '%' . $search_string . '%');
                 })
+                ->where('product.Status','<>','Stop business')
                 ->paginate(3);
         }
         else {
@@ -86,6 +91,7 @@ class Product extends Model
                     $query->where('Name', 'like', '%' . $search_string . '%')
                         ->orWhere('Price', 'like', '%' . $search_string . '%');
                 })
+                ->where('product.Status','<>','Stop business')
                 ->paginate(3);
         }
         return $products;
@@ -98,6 +104,7 @@ class Product extends Model
                 ->select('product.*', 'category.Title as category_name')
                 ->join('category', 'category.CategoryID', '=', 'product.CategoryID')
                 ->where('category.Title', '=', $filters)
+                ->where('product.Status','<>','Stop business')
                 ->where(function ($query) use ($search_string) {
                     $query->where('Name', 'like', '%' . $search_string . '%')
                         ->orWhere('Price', 'like', '%' . $search_string . '%');
@@ -107,6 +114,7 @@ class Product extends Model
             $products = DB::table($this->table)
                 ->select('product.*', 'category.Title as category_name')
                 ->join('category', 'category.CategoryID', '=', 'product.CategoryID')
+                ->where('product.Status','<>','Stop business')
                 ->where(function ($query) use ($search_string) {
                     $query->where('Name', 'like', '%' . $search_string . '%')
                         ->orWhere('Price', 'like', '%' . $search_string . '%');
