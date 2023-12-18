@@ -292,7 +292,7 @@
                 });
                 $('.delete-dish-btn').on('click', function () {
                     $.ajax({
-                        url: "{{route('admin.dish.delete')}}",
+                        url: "{{route('admin.revenue')}}",
                         type: "DELETE",
                         data: {
                             ids: selected_ids,

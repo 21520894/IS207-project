@@ -188,7 +188,7 @@ class OrdersController extends Controller
             $date = sprintf('%04d-%02d-%02d', $year, $month, $day);
 
             // Truy xuất doanh thu từ cơ sở dữ liệu dựa trên ngày
-            $revenue = Order::whereDate('OrderTime', $date)->first();
+            $revenue = Order::whereDate('OrderTime', $date)->sum('TotalPrice');
 
             // Thêm thông tin doanh thu vào mảng
             $revenueData[$day] = $revenue;

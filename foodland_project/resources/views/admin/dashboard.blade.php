@@ -52,7 +52,7 @@
                                     <!-- <button id="backButton" style="display: none;">Quay lại biểu đồ cũ</button> -->
                                 </div>
                                 <div class="dashboard__chart chart">
-                                    <h1 class="dashboard__chart-header">REVENUE BY DISH GROUP</h1>
+                                    <h1 class="dashboard__chart-header">REVENUE BY DAY</h1>
                                     <!-- Chart -->
                                     <canvas class="chart" id="dishChart"></canvas>
                                 </div>
@@ -60,7 +60,7 @@
                             <div class="dashboard__total-wrapper grid__col-2">
                                 <div class="dashboard__total">
                                     <h1 class="dashboard__total-header">TOTAL REVENUE</h1>
-                                    <p class="dashboard__total-number yellow-color">23,739,028</p>
+                                    <p class="dashboard__total-number yellow-color" id = "Total_revenue"></p>
                                 </div>
                                 <div class="dashboard__total">
                                     <h1 class="dashboard__total-header">REVENUE GROWTH</h1>
@@ -81,6 +81,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script>
+
+        function drawingDaysChart(xDishValues,yDishValues){
+            var canvas = document.getElementById('dishChart');
+            if (Day){
+                Day.destroy();
+                canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+            }
+            var ctx = canvas.getContext('2d');
+            Day = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: xDishValues,
+                    datasets: [{
+                        label: 'revenue',
+                        data: yDishValues,
+                        backgroundColor: '#34e8eb'
+                    }],
+                },
+                options: {
+                    legend: {display: false},
+                    scales: {
+
+                    yAxes: [{ticks: {min: 0}}],
+
+                    },
+                }
+                
+            });
+
+        }
         function getDaysInMonth(year, month) {
             const startDate = moment(`${year}-${month}-01`, 'YYYY-M-DD');
             const endDate = startDate.clone().endOf('month');
@@ -93,19 +123,27 @@
 
             return days;
         }
+        let Day = null;
         // Lấy ngày hiện tại
         const currentDate = moment();
         // Tạo một mảng chứa 12 tháng gần đây
         const recentDays = [];
         for (let i = 11; i >= 0; i--) {
             const day = currentDate.clone().subtract(i, 'months');
-            recentDays.push(day.format('YYYY-MM')); // Định dạng ngày theo ý muốn
+            recentDays.push(day.format('MM-YYYY')); // Định dạng ngày theo ý muốn
         }
 
         var revenueData = @json($temp);
-            // console.log(revenueData);
         const xRevenueValues = recentDays;
         const yRevenueValues = @json($temp);
+        //Tính total revenue
+        var html_total_re = document.getElementById('Total_revenue');
+        var sum = 0;
+        revenueData.forEach(function (value) {
+        sum += value;
+        });
+        html_total_re.innerHTML = sum.toString() + 'đ';
+
 
         var  chart = new Chart("revenueChart", {
 
@@ -120,6 +158,7 @@
                     fill: false,
 
                     lineTension: 0,
+                    label: 'revenue',
 
                     backgroundColor: "rgba(0,0,255,1.0)",
 
@@ -134,27 +173,23 @@
 
                 legend: {display: false},
 
-                scales: {
-
-                    // yAxes: [{ticks: {min: 100000, max: 800000}}],
-
-                },
-
 
             onClick: function(event, elements) {
+                // e.preventDefault();
           if (elements && elements.length > 0) {
             var clickedIndex = elements[0]._index;
             var clickedMonth = chart.data.labels[clickedIndex];
-            var clickedDate = moment(clickedMonth, 'YYYY-MM');
+            var clickedDate = moment(clickedMonth, 'MM-YYYY');
             var clickedMonthNumber = clickedDate.month() + 1; // Lấy số tháng từ 0-11, cộng thêm 1 để lấy số tháng từ 1-12
             var clickedYear = clickedDate.year();
             
-
+        
             // Xử lý sự kiện khi bấm vào điểm
         var xDishValues = getDaysInMonth(clickedYear,clickedMonthNumber)
-        // console.log(xDishValues);
+        let yDishValues = [];
         $.ajax({
-            url: '/revenue',
+            
+            url: "{{route('admin.revenue')}}",
             method: 'GET',
             data: {
                 month: clickedMonthNumber, // Tháng cần truy xuất
@@ -162,8 +197,8 @@
                 daysInMonth: xDishValues.length // Số ngày trong tháng cần truy xuất
             },
             success: function(response) {
-                console.log(response);
-                var yDishValues = response;
+                var yDishValues = Object.values(response);
+                drawingDaysChart(xDishValues,yDishValues);
                 // Xử lý mảng doanh thu nhận được ở đây
             },
             error: function(xhr, status, error) {
@@ -171,33 +206,9 @@
                 // Xử lý lỗi nếu có
             }
         });
-        var yDishValues = [55, 49, 44, 24, 15];
 
+        
 
-
-        var barColors = ["red", "green", "blue", "orange", "brown"];
-
-
-        new Chart("dishChart", {
-
-            type: "bar",
-
-            data: {
-
-                labels: xDishValues,
-
-                datasets: [{
-
-                    backgroundColor: barColors,
-
-                    data: yDishValues
-                }]
-            },
-            options: {
-                legend: {display: false},
-
-            }
-        });
           }
         }
     }
