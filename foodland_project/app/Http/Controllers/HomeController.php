@@ -47,10 +47,7 @@ class HomeController extends Controller
             return redirect('/#order__page');
         }
         else {
-            if (!session()->has('message')) {
-                session()->flash('message', 'Please Login to order');
-            }
-            return redirect('/')->with('message', 'Please Login');
+            return redirect('/');
         }
     }
 }
