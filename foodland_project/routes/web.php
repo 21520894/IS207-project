@@ -7,6 +7,8 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\FeedbackController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -72,12 +74,13 @@ Route::get('/', [HomeController::class, 'index'])->name('home_page');
 Route::get('/menu_page', [HomeController::class, 'menu'])->name('menu_page');
 Route::get('/show-menu-via-category', [ProductsController::class, 'showMenuByGroup'])->name('clients.dish.show.category');
 Route::get('/search-dish', [ProductsController::class, 'searchForClients'])->name('clients.dish.search');
+Route::get('/order_page', [HomeController::class, 'order'])->name('order_page');
 Route::middleware(['auth'])->group(function (){
     Route::post('vnpay-payment',[CheckoutController::class,'vnpayPayment'])->name('vnpay.payment');
     Route::get('/vnpay-return',[CheckoutController::class,'vnpayReturn'])->name('vnpay.return');
-    Route::get('/#order__page', [HomeController::class, 'order'])->name('order_page');
     Route::get('/order-progress',[CheckoutController::class,'orderProgress'])->name('order.progress');
     Route::get('/order-voucher',[CheckoutController::class,'applyVoucher'])->name('order.voucher');
+    Route::post('/send-feedback',[FeedbackController::class,'send'])->name('feedback.send');
 });
 
 Auth::routes();

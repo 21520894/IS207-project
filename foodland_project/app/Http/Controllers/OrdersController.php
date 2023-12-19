@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\Category;
 use App\Http\Controllers\CategoriesController;
 
@@ -80,6 +82,15 @@ class OrdersController extends Controller
     {
         //
         $orderId = $request->order_id;
+        if($request->up_order_status == 'Finished')
+        {
+            $newPayment = new Payment();
+            $newPayment->PaymentMode = 'COD';
+            $newPayment->OrderID = $orderId;
+            $newPayment->PaymentTime = Carbon::now();
+            $newPayment->save();
+            $order = Order::where('OrderID',$orderId)->update(['OrderStatus' => $request->up_order_status]);
+        }
         $order = Order::where('OrderID',$orderId)->update(['OrderStatus' => $request->up_order_status]);
         return response()->json(['status' => 'success']);
     }

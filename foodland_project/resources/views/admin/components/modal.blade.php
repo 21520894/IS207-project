@@ -147,9 +147,9 @@
                     <div class="detail__info-row total">
                         <p class="detail__info-header">Status</p>
                         <select name="order_status" id="" class="add__input-text">
-                            <option value="Wait">Wait</option>
                             <option value="Processing">Processing</option>
                             <option value="Shipping">Shipping</option>
+                            <option value="Feedback">Feedback</option>
                             <option value="Finished">Finished</option>
                             <option value="Cancel">Cancel</option>
                         </select>

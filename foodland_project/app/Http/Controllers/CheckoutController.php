@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\feedback;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Payment;
@@ -16,11 +17,15 @@ class CheckoutController extends Controller
     //
     public  function vnpayPayment(Request $request)
     {
+
         $paymentMode = $request->input('order__payment');
         $product_ids = $request->input(['product_ids']);
         $quantity = $request->input(['quantity']);
         $voucher = $request->input(['order_voucher']);
         $promotionId = Promotion::where('CODE','=',$voucher)->first();
+
+        if($product_ids == null) return redirect('/#menu__page');
+
 
         if($paymentMode == 'VNPAY')
         {
@@ -89,7 +94,7 @@ class CheckoutController extends Controller
                 }
                 return redirect($vnp_Url)->with([
                     'product_ids' => $product_ids,
-                    'quantity' => $quantity
+                    'quantity' => $quantity,
                 ]);
                 die();
             } else {
@@ -97,7 +102,31 @@ class CheckoutController extends Controller
             }
         }
         else if($paymentMode == 'COD') {
-            return redirect('/order-progress')->with(['order_status' => 'success']);
+            $request->totalPrice = $request->input(['total']);
+            $this->codReturn($request);
+            return redirect('/order-progress')->with(['order_status' => 'success','payment_mode' => 'COD']);
+        }
+    }
+    public function codReturn(Request $request)
+    {
+        $productOrdered = $request->product_ids;
+        $productQuantity = $request->quantity;
+        $promotionId = $request->promotion_id;
+        $newOrder = new Order();
+        $newOrder->OrderStatus = 'Processing';
+        $newOrder->TotalPrice = $request->totalPrice;
+        $newOrder->UserID = Auth::user()->id;
+        if($promotionId) $newOrder->PromotionID = $promotionId;
+        $newOrder->save();
+
+
+        for($i=0;$i < count($productOrdered);$i++)
+        {
+            $newOrderDetail = new OrderDetail();
+            $newOrderDetail->OrderID = $newOrder->OrderID;
+            $newOrderDetail->ProductID = $productOrdered[$i];
+            $newOrderDetail->Quantity = $productQuantity[$i];
+            $newOrderDetail->save();
         }
     }
     public function vnpayReturn(Request $request)
@@ -135,16 +164,27 @@ class CheckoutController extends Controller
             $newPayment->TxnRef = $_GET['vnp_TxnRef'];
             $newPayment->OrderID = $newOrder->OrderID;
             $newPayment->save();
-            return redirect('/order-progress')->with(['order_status' => 'success']);
+            return redirect('/order-progress')->with(['order_status' => 'success','payment_mode' => 'VNPAY']);
         }
     }
 
     public function orderProgress(Request $request)
     {
+        $payment_mode = $request->payment_mode;
+        $status = $request->order_status;
         $userID = Auth::user()->id;
         $latestOrder = Order::where('UserID', $userID)
             ->latest('OrderTime')
             ->first();
+        $feedback = Feedback::where('OrderID',$latestOrder->OrderID)->first();
+        if(!empty($feedback))
+        {
+            $feedback = 'done';
+        }
+        else {
+            $feedback = 'none';
+        }
+
         if(!empty($latestOrder->PromotionID)){
             $voucher = Promotion::where('PromotionID','=',$latestOrder->PromotionID)->first();
         }
@@ -156,9 +196,9 @@ class CheckoutController extends Controller
                 ->join('product','orderdetail.ProductID','=','product.ID')
                 ->select('ProductID','product.Name','product.Price','product.Image')
                 ->get();
-            return view("clients.user.orderProgress",compact('latestOrder','latestOrderDetail','voucher'));
+            return view("clients.user.orderProgress",compact('latestOrder','latestOrderDetail','voucher','status','payment_mode','feedback'));
         }
-        return view("clients.user.orderProgress",compact('latestOrder','voucher'));
+        return view("clients.user.orderProgress",compact('latestOrder','voucher','status','payment_mode','feedback'));
     }
     public function applyVoucher(Request $request)
     {

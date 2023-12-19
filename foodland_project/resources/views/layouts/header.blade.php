@@ -30,9 +30,11 @@
                 <li class="header__navbar-item">
                     <a href="{{route('order_page')}}" class="header__item-link">CART</a>
                 </li>
-                <li class="header__navbar-item">
-                    <a href="{{route('order.progress')}}" class="header__item-link">Order</a>
-                </li>
+                @auth
+                    <li class="header__navbar-item">
+                        <a href="{{route('order.progress')}}" class="header__item-link">Order</a>
+                    </li>
+                @endauth
                 <li class="header__navbar-item">
                     <a href="/#promotion__page" class="header__item-link">Promotion</a>
                 </li>

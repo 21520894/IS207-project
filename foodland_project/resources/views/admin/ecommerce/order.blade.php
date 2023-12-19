@@ -59,12 +59,12 @@
                                         @for($i=0;$i<count($orders);$i++)
                                             <tr class="manager-site__manager-row"
                                                 id="order_ids{{$orders[$i]->OrderID}}">
-                                                <td class="manager-site__manager-data">{{$i+1}}</td>
+                                                <td class="manager-site__manager-data">{{$orders[$i]->OrderID}}</td>
                                                 <td class="manager-site__manager-data">{{$orders[$i]->customer_phone}}</td>
                                                 <td class="manager-site__manager-data">{{$orders[$i]->customer_name}}</td>
                                                 <td class="manager-site__manager-data">{{$orders[$i]->TotalPrice}}VND
                                                 </td>
-                                                <td class="manager-site__manager-data">{{$orders[$i]->payment_method}}</td>
+                                                <td class="manager-site__manager-data">{{empty($orders[$i]->payment_method)?'COD':$orders[$i]->payment_method}}</td>
                                                 <td class="manager-site__manager-data">
                                                     <a onclick="return false"
                                                        class="item-status">{{!empty($orders[$i]->payment_method)?'Paid':'Unpaid'}}</a>

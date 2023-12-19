@@ -29,9 +29,6 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::all();
-        if (!session()->has('message')) {
-            session()->flash('message', 'Please Login to order');
-        }
         $products = new Product();
         $products = $products->getAllProductsForClients();
         $userID = Auth::id();
@@ -50,6 +47,9 @@ class HomeController extends Controller
             return redirect('/#order__page');
         }
         else {
+            if (!session()->has('message')) {
+                session()->flash('message', 'Please Login to order');
+            }
             return redirect('/')->with('message', 'Please Login');
         }
     }

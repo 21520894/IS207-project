@@ -243,11 +243,6 @@
 <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
-    if({{session('message')}}) {
-        alert('Please Login!')
-    }
-</script>
-<script>
     $(document).ready(function () {
         //login validate
         $('#loginModal').submit(function (e) {
@@ -386,4 +381,9 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
+@if(session('message'))
+    <script>
+        alert('{{ session('message') }}');
+    </script>
+@endif
 </html>
