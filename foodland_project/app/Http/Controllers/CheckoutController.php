@@ -145,7 +145,7 @@ class CheckoutController extends Controller
         $latestOrder = Order::where('UserID', $userID)
             ->latest('OrderTime')
             ->first();
-        if($latestOrder->PromotionID!=null){
+        if(!empty($latestOrder->PromotionID)){
             $voucher = Promotion::where('PromotionID','=',$latestOrder->PromotionID)->first();
         }
         else {
@@ -189,7 +189,7 @@ class CheckoutController extends Controller
         ]);
         $discount = Promotion::where('CODE', $request->voucher_code)->first();
         return response()->json([
-            'status' => 'nothing_found',
+            'status' => 'success',
             'discount' => $discount->Value,
         ]);
     }

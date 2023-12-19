@@ -122,9 +122,12 @@
                 url: "{{route('order.voucher')}}",
                 data: {voucher_code: voucher_code, total: total},
                 success: function (res) {
-                    $('.order__discount').text(res.discount+' VND');
-                    $('#totalValue').text(total-res.discount+' VND');
-                    $('#totalInput').val(total-res.discount);
+                    if(res.status === 'success') {
+                        $('.order__discount').text(res.discount+' VND');
+                        $('#totalValue').text(total-res.discount+' VND');
+                        $('#totalInput').val(total-res.discount);
+                        $('.voucher_code_error').text('');
+                    }
                 },
                 error: function (error) {
                     console.log(error);

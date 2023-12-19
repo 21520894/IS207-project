@@ -170,7 +170,6 @@
             @endif
         @if(empty($latestOrder) or $latestOrder->OrderStatus == 'Finished')
             <h1 class="order__page-header">Foodland <span class="header__highlight">deliver</span> the food, you bring the <span class="header__highlight">appetite</span></h1>
-            <h2 class="order__page-sub-header">Wait us for a minutes!</h2>
             <ul class="order__progress-bar">
                 <li class="progress__icon-wrapper">
                     <i class="fa-solid fa-utensils progress__icon"></i>
