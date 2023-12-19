@@ -159,6 +159,7 @@ class OrdersController extends Controller
     public function getRevenueByMonths()
     {
         $revenueByMonths = Order::selectRaw('MONTH(OrderTime) as month, SUM(TotalPrice) as revenue')
+            ->where('OrderStatus','Finished')
             ->groupBy('month')
             ->orderBy('month')
             ->get();
