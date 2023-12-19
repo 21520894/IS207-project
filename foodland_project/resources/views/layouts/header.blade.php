@@ -22,22 +22,25 @@
 
             <ul class="header__navbar-nav">
                 <li class="header__navbar-item">
-                    <a href="{{route('home_page')}}" class="header__item-link header__item-link--active">Home</a>
+                    <a href="{{route('home_page')}}" class="header__item-link header__item-link__active">Home</a>
                 </li>
                 <li class="header__navbar-item">
-                    <a href="#menu__page" class="header__item-link">Menu</a>
+                    <a href="/#menu__page" class="header__item-link ">Menu</a>
                 </li>
                 <li class="header__navbar-item">
-                    <a href="#order__page" class="header__item-link">Order</a>
+                    <a href="{{route('order_page')}}" class="header__item-link">CART</a>
                 </li>
                 <li class="header__navbar-item">
-                    <a href="#promotion__page" class="header__item-link">Promotion</a>
+                    <a href="{{route('order.progress')}}" class="header__item-link">Order</a>
                 </li>
                 <li class="header__navbar-item">
-                    <a href="#about__page" class="header__item-link">About us</a>
+                    <a href="/#promotion__page" class="header__item-link">Promotion</a>
                 </li>
                 <li class="header__navbar-item">
-                    <a href="#consult__page" class="header__item-link">Consult</a>
+                    <a href="/#about__page" class="header__item-link">About us</a>
+                </li>
+                <li class="header__navbar-item">
+                    <a href="/#consult__page" class="header__item-link">Consult</a>
                 </li>
             </ul>
 
@@ -57,7 +60,7 @@
                             </x-dropdown-link>
                         </form>
                     </div>
-                    <a href="#order__page" class="header__item-btn">
+                    <a href="/#order__page" class="header__item-btn">
                         <i class="header__cart-icon fa-solid fa-cart-shopping"></i>
                     </a>
                 </div>

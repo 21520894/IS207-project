@@ -165,7 +165,6 @@
                     contentType: false,
                     processData: false,
                     success: function (response) {
-                        console.log(response);
                         if (response.status === 'success') {
                             modal.style.display = "none";
                             $('.add__modal').hide();
@@ -292,8 +291,8 @@
                 });
                 $('.delete-dish-btn').on('click', function () {
                     $.ajax({
-                        url: "{{route('admin.revenue')}}",
-                        type: "DELETE",
+                        url: "{{route('admin.dish.delete')}}",
+                        type: "post",
                         data: {
                             ids: selected_ids,
                             _token: '{{csrf_token()}}'

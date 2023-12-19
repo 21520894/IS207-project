@@ -32,14 +32,12 @@
 
 <body>
 <div class="app">
-
     @include('layouts/header');
 
     @yield('content')
     @include('layouts/footer');
 
 </div>
-
 <!-- Modal -->
 <div class="modal">
     <div class="modal__overlay"></div>
@@ -245,6 +243,11 @@
 <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
+    if({{session('message')}}) {
+        alert('Please Login!')
+    }
+</script>
+<script>
     $(document).ready(function () {
         //login validate
         $('#loginModal').submit(function (e) {
@@ -262,6 +265,7 @@
                 },
                 error: function (errors) {
                     // Hiển thị lỗi từ server
+                    console.log(errors);
                     $.each(errors.responseJSON.errors, function (key, value) {
                         $('.' + key + '_error').text(value);
                     });
@@ -352,5 +356,34 @@
         });
     });
 </script>
+<!-- Messenger Plugin chat Code -->
+<div id="fb-root"></div>
 
+<!-- Your Plugin chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+<script>
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "155877930946534");
+    chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            xfbml            : true,
+            version          : 'v18.0'
+        });
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 </html>

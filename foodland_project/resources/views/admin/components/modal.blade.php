@@ -63,7 +63,7 @@
             </p>
             <div class="delete__btn-wrapper">
                 <button type="submit" class="delete-dish-btn delete__btn btn">Delete</button>
-                <button class="cancel__btn btn" onclick="closeModalBtn('delete')">Cancel</button>
+                <button class="cancel__btn btn" onclick="closeModalBtn('deleteDish')">Cancel</button>
             </div>
         </div>
         <div name="deleteUserModal" class="delete__modal">
@@ -73,81 +73,93 @@
             </p>
             <div class="delete__btn-wrapper">
                 <button type="submit" class="delete-user-btn delete__btn btn">Delete</button>
-                <button class="cancel__btn btn" onclick="closeModalBtn('delete')">Cancel</button>
+                <button class="cancel__btn btn" onclick="closeModalBtn('deleteUser')">Cancel</button>
             </div>
         </div>
         <div name="viewDetailModal" class="detail__modal">
-            <h1 class="detail__header">Order - <span class="detail__order-id">001</span></h1>
-            <div class="detail__user-info">
-                <div class="detail__info-row">
-                    <p class="detail__info-header">Name:</p>
-                    <p class="detail__info-data" id="user_name">Nguyễn Văn A</p>
+{{--            <form action="" method="post" id="update-order-form">--}}
+{{--                @csrf--}}
+                <h1 class="detail__header">Order - <span class="detail__order-id" id="order_id"></span></h1>
+                <div class="detail__user-info">
+                    <div class="detail__info-row">
+                        <p class="detail__info-header">Name:</p>
+                        <p class="detail__info-data" id="user_name">Nguyễn Văn A</p>
+                    </div>
+                    <div class="detail__info-row">
+                        <p class="detail__info-header">Phone:</p>
+                        <p class="detail__info-data" id="user_phone">090123456</p>
+                    </div>
+                    <div class="detail__info-row">
+                        <p class="detail__info-header">Address:</p>
+                        <p class="detail__info-data" id="user_address"></p>
+                    </div>
+                    <div class="detail__info-row">
+                        <p class="detail__info-header">Time:</p>
+                        <p class="detail__info-data" id="order_time"></p>
+                    </div>
+                    <div class="detail__info-row">
+                        <p class="detail__info-header">Shipping unit:</p>
+                        <p class="detail__info-data">Vietnammm.com</p>
+                    </div>
+                    <div class="detail__info-row">
+                        <p class="detail__info-header">Note:</p>
+                        <p class="detail__info-data"></p>
+                    </div>
                 </div>
-                <div class="detail__info-row">
-                    <p class="detail__info-header">Phone:</p>
-                    <p class="detail__info-data" id="user_phone">090123456</p>
+                <div class="detail__user-order">
+                    <div class="detail__info-row">
+                        <p class="detail__info-header">
+                            Beef Willington
+                            <span class="detail__info-sign">x</span>
+                            <span class="detail__info-quantity">1</span>
+                        </p>
+                        <p class="detail__info-data">200,000 VND</p>
+                    </div>
+                    <div class="detail__info-row">
+                        <p class="detail__info-header">
+                            Beef Willington
+                            <span class="detail__info-sign">x</span>
+                            <span class="detail__info-quantity">1</span>
+                        </p>
+                        <p class="detail__info-data">200,000 VND</p>
+                    </div>
                 </div>
-                <div class="detail__info-row">
-                    <p class="detail__info-header">Address:</p>
-                    <p class="detail__info-data" id="user_address"></p>
-                </div>
-                <div class="detail__info-row">
-                    <p class="detail__info-header">Time:</p>
-                    <p class="detail__info-data" id="order_time"></p>
-                </div>
-                <div class="detail__info-row">
-                    <p class="detail__info-header">Shipping unit:</p>
-                    <p class="detail__info-data">Vietnammm.com</p>
-                </div>
-                <div class="detail__info-row">
-                    <p class="detail__info-header">Note:</p>
-                    <p class="detail__info-data"></p>
-                </div>
-            </div>
-            <div class="detail__user-order">
-                <div class="detail__info-row">
-                    <p class="detail__info-header">
-                        Beef Willington
-                        <span class="detail__info-sign">x</span>
-                        <span class="detail__info-quantity">1</span>
-                    </p>
-                    <p class="detail__info-data">200,000 VND</p>
-                </div>
-                <div class="detail__info-row">
-                    <p class="detail__info-header">
-                        Beef Willington
-                        <span class="detail__info-sign">x</span>
-                        <span class="detail__info-quantity">1</span>
-                    </p>
-                    <p class="detail__info-data">200,000 VND</p>
-                </div>
-            </div>
-            <div class="detail__user-bill">
-                <div class="detail__info-row sub_total">
+                <div class="detail__user-bill">
+                    <div class="detail__info-row sub_total">
 
+                    </div>
+                    <div class="detail__info-row">
+                        <p class="detail__info-header">Shipping</p>
+                        <p class="detail__info-data">27,000 VND</p>
+                    </div>
+                    <div class="detail__info-row">
+                        <p class="detail__info-header">VAT 8%</p>
+                        <p class="detail__info-data">25,760 VND</p>
+                    </div>
+                    <div class="detail__info-row">
+                        <p class="detail__info-header">Discount</p>
+                        <p class="detail__info-data">25,760 VND</p>
+                    </div>
+                    <div class="detail__info-row total">
+                        <p class="detail__info-header">Total</p>
+                        <p class="detail__info-data">355,760 VND</p>
+                    </div>
+                    <div class="detail__info-row total">
+                        <p class="detail__info-header">Status</p>
+                        <select name="order_status" id="" class="add__input-text">
+                            <option value="Wait">Wait</option>
+                            <option value="Processing">Processing</option>
+                            <option value="Shipping">Shipping</option>
+                            <option value="Finished">Finished</option>
+                            <option value="Cancel">Cancel</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="detail__info-row">
-                    <p class="detail__info-header">Shipping</p>
-                    <p class="detail__info-data">27,000 VND</p>
+                <div class="detail__btn-wrapper">
+                    <input class="detail__btn update accept" type="submit" value="Update">
+                    <button class="detail__btn print" onclick="window.print()">Print</button>
                 </div>
-                <div class="detail__info-row">
-                    <p class="detail__info-header">VAT 8%</p>
-                    <p class="detail__info-data">25,760 VND</p>
-                </div>
-                <div class="detail__info-row">
-                    <p class="detail__info-header">Discount</p>
-                    <p class="detail__info-data">25,760 VND</p>
-                </div>
-                <div class="detail__info-row total">
-                    <p class="detail__info-header">Total</p>
-                    <p class="detail__info-data">355,760 VND</p>
-                </div>
-            </div>
-            <div class="detail__btn-wrapper">
-                <input class="detail__btn accept" type="submit" value="Accept">
-                <input class="detail__btn cancel" type="submit" value="Cancel">
-                <button class="detail__btn print" onclick="window.print();return false">Print</button>
-            </div>
+{{--            </form>--}}
         </div>
         <div name="addVoucherModal" class="add__modal">
             <h1 class="add__modal-header">Add new voucher</h1>

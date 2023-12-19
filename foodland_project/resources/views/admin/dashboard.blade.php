@@ -107,7 +107,7 @@
 
                     },
                 }
-                
+
             });
 
         }
@@ -136,7 +136,7 @@
         var revenueData = @json($temp);
         const xRevenueValues = recentDays;
         const yRevenueValues = @json($temp);
-        
+
         //Tính total revenue
         var html_total_re = document.getElementById('Total_revenue');
         var sum = 0;
@@ -145,7 +145,7 @@
         });
         html_total_re.innerHTML = sum.toString() + 'đ';
         //end tính total revenue
-        
+
         var user_count = @json($userCount);
         // console.log(user_count);
         var html_register_user = document.getElementById('Register_User');
@@ -190,13 +190,13 @@
             var clickedDate = moment(clickedMonth, 'MM-YYYY');
             var clickedMonthNumber = clickedDate.month() + 1; // Lấy số tháng từ 0-11, cộng thêm 1 để lấy số tháng từ 1-12
             var clickedYear = clickedDate.year();
-            
-        
+
+
             // Xử lý sự kiện khi bấm vào điểm
         var xDishValues = getDaysInMonth(clickedYear,clickedMonthNumber)
         let yDishValues = [];
         $.ajax({
-            
+
             url: "{{route('admin.revenue')}}",
             method: 'GET',
             data: {
@@ -215,13 +215,13 @@
             }
         });
 
-        
+
 
           }
         }
     }
         });
-        
+
 
     </script>
     <style>
@@ -234,4 +234,3 @@
         }
     </style>
 @endsection
-
