@@ -23,7 +23,9 @@ Route::middleware(['isAdmin'])->prefix('admin')->group(function () {
     Route::get('', function () {
         $orderController = new OrdersController();
         $temp = $orderController -> getRevenueByMonths();
-        return view('admin.dashboard',compact('temp'));
+        $userController = new UsersController();
+        $userCount = $userController -> getCountUser();
+        return view('admin.dashboard',compact('temp','userCount'));
     })->name('admin.dashboard');
     Route::get('revenue', [OrdersController::class, 'getRevenue']) -> name('admin.revenue');
     Route::prefix('dish')->group(function () {

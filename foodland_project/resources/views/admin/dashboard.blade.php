@@ -13,7 +13,7 @@
                     <div class="dashboard__wrapper">
                         <div class="grid__row dashboard__header">
                             <div class="dashboard__item-wrapper">
-                                <p class="dashboard__item-number">
+                                <p class="dashboard__item-number" id = "Register_User">
                                     111
                                     <span class="dashboard__item-name">
                     Register User
@@ -136,6 +136,7 @@
         var revenueData = @json($temp);
         const xRevenueValues = recentDays;
         const yRevenueValues = @json($temp);
+        
         //Tính total revenue
         var html_total_re = document.getElementById('Total_revenue');
         var sum = 0;
@@ -143,7 +144,14 @@
         sum += value;
         });
         html_total_re.innerHTML = sum.toString() + 'đ';
-
+        //end tính total revenue
+        
+        var user_count = @json($userCount);
+        // console.log(user_count);
+        var html_register_user = document.getElementById('Register_User');
+        html_register_user.innerHTML = user_count.toString() + `<span class="dashboard__item-name">
+                    Register User
+                </span>`;
 
         var  chart = new Chart("revenueChart", {
 

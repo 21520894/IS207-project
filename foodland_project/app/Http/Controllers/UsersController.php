@@ -130,5 +130,9 @@ class UsersController extends Controller
         $users = $this->user->getAllUsers($filters);
         return view('admin.user.pagination',compact('users'))->render();
     }
+    public function getCountUser(){
+        $userCount = User::where('role', 0)->count();
+        return $userCount;
+    }
 
 }
