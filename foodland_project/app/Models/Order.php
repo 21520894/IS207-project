@@ -19,6 +19,7 @@ class Order extends Model
             'payment.PaymentMode as payment_method')
             ->join('users','users.id','=','orders.UserID')
             ->leftjoin('payment','payment.OrderID','=','orders.OrderID')
+            ->orderBy('orders.OrderTime','desc')
             ->paginate(5);
         return $orders;
     }
@@ -29,6 +30,7 @@ class Order extends Model
                 'payment.PaymentMode as payment_method')
             ->join('users','users.id','=','orders.UserID')
             ->leftjoin('payment','payment.OrderID','=','orders.OrderID')
+            ->orderBy('orders.OrderTime','desc')
             ->paginate(5);
         if($filters!='' and $filters!='All')
         {
@@ -38,6 +40,7 @@ class Order extends Model
                 ->join('users','users.id','=','orders.UserID')
                 ->leftjoin('payment','payment.OrderID','=','orders.OrderID')
                 ->where('orders.OrderStatus','=',$filters)
+                ->orderBy('orders.OrderTime','desc')
                 ->paginate(5);
         }
         return $orders;
@@ -53,6 +56,7 @@ class Order extends Model
                 $query->where('users.name', 'like', '%' . $search_string . '%')
                     ->orWhere('users.phone', 'like', '%' . $search_string . '%');
             })
+            ->orderBy('orders.OrderTime','desc')
             ->paginate(5);
         if($filters!='' and $filters!='All')
         {
@@ -66,6 +70,7 @@ class Order extends Model
                     $query->where('customer_name', 'like', '%' . $search_string . '%')
                         ->orWhere('customer_phone', 'like', '%' . $search_string . '%');
                 })
+                ->orderBy('orders.OrderTime','desc')
                 ->paginate(5);
         }
         return $orders;
@@ -78,6 +83,7 @@ class Order extends Model
             ->join('users','users.id','=','orders.UserID')
             ->leftjoin('payment','payment.OrderID','=','orders.OrderID')
             ->whereDate('orders.OrderTime','=',$date)
+            ->orderBy('orders.OrderTime','desc')
             ->paginate(5);
         if($filters!='' and $filters!='All')
         {
@@ -88,6 +94,7 @@ class Order extends Model
                 ->leftjoin('payment','payment.OrderID','=','orders.OrderID')
                 ->where('orders.OrderStatus','=',$filters)
                 ->where('DATE(orders.OrderTime)','=',$date)
+                ->orderBy('orders.OrderTime','desc')
                 ->paginate(5);
         }
         return $orders;

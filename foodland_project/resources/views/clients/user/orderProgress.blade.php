@@ -187,7 +187,7 @@
                 </li>
             </ul>
         @endif
-        @if(!empty($latestOrder) and $feedback == 'none')
+        @if(!empty($latestOrder) and $latestOrder->OrderStatus == 'Finished' and $feedback == 'none')
             <h1 class="order__page-header">Foodland <span class="header__highlight">deliver</span> the food, you bring
                 the <span class="header__highlight">appetite</span></h1>
             <h2 class="order__page-sub-header">Please finish your previous order before making new order</h2>
@@ -311,7 +311,7 @@
                                                     <i class="cart-item__note-icon fa-regular fa-pen-to-square"></i>
                                                     <label for="cart-item__note-input">Add note:</label>
                                                     <input type="textarea" class="cart-item__note-input"
-                                                           name="cart-item__note-input">
+                                                           name="cart-item__note-input" value="{{$item->Note}}">
                                                 </p>
                                                 <input type="hidden" name="quantity[]" class="cart-item__quantity-input"
                                                        min="1" value="1">

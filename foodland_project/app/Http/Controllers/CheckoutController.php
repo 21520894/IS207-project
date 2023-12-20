@@ -17,12 +17,12 @@ class CheckoutController extends Controller
     //
     public  function vnpayPayment(Request $request)
     {
-
         $paymentMode = $request->input('order__payment');
         $product_ids = $request->input(['product_ids']);
         $quantity = $request->input(['quantity']);
         $voucher = $request->input(['order_voucher']);
         $promotionId = Promotion::where('CODE','=',$voucher)->first();
+        $notes = $request->input(['cart-item__note-input']);
 
         if($product_ids == null) return redirect('/#menu__page');
 
@@ -109,6 +109,8 @@ class CheckoutController extends Controller
     }
     public function codReturn(Request $request)
     {
+
+        $notes = $request['cart-item__note-input'];
         $productOrdered = $request->product_ids;
         $productQuantity = $request->quantity;
         $promotionId = $request->promotion_id;
@@ -126,6 +128,7 @@ class CheckoutController extends Controller
             $newOrderDetail->OrderID = $newOrder->OrderID;
             $newOrderDetail->ProductID = $productOrdered[$i];
             $newOrderDetail->Quantity = $productQuantity[$i];
+            if($notes[$i] != null) $newOrderDetail->Note = $notes[$i];
             $newOrderDetail->save();
         }
     }
@@ -194,7 +197,7 @@ class CheckoutController extends Controller
         if(!empty($latestOrder)) {
             $latestOrderDetail = OrderDetail::where('OrderID',$latestOrder->OrderID)
                 ->join('product','orderdetail.ProductID','=','product.ID')
-                ->select('ProductID','product.Name','product.Price','product.Image')
+                ->select('ProductID','product.Name','product.Price','product.Image','orderdetail.Note')
                 ->get();
             return view("clients.user.orderProgress",compact('latestOrder','latestOrderDetail','voucher','status','payment_mode','feedback'));
         }

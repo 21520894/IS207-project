@@ -24,8 +24,6 @@
                                            class="manager-site__category-btn order_status btn manager-site__category-btn--active"
                                            name="order_status" value="All">
                                     <input type="submit" class="manager-site__category-btn order_status btn"
-                                           name="order_status" value="Wait">
-                                    <input type="submit" class="manager-site__category-btn order_status btn"
                                            name="order_status" value="Processing">
                                     <input type="submit" class="manager-site__category-btn order_status btn"
                                            name="order_status" value="Shipping">

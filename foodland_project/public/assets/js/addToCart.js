@@ -93,7 +93,7 @@ function addToCart(img, name, price, id) {
                     <p class="cart-item__note">
                         <i class="cart-item__note-icon fa-regular fa-pen-to-square"></i>
                         <label for="cart-item__note-input">Add note:</label>
-                        <input type="textarea" class="cart-item__note-input" name="cart-item__note-input">
+                        <input type="textarea" class="cart-item__note-input" name="cart-item__note-input[]">
                     </p>
                     <input type="hidden" name="quantity[]" class="cart-item__quantity-input" min="1" value="1">
                 </div>

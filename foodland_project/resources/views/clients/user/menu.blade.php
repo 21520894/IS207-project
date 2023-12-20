@@ -51,7 +51,7 @@
                                               style="font-size: 15px;height: 50px; margin-top: 5px;color: red">Out of stock</span>
                                     @endif
 
-                                    <h2 class="menu__product-price">{{$product->Price}} VND</h2>
+                                    <h2 class="menu__product-price">{{number_format($product->Price,0,',')}} VND</h2>
                                     <p class="menu__product-desc">{{$product->Description}}</p>
                                 </div>
                             </li>
