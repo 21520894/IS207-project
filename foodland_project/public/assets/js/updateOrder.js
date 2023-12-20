@@ -41,7 +41,7 @@ function updateOrder() {
         shippingFee = 27000;
     }
 
-    let total = subTotal + shippingFee - vatFee;
+    let total = subTotal + shippingFee + vatFee;
 
     // Order bill content
     orderBill.querySelector('.order__sub-total').innerText = subTotal + ' VND';

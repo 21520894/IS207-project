@@ -214,7 +214,7 @@ class ProductsController extends Controller
     public function destroy(Request $request)
     {
         $ids = $request->ids;
-        Product::where('ID', $ids)->update([
+        Product::whereIn('ID', $ids)->update([
             'Status' => 'Stop business'
         ]);
         return response()->json(['status' => 'success']);

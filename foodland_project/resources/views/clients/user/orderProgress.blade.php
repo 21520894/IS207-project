@@ -144,7 +144,7 @@
                     <i class="fa-solid fa-truck progress__icon"></i>
                     <span class="progress__name">Delivery</span>
                 </li>
-                @if($payment_mode != 'VNPAY')
+                @if($payment_mode == 'COD')
                     <li class="progress__icon-wrapper">
                         <i class="fa-solid fa-money-bill progress__icon"></i>
                         <span class="progress__name">Payment</span>
@@ -167,12 +167,12 @@
                         <span class="progress__name">Payment</span>
                     </li>
                 @endif
-                <li class="progress__icon-wrapper">
-                    <i class="fa-solid fa-utensils progress__icon complete"></i>
+                <li class="progress__icon-wrapper complete">
+                    <i class="fa-solid fa-utensils progress__icon "></i>
                     <span class="progress__name">Cooking</span>
                 </li>
-                <li class="progress__icon-wrapper">
-                    <i class="fa-solid fa-truck progress__icon"></i>
+                <li class="progress__icon-wrapper complete">
+                    <i class="fa-solid fa-truck progress__icon "></i>
                     <span class="progress__name">Delivery</span>
                 </li>
                 @if($payment_mode != 'VNPAY')
@@ -296,6 +296,7 @@
                     <div class="order__cart-wrapper grid__row">
                         <div class="grid__col-4-8">
                             <div class="order__cart-item-wrapper">
+                                @php($sub_total = 0)
                                 @foreach($latestOrderDetail as $item)
                                     <div class="cart-item" id="cart${id}">
                                         <input type="hidden" name="product_ids[]" value="${id}">
@@ -317,7 +318,8 @@
                                                        min="1" value="1">
                                             </div>
                                         </div>
-                                        <span class="cart-item__price">{{$item->Price}} VND</span>
+                                        <span class="cart-item__price">{{number_format($item->Price,0,',',',')}} VND</span>
+                                        @php($sub_total+=$item->Price)
                                     </div>
                                 @endforeach
                             </div>
@@ -347,7 +349,7 @@
                             </h1>
                             <li class="order__info-list-item">
                                 <p class="order__item-header">Sub-total</p>
-                                <p class="order__item-price order__sub-total">{{$latestOrder->TotalPrice - 27000}}
+                                <p class="order__item-price order__sub-total">{{number_format($sub_total,0,',',',')}}
                                     VND</p>
                             </li>
                             <li class="order__info-list-item">
@@ -356,16 +358,16 @@
                             </li>
                             <li class="order__info-list-item">
                                 <p class="order__item-header">VAT 8%</p>
-                                <p class="order__item-price order__vat">0 VND</p>
+                                <p class="order__item-price order__vat">{{number_format($sub_total*0.08,0,',',',')}} VND</p>
                             </li>
                             <li class="order__info-list-item">
                                 <p class="order__item-header">Discount</p>
-                                <p class="order__item-price order__discount">{{($voucher)?$voucher->Value:''}} VND</p>
+                                <p class="order__item-price order__discount">{{($voucher)?number_format($voucher->Value,0,',',','):''}} VND</p>
                             </li>
                         </ul>
                         <div class="order__bill-total">
                             <h1 class="order__bill-header">Total</h1>
-                            <div class="order__bill-price order__total">{{$latestOrder->TotalPrice}} VND</div>
+                            <div class="order__bill-price order__total">{{number_format($latestOrder->TotalPrice,0,',',',')}} VND</div>
                         </div>
                         <form method="POST" action="{{route('order.cancel')}}">
                             @csrf
@@ -389,11 +391,11 @@
     $('#send_feedback').on('submit', function (e) {
         e.preventDefault();
         let submitType = $(document.activeElement).attr('value');
-        let rating = 0;
-        let detail = '';
+        let rating;
+        let detail;
         if (submitType == 'Send') {
-            let rating = $('input[name="rate"]:checked').val();
-            let detail = $('input[id="feedback_detail"]').val();
+            rating = $('input[name="rate"]:checked').val();
+            detail = $('input[id="feedback_detail"]').val();
         }
         $.ajax({
             url: "{{route('feedback.send')}}",

@@ -61,7 +61,7 @@
                                                 <td class="manager-site__manager-data">{{$orders[$i]->OrderID}}</td>
                                                 <td class="manager-site__manager-data">{{$orders[$i]->customer_phone}}</td>
                                                 <td class="manager-site__manager-data">{{$orders[$i]->customer_name}}</td>
-                                                <td class="manager-site__manager-data">{{$orders[$i]->TotalPrice}}VND
+                                                <td class="manager-site__manager-data">{{number_format(($orders[$i]->TotalPrice),0,',',',')}} VND
                                                 </td>
                                                 <td class="manager-site__manager-data">{{empty($orders[$i]->payment_method)?'COD':$orders[$i]->payment_method}}</td>
                                                 <td class="manager-site__manager-data">
@@ -154,15 +154,33 @@
                             </div>`
                             );
                         }
-                        $('.sub_total').append(
+                        $('.sub_total').html(
                             `<p class="detail__info-header">Sub-total</p>
-                            <p class="detail__info-data">${res['Order_total']} VND</p>`
+                            <p class="detail__info-data">${res['sub_total']} VND</p>`
+                        );
+                        $('.vat').html(
+                            `<p class="detail__info-header">VAT 8%</p>
+                            <p class="detail__info-data">${res['vat']} VND</p>`
+                        );
+                        $('.discount').html(
+                          `<p class="detail__info-header">Discount</p>
+                            <p class="detail__info-data">${res['discount']} VND</p>`
+                        );
+                        $('.order_total').html(
+                          `<p class="detail__info-header">Total</p>
+                        <p class="detail__info-data">${res['Order_total']}VND</p>`
                         );
                         $('#user_name').text(user_name);
                         $('#user_phone').text(user_phone);
                         $('#order_time').text(order_time);
                         $('#user_address').text(res['User_address']);
                         $('#order_id').text(id);
+                        $('#order_status option[value="Finished"]').prop('selected', true);
+
+                    },
+                    error: function (err)
+                    {
+                        console.log(err);
                     }
                 });
             });
@@ -282,7 +300,6 @@
                         selected_ids.push($(this).val())
                     });
                 });
-                console.log(selected_ids);
                 $('.delete-dish-btn').on('click', function () {
                     $.ajax({
                         url: "{{route('admin.order.delete')}}",

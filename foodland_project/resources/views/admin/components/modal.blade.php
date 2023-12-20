@@ -132,24 +132,20 @@
                     <p class="detail__info-header">Shipping</p>
                     <p class="detail__info-data">27,000 VND</p>
                 </div>
-                <div class="detail__info-row">
-                    <p class="detail__info-header">VAT 8%</p>
-                    <p class="detail__info-data">25,760 VND</p>
+                <div class="detail__info-row vat">
+
                 </div>
-                <div class="detail__info-row">
-                    <p class="detail__info-header">Discount</p>
-                    <p class="detail__info-data">25,760 VND</p>
+                <div class="detail__info-row discount">
+
                 </div>
-                <div class="detail__info-row total">
-                    <p class="detail__info-header">Total</p>
-                    <p class="detail__info-data">355,760 VND</p>
+                <div class="detail__info-row order_total">
+
                 </div>
                 <div class="detail__info-row total">
                     <p class="detail__info-header">Status</p>
                     <select name="order_status" id="" class="add__input-text">
                         <option value="Processing">Processing</option>
                         <option value="Shipping">Shipping</option>
-                        <option value="Feedback">Feedback</option>
                         <option value="Finished">Finished</option>
                         <option value="Cancel">Cancel</option>
                     </select>

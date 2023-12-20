@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Payment;
 use App\Models\Product;
+use App\Models\Promotion;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -101,9 +102,10 @@ class OrdersController extends Controller
     public function destroy(Request $request)
     {
         //
+
         $ids = $request->ids;
-        Order::where('OrderID', $ids)->delete();
-        OrderDetail::where('OrderID', $ids)->delete();
+        Order::whereIn('OrderID', $ids)->delete();
+        OrderDetail::whereIn('OrderID', $ids)->delete();
         return response()->json(['status' => 'success']);
     }
 
@@ -156,23 +158,29 @@ class OrdersController extends Controller
             'Product_price' => [],
         ];
         $order = Order::find($request->orderID)->getAttributes();
+        $discount = 0;
+        if ($order['PromotionID'] != null) {
+            $discount = Promotion::where('PromotionID','=',$order['PromotionID'])->first()->Value;
+        }
         $orderDetails = OrderDetail::where('OrderID',$request->orderID)->get();
+        $subtotal = 0;
         foreach ($orderDetails as $orderDetail) {
             $item = $orderDetail->getAttributes();
             $productName = Product::find($item['ProductID'])->getAttributes()['Name'];
             $productPrice = Product::find($item['ProductID'])->getAttributes()['Price'];
+            $subtotal += $productPrice;
             $productPrice = number_format($productPrice, 0, ',', ',');
-
-
             array_push($res['Product_name'],$productName);
             array_push($res['Product_quantity'],$item['quantity']);
             array_push($res['Product_price'],$productPrice);
-
         }
         $user = User::find($order['UserID'])->getAttributes();
 
         $res['User_address'] = $user['address'];
+        $res['sub_total'] = number_format($subtotal, 0, ',', ',');;
         $res['Order_total'] = number_format($order['TotalPrice'], 0, ',', ',');;
+        $res['vat'] = number_format(($subtotal)*0.08,0,',',',');
+        $res['discount'] = number_format($discount,0,',',',');
         return $res;
     }
 }
