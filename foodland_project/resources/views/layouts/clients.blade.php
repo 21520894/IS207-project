@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="">
 
 <head>
     <meta charset="UTF-8">
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="auth-form__controls">
-                        <button class="btn btn--primary auth-form__button" type="submit" >Sign in</button>
+                        <button class="btn btn--primary auth-form__button" type="submit">Sign in</button>
                     </div>
                 </div>
             </div>
@@ -243,11 +243,6 @@
 <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
-    if({{session('message')}}) {
-        alert('Please Login!')
-    }
-</script>
-<script>
     $(document).ready(function () {
         //login validate
         $('#loginModal').submit(function (e) {
@@ -371,19 +366,29 @@
 
 <!-- Your SDK code -->
 <script>
-    window.fbAsyncInit = function() {
+    window.fbAsyncInit = function () {
         FB.init({
-            xfbml            : true,
-            version          : 'v18.0'
+            xfbml: true,
+            version: 'v18.0'
         });
     };
 
-    (function(d, s, id) {
+    (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
+        js = d.createElement(s);
+        js.id = id;
         js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 </script>
+<script>
+    $(document).ready(function () {
+        @if(session('message'))
+        alert('{{ session('message') }}');
+
+        @endif
+    });
+</script>
+
 </html>

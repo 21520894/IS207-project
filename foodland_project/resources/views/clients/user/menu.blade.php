@@ -22,7 +22,8 @@
                     @for($i=1;$i<count($categories);$i++)
                         <li class="grid__col-1-8">
                             <div class="menu__category-item" name="menu{{$i+1}}">
-                                <img class="menu__category-item-img" src="{{asset('assets/img/'.$categories[$i]->Image)}}" alt="">
+                                <img class="menu__category-item-img"
+                                     src="{{asset('assets/img/'.$categories[$i]->Image)}}" alt="">
                                 <h1 class="menu__category-item-name">{{$categories[$i]->Title}}</h1>
                             </div>
                         </li>
@@ -46,10 +47,11 @@
                                         <span class="menu__product-btn btn--hover" id="{{$product->ID}}"><img
                                                 src="./assets/img/item-btn.png" alt=""></span>
                                     @else
-                                        <span class="" id="{{$product->ID}}" style="font-size: 15px;height: 50px; margin-top: 5px;color: red">Out of stock</span>
+                                        <span class="" id="{{$product->ID}}"
+                                              style="font-size: 15px;height: 50px; margin-top: 5px;color: red">Out of stock</span>
                                     @endif
 
-                                    <h2 class="menu__product-price">{{$product->Price}} VND</h2>
+                                    <h2 class="menu__product-price">{{number_format($product->Price,0,',')}} VND</h2>
                                     <p class="menu__product-desc">{{$product->Description}}</p>
                                 </div>
                             </li>
@@ -85,7 +87,11 @@
             <div class="menu__cart-item-wrapper">
                 <h1 class="menu__cart-header">My Cart</h1>
             </div>
-            <a href="#order__page" class="menu__cart-btn btn btn--primary">Check out</a>
+            @auth
+                <a href="/#order__page" class="menu__cart-btn btn btn--primary">Check out</a>
+            @else
+                <a href=""  onclick="return false;" class="menu__cart-btn btn btn--primary" name="signin">Check out</a>
+            @endauth
         </div>
     </div>
 </section>

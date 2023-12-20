@@ -21,7 +21,6 @@ function updateOrder() {
 
     // Sum price
     for (const price of prices) {
-
         let itemWrapper = getParentElement(price, 'cart-row');
 
         // Get item quantity
@@ -29,7 +28,7 @@ function updateOrder() {
 
         cartQuantity += parseFloat(itemQuantity);
 
-        subTotal += parseFloat(price.innerText) * parseFloat(itemQuantity);
+        subTotal += parseFloat(price.innerText.replace(/,/g, '')) * parseFloat(itemQuantity);
     }
 
     let vatFee = subTotal * 0.08;

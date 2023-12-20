@@ -71,7 +71,7 @@
                         </div>
                         <div class="edit__btn-wrapper">
                             <input class="edit__btn" type="submit" value="Save">
-                            <button class="edit__btn cancel">Cancel</button>
+                            <a href="" class="edit__btn cancel">Cancel</a>
                         </div>
                     </div>
                 </form>

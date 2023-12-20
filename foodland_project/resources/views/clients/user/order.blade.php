@@ -134,6 +134,9 @@
                     let responseJSON = error.responseJSON.errors;
                     for (let key in responseJSON) {
                         $('.' + key + '_error').text(responseJSON[key][0]);
+                        $('.order__discount').text('0 VND');
+                        $('#totalValue').text(total +' VND');
+                        $('#totalInput').val(total);
                     }
                 }
             });

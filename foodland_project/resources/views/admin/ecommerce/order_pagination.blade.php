@@ -8,16 +8,20 @@
         <th class="manager-site__manager-header">PAYMENT STATUS</th>
         <th class="manager-site__manager-header">ORDER STATUS</th>
         <th class="manager-site__manager-header">ORDER TIME</th>
-        <th class="manager-site__manager-header">DELETE</th>
+        <th class="manager-site__manager-header">
+            <input type="checkbox" name="" id="select_all_ids">
+        </th>
     </tr>
     @if($orders!=null)
         @for($i=0;$i<count($orders);$i++)
-            <tr class="manager-site__manager-row" id="order_ids{{$orders[$i]->OrderID}}">
-                <td class="manager-site__manager-data">{{$i+1}}</td>
+            <tr class="manager-site__manager-row"
+                id="order_ids{{$orders[$i]->OrderID}}">
+                <td class="manager-site__manager-data">{{$orders[$i]->OrderID}}</td>
                 <td class="manager-site__manager-data">{{$orders[$i]->customer_phone}}</td>
                 <td class="manager-site__manager-data">{{$orders[$i]->customer_name}}</td>
-                <td class="manager-site__manager-data">{{$orders[$i]->TotalPrice}} VND</td>
-                <td class="manager-site__manager-data">{{$orders[$i]->payment_method}}</td>
+                <td class="manager-site__manager-data">{{$orders[$i]->TotalPrice}}VND
+                </td>
+                <td class="manager-site__manager-data">{{empty($orders[$i]->payment_method)?'COD':$orders[$i]->payment_method}}</td>
                 <td class="manager-site__manager-data">
                     <a onclick="return false"
                        class="item-status">{{!empty($orders[$i]->payment_method)?'Paid':'Unpaid'}}</a>
