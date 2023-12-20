@@ -49,6 +49,7 @@
                                         <th class="manager-site__manager-header">PAYMENT STATUS</th>
                                         <th class="manager-site__manager-header">ORDER STATUS</th>
                                         <th class="manager-site__manager-header">ORDER TIME</th>
+                                        <th class="manager-site__manager-header">FEEDBACK</th>
                                         <th class="manager-site__manager-header">
                                             <input type="checkbox" name="" id="select_all_ids">
                                         </th>
@@ -76,6 +77,12 @@
                                                     </button>
                                                 </td>
                                                 <td class="manager-site__manager-data">{{$orders[$i]->OrderTime}}</td>
+                                                <td class="manager-site__manager-data">
+                                                    <button name="viewFeedback" class="item-status view-order-feedback"
+                                                            data-rating="{{getFeedbackRating($orders[$i]->OrderID)}}"
+                                                            data-detail="{{getFeedbackDetail($orders[$i]->OrderID)}}">VIEW
+                                                    </button>
+                                                </td>
                                                 <td class="manager-site__manager-data">
                                                     <input class="data__checkbox" type="checkbox" name="ids" id=""
                                                            value="{{$orders[$i]->OrderID}}">
@@ -107,6 +114,20 @@
         }
         deleteOrder();
         function showDataToOrderDetail() {
+            $('.view-order-feedback').on('click', function (e) {
+                e.preventDefault();
+                let rating = $(this).data('rating');
+                let detail = $(this).data('detail');
+                console.log(rating,detail);
+                for (let i = 0; i < rating; i++) {
+                    let label = document.createElement('label');
+                    label.setAttribute('title', 'text');
+                    $('.feedback__rating').append(label);
+                }
+
+                $('.feedback_detail').text(detail);
+
+            })
             $('.view-order-detail').on('click', function (e) {
 
                 e.preventDefault();
@@ -307,6 +328,7 @@
         });
 
     </script>
+
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 @endsection
 

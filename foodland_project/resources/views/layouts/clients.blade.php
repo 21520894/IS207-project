@@ -165,30 +165,21 @@
         <!-- End of Reset password form -->
 
         <!-- Change address form -->
-        <form class="auth-form" name="changeAddressModal" action="" method="">
+        <form class="auth-form" id="update-address-form" name="changeAddressModal" action="" method="POST">
+            @csrf
             <div class="auth-form__container">
                 <div class="auth-form__header">
                     <h3 class="auth-form__heading">Shipping address</h3>
                 </div>
                 <div class="auth-form__form">
                     <div class="auth-form__group">
-                        <input type="name" class="auth-form__input-text" placeholder="Full Name" required>
+                        <input type="tel" name="user-tel" class="auth-form__input-text" placeholder="Phone Number">
                     </div>
                     <div class="auth-form__group">
-                        <input type="tel" class="auth-form__input-text" placeholder="Phone Number" required>
-                    </div>
-                    <div class="auth-form__group">
-                        <input type="text" class="auth-form__input-text" placeholder="Street Address" required>
-                    </div>
-                    <div class="auth-form__group">
-                        <input type="text" class="auth-form__input-text" placeholder="Apt/ Suite/ Unit (Optional)"
-                               required>
-                    </div>
-                    <div class="auth-form__group">
-                        <input type="text" class="auth-form__input-text" placeholder="City" required>
+                        <input type="text" name="user-address" class="auth-form__input-text" placeholder="Street Address">
                     </div>
                     <div class="auth-form__controls">
-                        <button class="btn btn--primary auth-form__button">Confirm</button>
+                        <input type="submit" class="btn btn--primary auth-form__button" value="CONFIRM">
                     </div>
                 </div>
             </div>
@@ -244,6 +235,33 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
     $(document).ready(function () {
+        //Update address
+        $('#update-address-form').submit(function (e) {
+            e.preventDefault();
+            let formData = $(this).serialize();
+            $('.error').text('');
+            $.ajax({
+                url: '{{route('user.update.address')}}',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    console.log(response)
+                    if (response.status === "success")
+                    {
+                        closeModal('changeAddress')
+                        modal.style.display = "none";
+                        location.reload();
+                    }
+                },
+                error: function (errors) {
+                    // Hiển thị lỗi từ server
+                    console.log(errors);
+                    $.each(errors.responseJSON.errors, function (key, value) {
+                        $('.' + key + '_error').text(value);
+                    });
+                }
+            });
+        });
         //login validate
         $('#loginModal').submit(function (e) {
 

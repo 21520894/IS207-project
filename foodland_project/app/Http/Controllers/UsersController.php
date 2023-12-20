@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\DateTime;
 class UsersController extends Controller
@@ -130,5 +131,26 @@ class UsersController extends Controller
         $users = $this->user->getAllUsers($filters);
         return view('admin.user.pagination',compact('users'))->render();
     }
-
+    public function updateAddress(Request $request)
+    {
+        $userId = Auth::user()->id;
+        if(!empty($request->input('user-tel')))
+        {
+            $request->validate(['user-tel' => 'regex:/^[0-9]{10,12}$/'],[
+                'user-tel' => 'Wrong format of phone number'
+            ]);
+            $user = User::where('id', $userId)->update([
+                'phone' => $request->input('user-tel'),
+            ]);
+        }
+        if(!empty($request->input('user-address')))
+        {
+            User::where('id', $userId)->update([
+                'address' => $request->input('user-address'),
+            ]);
+        }
+        return response()->json([
+            'status' => 'success'
+        ]);
+    }
 }

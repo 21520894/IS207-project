@@ -76,11 +76,13 @@ Route::get('/show-menu-via-category', [ProductsController::class, 'showMenuByGro
 Route::get('/search-dish', [ProductsController::class, 'searchForClients'])->name('clients.dish.search');
 Route::get('/order_page', [HomeController::class, 'order'])->name('order_page');
 Route::middleware(['auth'])->group(function (){
+    Route::post('user-update',[UsersController::class,'updateAddress'])->name('user.update.address');
     Route::post('vnpay-payment',[CheckoutController::class,'vnpayPayment'])->name('vnpay.payment');
     Route::get('/vnpay-return',[CheckoutController::class,'vnpayReturn'])->name('vnpay.return');
     Route::get('/order-progress',[CheckoutController::class,'orderProgress'])->name('order.progress');
     Route::get('/order-voucher',[CheckoutController::class,'applyVoucher'])->name('order.voucher');
     Route::post('/send-feedback',[FeedbackController::class,'send'])->name('feedback.send');
+    Route::post('cancel-order',[CheckoutController::class,'cancelOrder'])->name('order.cancel');
 });
 
 Auth::routes();

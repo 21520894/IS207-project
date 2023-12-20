@@ -219,8 +219,8 @@
                 </li>
             </ul>
         @endif
-        @if(empty($latestOrder) or $latestOrder->OrderStatus == 'Finished')
-            @if($feedback == 'none')
+        @if(empty($latestOrder) or $latestOrder->OrderStatus == 'Finished' or $latestOrder->OrderStatus == 'Cancel')
+            @if($feedback == 'none' and $latestOrder->OrderStatus != 'Cancel')
                 <div class="order__feedback-wrapper grid__full-width grid__row">
                     <h1 class="feedback__header">Please tell us your feedback</h1>
                     <table class="feedback__body">
@@ -290,7 +290,7 @@
             @endif
 
         @endif
-        @if(!empty($latestOrder) and $latestOrder->OrderStatus != 'Finished')
+        @if(!empty($latestOrder) and $latestOrder->OrderStatus != 'Finished' and $latestOrder->OrderStatus != 'Cancel')
             <div class="order__page-container grid__full-width grid__row">
                 <div class="order__cart-container grid__col-8">
                     <div class="order__cart-wrapper grid__row">
@@ -367,7 +367,11 @@
                             <h1 class="order__bill-header">Total</h1>
                             <div class="order__bill-price order__total">{{$latestOrder->TotalPrice}} VND</div>
                         </div>
-                        <span class="order__pay-btn btn btn--primary" onclick="alert('Success')">CANCEL</span>
+                        <form method="POST" action="{{route('order.cancel')}}">
+                            @csrf
+                            <input type="submit" style="width: 92%;" class="order__pay-btn btn btn--primary" value="CANCEL">
+                            <input  type="hidden" name="order_id" value="{{$latestOrder->OrderID}}">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -387,7 +391,7 @@
         let submitType = $(document.activeElement).attr('value');
         let rating = 0;
         let detail = '';
-        if(submitType == 'Send') {
+        if (submitType == 'Send') {
             let rating = $('input[name="rate"]:checked').val();
             let detail = $('input[id="feedback_detail"]').val();
         }
@@ -401,7 +405,7 @@
                 _token: '{{csrf_token()}}'
             },
             success: function (res) {
-                if(res.status === 'success') {
+                if (res.status === 'success') {
                     window.location.href = '/#menu__page';
                     alert('Thank you for supporting us!');
                 }

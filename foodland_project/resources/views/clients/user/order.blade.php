@@ -73,8 +73,8 @@
             <div class="order__pay-wrapper grid__col-4">
                 <div class="order__pay-info">
                     <h1 class="order__info-header">Delivering to:</h1>
-                    <p class="order__address-info">1342 Morris Street</p>
-                    <p class="order__phone-info">0912345678</p>
+                    <p class="order__address-info">{{ Auth::user()->address }}</p>
+                    <p class="order__phone-info">{{ Auth::user()->phone }}</p>
                 </div>
                 <div class="order__pay-bill">
                     <h1 class="order__bill-header">Order Summary</h1>

@@ -13,7 +13,7 @@ function addItemStatus() {
             background: 'red-bg-color'
         },
         {
-            status: ['processing'],
+            status: ['processing','view'],
             background: 'blue-bg-color'
         },
         {

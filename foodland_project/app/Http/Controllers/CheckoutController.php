@@ -236,4 +236,10 @@ class CheckoutController extends Controller
             'discount' => $discount->Value,
         ]);
     }
+
+    public function cancelOrder(Request $request)
+    {
+        $order = Order::where('OrderID',$request->input('order_id'))->update(['OrderStatus' => 'Cancel']);
+        return redirect('/#order__page');
+    }
 }

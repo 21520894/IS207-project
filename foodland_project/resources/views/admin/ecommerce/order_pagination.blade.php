@@ -8,6 +8,7 @@
         <th class="manager-site__manager-header">PAYMENT STATUS</th>
         <th class="manager-site__manager-header">ORDER STATUS</th>
         <th class="manager-site__manager-header">ORDER TIME</th>
+        <th class="manager-site__manager-header">VIEW</th>
         <th class="manager-site__manager-header">
             <input type="checkbox" name="" id="select_all_ids">
         </th>
@@ -35,6 +36,12 @@
                     </button>
                 </td>
                 <td class="manager-site__manager-data">{{$orders[$i]->OrderTime}}</td>
+                <td class="manager-site__manager-data">
+                    <button name="viewFeedback" class="item-status view-order-feedback"
+                            data-rating="{{getFeedbackRating($orders[$i]->OrderID)}}"
+                            data-detail="{{getFeedbackDetail($orders[$i]->OrderID)}}">VIEW
+                    </button>
+                </td>
                 <td class="manager-site__manager-data">
                     <input class="data__checkbox" type="checkbox" name="ids" id=""
                            value="{{$orders[$i]->OrderID}}">

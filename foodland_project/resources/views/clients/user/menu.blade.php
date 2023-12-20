@@ -64,25 +64,28 @@
         </div>
         <div class="menu__user-wrapper grid__col-4">
             <div class="menu__user-address">
-                @auth
-                    <h1 class="menu__address-header">My Address</h1>
-                    <p class="menu__address-sub-header">Delivery address</p>
-                    <p class="menu__address-info">{{ Auth::user()->address }}</p>
-                    <div class="menu__address-ship">
-                        <p class="menu__ship-time"><i class="menu__ship-icon fa-solid fa-clock"></i>15-20 mins</p>
-                        <p class="menu__ship-distance"><i class="menu__ship-icon fa-solid fa-location-dot"></i>5km</p>
-                    </div>
-                    <span class="menu__address-change-btn" name="changeAddress">*Change address direction*</span>
-                @else
-                    <h1 class="menu__address-header">My Address</h1>
-                    <p class="menu__address-sub-header">Delivery address</p>
-                    <p class="menu__address-info">1342 Morris Street</p>
-                    <div class="menu__address-ship">
-                        <p class="menu__ship-time"><i class="menu__ship-icon fa-solid fa-clock"></i>15-20 mins</p>
-                        <p class="menu__ship-distance"><i class="menu__ship-icon fa-solid fa-location-dot"></i>5km</p>
-                    </div>
-                    <span class="menu__address-change-btn" name="changeAddress">*Change address direction*</span>
-                @endauth
+                <div class="shipping_info">
+                    @auth
+                        <h1 class="menu__address-header">My Address</h1>
+                        <p class="menu__address-sub-header">Delivery address</p>
+                        <p class="menu__address-info">{{ Auth::user()->address }}</p>
+                        <p class="menu__address-info">{{ Auth::user()->phone }}</p>
+                        <div class="menu__address-ship">
+                            <p class="menu__ship-time"><i class="menu__ship-icon fa-solid fa-clock"></i>15-20 mins</p>
+                            <p class="menu__ship-distance"><i class="menu__ship-icon fa-solid fa-location-dot"></i>5km</p>
+                        </div>
+                        <span class="menu__address-change-btn" name="changeAddress">*Change address direction*</span>
+                    @else
+                        <h1 class="menu__address-header">My Address</h1>
+                        <p class="menu__address-sub-header">Delivery address</p>
+                        <p class="menu__address-info">1342 Morris Street</p>
+                        <div class="menu__address-ship">
+                            <p class="menu__ship-time"><i class="menu__ship-icon fa-solid fa-clock"></i>15-20 mins</p>
+                            <p class="menu__ship-distance"><i class="menu__ship-icon fa-solid fa-location-dot"></i>5km</p>
+                        </div>
+                        <span class="menu__address-change-btn" name="changeAddress">*Change address direction*</span>
+                    @endauth
+                </div>
             </div>
             <div class="menu__cart-item-wrapper">
                 <h1 class="menu__cart-header">My Cart</h1>
