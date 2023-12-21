@@ -55,7 +55,7 @@
                 </div>
                 <div class="auth-form__form">
                     <div class="auth-form__group">
-                        <input type="email" class="auth-form__input-text" placeholder="email" name="email">
+                        <input type="text" class="auth-form__input-text" placeholder="email" name="email">
                         <span style="color: red;font-size:12px; white-space: nowrap;" class="email_error error"></span>
                     </div>
                     <div class="auth-form__group" style="position: relative">
@@ -97,7 +97,7 @@
                         <span style="color: red; font-size: 12px;" class="phone_register_error error"></span>
                     </div>
                     <div class="auth-form__group">
-                        <input type="email" class="auth-form__input-text" placeholder="Email" name="email">
+                        <input type="text" class="auth-form__input-text" placeholder="Email" name="email">
                         <span style="color: red; font-size: 12px;" class="email_register_error error"></span>
                     </div>
                     <div class="auth-form__group">

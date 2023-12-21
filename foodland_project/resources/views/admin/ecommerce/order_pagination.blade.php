@@ -20,7 +20,7 @@
                 <td class="manager-site__manager-data">{{$orders[$i]->OrderID}}</td>
                 <td class="manager-site__manager-data">{{$orders[$i]->customer_phone}}</td>
                 <td class="manager-site__manager-data">{{$orders[$i]->customer_name}}</td>
-                <td class="manager-site__manager-data">{{$orders[$i]->TotalPrice}}VND
+                <td class="manager-site__manager-data">{{number_format(($orders[$i]->TotalPrice),0,',',',')}} VND
                 </td>
                 <td class="manager-site__manager-data">{{empty($orders[$i]->payment_method)?'COD':$orders[$i]->payment_method}}</td>
                 <td class="manager-site__manager-data">

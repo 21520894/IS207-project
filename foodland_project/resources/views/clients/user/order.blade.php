@@ -17,35 +17,7 @@
                     </div>
                     <div class="grid__col-4-8">
                         <div class="order__cart-option">
-                            <div class="order__cart-checkbox">
-                                <h1 class="order__checkbox-header">Please tick if you need</h1>
-                                <div class="order__checkbox-container">
-                                    <div class="order__checkbox-wrapper">
-                                    <span class="order__checkbox">
-                                        <input type="checkbox" class="order__checkbox-item"> Chili oil
-                                    </span>
-                                        <span class="order__checkbox">
-                                        <input type="checkbox" class="order__checkbox-item"> Cutlery
-                                    </span>
-                                    </div>
-                                    <div class="order__checkbox-wrapper">
-                                    <span class="order__checkbox">
-                                        <input type="checkbox" class="order__checkbox-item"> Chili Soyce
-                                    </span>
-                                        <span class="order__checkbox">
-                                        <input type="checkbox" class="order__checkbox-item"> Ketchup
-                                    </span>
-                                    </div>
-                                    <div class="order__checkbox-wrapper">
-                                    <span class="order__checkbox">
-                                        <input type="checkbox" class="order__checkbox-item"> Reheating Foil
-                                    </span>
-                                        <span class="order__checkbox">
-                                        <input type="checkbox" class="order__checkbox-item"> Instructions
-                                    </span>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="order__cart-voucher">
                                 <h1 class="order__voucher-header">E-voucher</h1>
                                 <h2 class="order__voucher-sub-header">Input your E-voucher (if available)</h2>

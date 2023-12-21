@@ -44,7 +44,7 @@ function updateOrder() {
     let total = subTotal + shippingFee + vatFee;
 
     // Order bill content
-    orderBill.querySelector('.order__sub-total').innerText = subTotal + ' VND';
+    orderBill.querySelector('.order__sub-total').innerText = subTotal+ ' VND';
     orderBill.querySelector('.order__shipping').innerText = shippingFee + ' VND';
     orderBill.querySelector('.order__vat').innerText = vatFee + ' VND';
     //orderBill.querySelector('.order__discount').innerText = discount + ' VND';

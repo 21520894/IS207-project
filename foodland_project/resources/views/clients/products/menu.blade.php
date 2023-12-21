@@ -7,8 +7,14 @@
                     <span class="menu__product-label">Recommended</span>
                     <img src="./assets/img/{{$product->Image}}" alt="" class="menu__product-img" name="productDetail">
                     <h1 class="menu__product-name">{{$product->Name}}</h1>
-                    <span class="menu__product-btn btn--hover" id="{{$product->ID}}"><img src="./assets/img/item-btn.png" alt=""></span>
-                    <h2 class="menu__product-price">{{$product->Price}} VND</h2>
+                    @if($product->Status == 'Stocking')
+                        <span class="menu__product-btn btn--hover" id="{{$product->ID}}"><img
+                                src="./assets/img/item-btn.png" alt=""></span>
+                    @else
+                        <span class="" id="{{$product->ID}}"
+                              style="font-size: 15px;height: 50px; margin-top: 5px;color: red">Out of stock</span>
+                    @endif
+                    <h2 class="menu__product-price">{{number_format($product->Price,0,',')}} VND</h2>
                     <p class="menu__product-desc">{{$product->Description}}</p>
                 </div>
             </li>
