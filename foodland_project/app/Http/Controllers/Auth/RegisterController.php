@@ -56,7 +56,8 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ],
         [
-            'email.unique' => 'Email already exist'
+            'email.unique' => 'Email already exist',
+            'email.email' => 'This is not an email'
         ]);
     }
 

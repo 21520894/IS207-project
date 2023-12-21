@@ -256,7 +256,10 @@
                         $('.manager-site__body').html(res);
                         if (res.status === 'nothing_found') {
                             $('.manager-site__body').html('<span style="color: red; font-size: 18px;">' + 'Nothing found' + '</span>');
+
                         }
+                        showDataToEditUserForm();
+                        loadModal();
                     },
                     error: function (error) {
                         console.log(error);
@@ -273,6 +276,8 @@
                     data: {account_type: account_type},
                     success: function (res) {
                         $('.manager-site__body').html(res);
+                        showDataToEditUserForm();
+                        loadModal();
                     }
                 });
             });

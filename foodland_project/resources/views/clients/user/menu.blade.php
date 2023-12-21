@@ -83,7 +83,6 @@
                             <p class="menu__ship-time"><i class="menu__ship-icon fa-solid fa-clock"></i>15-20 mins</p>
                             <p class="menu__ship-distance"><i class="menu__ship-icon fa-solid fa-location-dot"></i>5km</p>
                         </div>
-                        <span class="menu__address-change-btn" name="changeAddress">*Change address direction*</span>
                     @endauth
                 </div>
             </div>

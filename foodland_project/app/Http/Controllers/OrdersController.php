@@ -85,12 +85,20 @@ class OrdersController extends Controller
         $orderId = $request->order_id;
         if($request->up_order_status == 'Finished')
         {
-            $newPayment = new Payment();
-            $newPayment->PaymentMode = 'COD';
-            $newPayment->OrderID = $orderId;
-            $newPayment->PaymentTime = Carbon::now();
-            $newPayment->save();
-            $order = Order::where('OrderID',$orderId)->update(['OrderStatus' => $request->up_order_status]);
+            $payment = Payment::where('OrderID',$orderId)->first();
+            if(!empty($payment))
+            {
+                $order = Order::where('OrderID',$orderId)->update(['OrderStatus' => $request->up_order_status]);
+            }
+            else {
+                $newPayment = new Payment();
+                $newPayment->OrderID = $orderId;
+                $newPayment->PaymentTime = Carbon::now();
+                $newPayment->PaymentMode = 'COD';
+                $newPayment->save();
+                $order = Order::where('OrderID',$orderId)->update(['OrderStatus' => $request->up_order_status]);
+            }
+
         }
         $order = Order::where('OrderID',$orderId)->update(['OrderStatus' => $request->up_order_status]);
         return response()->json(['status' => 'success']);
@@ -183,4 +191,48 @@ class OrdersController extends Controller
         $res['discount'] = number_format($discount,0,',',',');
         return $res;
     }
+
+    public function getRevenueByMonths()
+    {
+        $revenueByMonths = Order::selectRaw('MONTH(OrderTime) as month, SUM(TotalPrice) as revenue')
+            ->where('OrderStatus','Finished')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $revenueData = [];
+        foreach ($revenueByMonths as $revenue) {
+            $revenueData[$revenue->month] = $revenue->revenue;
+        }
+
+        $monthlyRevenue = [];
+        for ($month = 1; $month <= 12; $month++) {
+            $monthlyRevenue[] = $revenueData[$month] ?? 0;
+        }
+
+        return $monthlyRevenue;
+    }
+    public function getRevenue(Request $request){
+        $month = $request->input('month');
+        $year = $request->input('year');
+        $daysInMonth = $request->input('daysInMonth');
+
+        $revenueData = [];
+
+        // Lặp qua từng ngày trong tháng
+        for ($day = 1; $day <= $daysInMonth; $day++) {
+            // Tạo ngày đầy đủ từ tháng, năm và ngày hiện tại
+            $date = sprintf('%04d-%02d-%02d', $year, $month, $day);
+
+            // Truy xuất doanh thu từ cơ sở dữ liệu dựa trên ngày
+            $revenue = Order::whereDate('OrderTime', $date)->sum('TotalPrice');
+
+            // Thêm thông tin doanh thu vào mảng
+            $revenueData[$day] = $revenue;
+        }
+
+        // Trả về mảng doanh thu dưới dạng JSON
+        return response()->json($revenueData);
+    }
+
 }

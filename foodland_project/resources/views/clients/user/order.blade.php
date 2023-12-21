@@ -126,7 +126,7 @@
                         $('.order__discount').text(res.discount+' VND');
                         $('#totalValue').text(total-res.discount+' VND');
                         $('#totalInput').val(total-res.discount);
-                        $('.voucher_code_error').text('');
+                        $('.voucher_code_error').text('Aplied successful!');
                     }
                 },
                 error: function (error) {

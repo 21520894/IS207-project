@@ -53,7 +53,7 @@ class User extends Authenticatable
         $users = DB::table($this->table)
             ->select('users.*')
             ->where('users.status','<>','locked')
-            ->paginate(3);
+            ->paginate(6);
         if($filters!='')
         {
             $users = DB::table($this->table)
@@ -68,7 +68,7 @@ class User extends Authenticatable
             ->where('name','like','%'.$search_string.'%')
             ->where('users.status','<>','locked')
             ->orWhere('phone','like','%'.$search_string.'%')
-            ->paginate(3);
+            ->paginate(6);
         if($filters!='')
         {
             $users = DB::table($this->table)
@@ -76,7 +76,7 @@ class User extends Authenticatable
                 ->where('name','like','%'.$search_string.'%')
                 ->where('users.status','<>','locked')
                 ->orWhere('phone','like','%'.$search_string.'%')
-                ->paginate(3);
+                ->paginate(6);
         }
         return $users;
     }

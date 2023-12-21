@@ -182,7 +182,11 @@ class CheckoutController extends Controller
         $latestOrder = Order::where('UserID', $userID)
             ->latest('OrderTime')
             ->first();
-        $payment_mode = Payment::where('OrderID',$latestOrder->OrderID)->first();
+        if(!empty($latestOrder))
+        {
+            $payment_mode = Payment::where('OrderID',$latestOrder->OrderID)->first();
+            $feedback = Feedback::where('OrderID',$latestOrder->OrderID)->first();
+        }
         if(!empty($payment_mode))
         {
             $payment_mode =$payment_mode->PaymentMode;
@@ -190,7 +194,6 @@ class CheckoutController extends Controller
         else {
             $payment_mode = 'COD';
         }
-        $feedback = Feedback::where('OrderID',$latestOrder->OrderID)->first();
         if(!empty($feedback))
         {
             $feedback = 'done';

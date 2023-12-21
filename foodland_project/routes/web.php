@@ -23,8 +23,11 @@ use App\Http\Controllers\FeedbackController;
 //admin
 Route::middleware(['isAdmin'])->prefix('admin')->group(function () {
     Route::get('', function () {
-        return view('admin.dashboard');
+        $orderController = new OrdersController();
+        $temp = $orderController -> getRevenueByMonths();
+        return view('admin.dashboard',compact('temp'));
     })->name('admin.dashboard');
+    Route::get('revenue', [OrdersController::class, 'getRevenue']) -> name('admin.revenue');
     Route::prefix('dish')->group(function () {
         Route::get('', [ProductsController::class, 'index'])->name('admin.dish.show');
         Route::post('', [ProductsController::class, 'store'])->name('admin.dish.add');

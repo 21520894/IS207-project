@@ -171,7 +171,7 @@
                     <i class="fa-solid fa-utensils progress__icon "></i>
                     <span class="progress__name">Cooking</span>
                 </li>
-                <li class="progress__icon-wrapper complete">
+                <li class="progress__icon-wrapper">
                     <i class="fa-solid fa-truck progress__icon "></i>
                     <span class="progress__name">Delivery</span>
                 </li>
@@ -219,8 +219,32 @@
                 </li>
             </ul>
         @endif
-        @if(empty($latestOrder) or $latestOrder->OrderStatus == 'Finished' or $latestOrder->OrderStatus == 'Cancel')
-            @if($feedback == 'none' and $latestOrder->OrderStatus != 'Cancel')
+            @if(empty($latestOrder) or$latestOrder->OrderStatus == 'Cancel' )
+                <h1 class="order__page-header">Foodland <span class="header__highlight">deliver</span> the food, you
+                    bring
+                    the <span class="header__highlight">appetite</span></h1>
+                <ul class="order__progress-bar">
+                    <li class="progress__icon-wrapper">
+                        <i class="fa-solid fa-utensils progress__icon"></i>
+                        <span class="progress__name">Cooking</span>
+                    </li>
+                    <li class="progress__icon-wrapper">
+                        <i class="fa-solid fa-truck progress__icon"></i>
+                        <span class="progress__name">Delivery</span>
+                    </li>
+                    <li class="progress__icon-wrapper">
+                        <i class="fa-solid fa-money-bill progress__icon"></i>
+                        <span class="progress__name">Payment</span>
+                    </li>
+                    <li class="progress__icon-wrapper">
+                        <i class="fa-solid fa-check progress__icon"></i>
+                        <span class="progress__name">Feedback</span>
+                    </li>
+                </ul>
+                <h2 class="order__page-sub-header">You have placed no orders</h2>
+            @endif
+        @if(!empty($latestOrder) and $latestOrder->OrderStatus == 'Finished')
+            @if($feedback == 'none')
                 <div class="order__feedback-wrapper grid__full-width grid__row">
                     <h1 class="feedback__header">Please tell us your feedback</h1>
                     <table class="feedback__body">
@@ -259,7 +283,6 @@
                         <form id="send_feedback" method="post">
                             @csrf
                             <input type="submit" class="feedback__submit-btn btn btn--primary" value="Send">
-                            <input type="submit" class="feedback__skip-btn btn btn--primary" value="Skip">
                         </form>
                         </button>
                     </div>
@@ -371,8 +394,10 @@
                         </div>
                         <form method="POST" action="{{route('order.cancel')}}">
                             @csrf
+                            @if($payment_mode == 'COD')
                             <input type="submit" style="width: 92%;" class="order__pay-btn btn btn--primary" value="CANCEL">
                             <input  type="hidden" name="order_id" value="{{$latestOrder->OrderID}}">
+                            @endif
                         </form>
                     </div>
                 </div>
@@ -403,7 +428,7 @@
             data: {
                 rating: rating,
                 detail: detail,
-                order_id: {{$latestOrder->OrderID}},
+                order_id: {{empty($latestOrder->OrderID)?0:$latestOrder->OrderID}},
                 _token: '{{csrf_token()}}'
             },
             success: function (res) {
