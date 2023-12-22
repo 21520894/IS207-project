@@ -9,6 +9,26 @@
 </p>
 
 </div>
+# Install Guide
+## Requirements
+
+* Laravel (>=8)
+* PHP ( >= 8.2)
+* Composer 
+* Wampserver
+* A code editor (e.g. Visual Studio Code)
+
+## Installation
+
++ Run the following command to start:
+  
+        composer install
+
+        php artisan serve
+        
+        npm install
+        
+        npm start
 
 # Author
 
