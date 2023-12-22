@@ -9,3 +9,18 @@
 </p>
 
 </div>
+
+# Author
+
+<div id="tacGia">
+
+|Num|    ID     |        Name                                          
+|--:|----------:|-----------------------------------------------------
+| 1 | 21520535  | Phạm Nguyễn Hà Vy                                    
+| 2 | 21520894  | Nguyễn Duy Hưng                                     
+| 3 | 21521197  | Hoàng Ngô Thảo Nguyên   
+| 4 | 21521238  | Đỗ Văn Nho
+| 5 | 21522489  | Huỳnh Quốc Quân
+| 6 | 21522814  | Phan Quốc Vỹ            
+   
+</div>
